@@ -18,6 +18,8 @@ class Window(QWidget):
         self.setAutoFillBackground(True)
         self.setIcon()
         self.setWriteButton()
+        self.setConfigButton()
+        self.windowConfigWindow = None
     #Insert the icon
     def setIcon(self):
         appIcon = QIcon("Y:\Administratif\LogoEtModeles\logo_orif_square_transparent.png")
@@ -29,7 +31,20 @@ class Window(QWidget):
         writeButton.setStyleSheet('QPushButton {background-color: #AE9B70; color: white;}')
         writeButton.setFixedSize(300,300)
         writeButton.move(50,100)
-        writeButton.clicked.connect(self.badgeApp)
+        writeButton.clicked.connect(self.WriteApp)
+        def setConfigButton(self):
+        configButton = QPushButton("Configure", self)
+        configButton.setStyleSheet('QPushButton {background-color: #AE9B70; color: white;}')
+        configButton.setFixedSize(300,300)
+        configButton.move(50,100)
+        configButton.clicked.connect(self.configWindow)
+    #Open Config Window
+    def configWindow(self):
+        self.windowConfigWindow = ConfigWindow.Window()
+        self.windowConfigWindow.show()
+     
+    def WriteApp(self):
+        Write()
     
 
     
