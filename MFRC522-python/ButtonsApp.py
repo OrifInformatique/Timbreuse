@@ -48,18 +48,11 @@ class Window(QWidget):
         
     def setButtonOut(self):
         buttonOut = QPushButton("Out", self)
-        buttonOut.setStyleSheet("QPushButton {background-color:#005BA9; color: white; font-size: 40px; border:none}")
+        buttonOut.setStyleSheet("QPushButton {background-color:#005BA9; color: white; font-size: 120px; font-weight: BOLD; border:none}")
         buttonOut.setFixedSize(300,300)
         buttonOut.move(450,100)
         buttonOut.clicked.connect(self.badgeApp)
-        
-    def SetButtonRead(self):
-        buttonRead = QPushButton("READ", self)
-        buttonRead.setStyleSheet("QPushButton {background-color:#005BA9; color: white; font-size: 40px; border:none}")
-        #buttonOut.setFixedSize(300,300)
-        buttonRead.move(360,0)
-        buttonRead.clicked.connect(self.badgeApp)
-        
+                
     def setButtonAdmin(self):
         buttonAdmin = QPushButton("Admin", self)
         buttonAdmin.setStyleSheet('QPushButton{background-color:#005BA9; color: black;}')
