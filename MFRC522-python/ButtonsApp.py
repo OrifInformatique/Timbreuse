@@ -78,6 +78,7 @@ class Window(QWidget):
 if __name__=="__main__":
     #Create Qt App
     mainApp = QApplication(sys.argv)
+    style = "StyleApp.css"
     window = Window()
     #Show the window
     window.show()
