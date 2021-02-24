@@ -25,9 +25,9 @@ class Window(QWidget):
         palette.setColor(QPalette.Window, QColor("#333333"))
         self.setPalette(palette)
         self.setAutoFillBackground(True)
+        # Call all necessary function present in this ButtonsApp.py
         self.setIcon()
         self.setButtonIn()
-        self.SetButtonRead()
         self.setButtonAdmin()
         self.setButtonOut()
         self.windowAdminLogin = None
