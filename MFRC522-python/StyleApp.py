@@ -8,4 +8,14 @@ from PySde2.QtGui import *
 #Create the CSS class
 class StyleApp():
 
-    
+    def setColor(QPalette.Window, QColor("")):
+
+    def styleButton():
+
+        QPushButton{
+            background-color:'#005BA9'
+            border: None
+            font-size: 120px
+            font-weight: BOLD
+            color: white
+        }
