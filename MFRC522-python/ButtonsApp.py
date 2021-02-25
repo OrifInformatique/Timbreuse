@@ -81,6 +81,7 @@ if __name__=="__main__":
     #Create Qt App
     mainApp = QApplication(sys.argv)
     style = "StyleApp.css"
+    QPushButton#buttonIn{background-color:#005BA9}
     window = Window()
     #Show the window
     window.show()
