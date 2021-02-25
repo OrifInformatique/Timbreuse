@@ -5,7 +5,6 @@ from PySide2.QtGui import *
 import AdminWindow
 import AdminLogin
 import ProgressBar
-import StyleApp.css
 import Read
 from PySide2 import QtGui
 
@@ -43,7 +42,7 @@ class Window(QWidget):
     def setButtonIn(self):
         buttonIn = QPushButton("In", self)
         #buttonIn.setStyleSheet('QPushButton {background-color:#005BA9; color: white; font-size: 120px; font-weight: BOLD;border: none}')
-        buttonIn.setStyleSheet("StyleApp.css")
+        buttonIn.setStyleSheet("StyleApp.py")
         buttonIn.setFixedSize(300,300)
         buttonIn.move(50,100)
         buttonIn.clicked.connect(self.badgeApp)
@@ -80,7 +79,7 @@ class Window(QWidget):
 if __name__=="__main__":
     #Create Qt App
     mainApp = QApplication(sys.argv)
-    style = "StyleApp.css"
+   
     QPushButton#buttonIn{background-color:#005BA9}
     window = Window()
     #Show the window
