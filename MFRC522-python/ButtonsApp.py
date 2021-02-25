@@ -5,6 +5,7 @@ from PySide2.QtGui import *
 import AdminWindow
 import AdminLogin
 import ProgressBar
+
 import Read
 from PySide2 import QtGui
 
@@ -21,6 +22,7 @@ class Window(QWidget):
         self.setMinimumWidth(800)
         self.setMaximumHeight(500)
         self.setMaximumWidth(800)
+        #self.SetCSS()
         palette = self.palette()
         palette.setColor(QPalette.Window, QColor("#333333"))
         self.setPalette(palette)
