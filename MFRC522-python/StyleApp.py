@@ -8,7 +8,7 @@ from PySde2.QtGui import *
 #Create the CSS class
 class StyleApp():
 
-    def setColor(QPalette.Window, QColor("")):
+    def setColor():
 
     def styleButton():
 
