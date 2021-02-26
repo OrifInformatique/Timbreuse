@@ -9,7 +9,7 @@ from PySde2.QtGui import *
 class StyleApp():
 
     def setColor():
-
+        pass
     def styleButton():
 
         QPushButton{

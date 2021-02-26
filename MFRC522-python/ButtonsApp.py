@@ -42,21 +42,20 @@ class Window(QWidget):
     def setButtonIn(self):
         buttonIn = QPushButton("In", self)
         #buttonIn.setStyleSheet('QPushButton {background-color:#005BA9; color: white; font-size: 120px; font-weight: BOLD;border: none}')
-        buttonIn.setStyleSheet("StyleApp.py")
         buttonIn.setFixedSize(300,300)
         buttonIn.move(50,100)
         buttonIn.clicked.connect(self.badgeApp)
         
     def setButtonOut(self):
         buttonOut = QPushButton("Out", self)
-        buttonOut.setStyleSheet("QPushButton {background-color:#005BA9; color: white; font-size: 120px; font-weight: BOLD; border:none}")
+        #buttonOut.setStyleSheet("QPushButton {background-color:#005BA9; color: white; font-size: 120px; font-weight: BOLD; border:none}")
         buttonOut.setFixedSize(300,300)
         buttonOut.move(450,100)
         buttonOut.clicked.connect(self.badgeApp)
                 
     def setButtonAdmin(self):
         buttonAdmin = QPushButton("Admin", self)
-        buttonAdmin.setStyleSheet('QPushButton{background-color:#005BA9; color: black;}')
+        #buttonAdmin.setStyleSheet('QPushButton{background-color:#005BA9; color: black;}')
         buttonAdmin.move(725,0)
         buttonAdmin.clicked.connect(self.adminApp)
     #Create a question window
@@ -79,8 +78,6 @@ class Window(QWidget):
 if __name__=="__main__":
     #Create Qt App
     mainApp = QApplication(sys.argv)
-   
-    QPushButton#buttonIn{background-color:#005BA9}
     window = Window()
     #Show the window
     window.show()
