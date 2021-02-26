@@ -32,7 +32,7 @@ class Window(QWidget):
         self.setButtonOut()
         self.windowAdminLogin = None
         self.windowProgressBar = None
-        
+        self.setStylesheet
     #Insert the icon
     def setIcon(self):
         #appIcon = QIcon("/home/pi/Desktop/SPI-Py/MFRC522-python/logo_orif_square_transparent.png")
@@ -79,6 +79,10 @@ if __name__=="__main__":
     #Create Qt App
     mainApp = QApplication(sys.argv)
     window = Window()
+    #Apply stylesheet
+    # mainApp.setStyleSheet(open('./style.css').read())
+
+    
     #Show the window
     window.show()
     #run the main loop

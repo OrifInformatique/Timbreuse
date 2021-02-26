@@ -13,27 +13,15 @@ import Read
 import tkinter as tk
 
 class MainWindow():
-    def closeEvent(self, event):
-        event.ignore()
         
     def __init__(self):
-        
-        
+   
         app = QtWidgets.QApplication(sys.argv)
         self.window = QtWidgets.QMainWindow()
         
         #Add charactersitics to window
-#         self.window.setWindowTitle("Design")
-#         self.window.attributes('-zoomed', True)
-#         self.fullScreenState = False
-#         self.window.bind("<F11>", self.toggleFullScreen)
-#         self.window.bind("<Escape>", self.quitFullScreen)
-        
-#         self.window.setGeometry(300,300,500,400)
-#         self.window.setMinimumHeight(500)
-#         self.window.setMinimumWidth(800)
-#         self.window.setMaximumHeight(500)
-#         self.window.setMaximumWidth(800)
+        self.window.setWindowTitle("Design")
+
 #         # Call function initGui
         self.initGui()
         # Parameter the stylesheet from external file
