@@ -9,49 +9,51 @@ import AdminLogin
 import ProgressBar
 import Read
 
+# fullscreen
+import tkinter as tk
 
 class MainWindow():
+    def closeEvent(self, event):
+        event.ignore()
+        
     def __init__(self):
+        
+        
         app = QtWidgets.QApplication(sys.argv)
         self.window = QtWidgets.QMainWindow()
         
         #Add charactersitics to window
-        self.window.setWindowTitle("Design")
-        self.window.setGeometry(300,300,500,400)
-        self.window.setMinimumHeight(500)
-        self.window.setMinimumWidth(800)
-        self.window.setMaximumHeight(500)
-        self.window.setMaximumWidth(800)
-        # Call function initGui
+#         self.window.setWindowTitle("Design")
+#         self.window.attributes('-zoomed', True)
+#         self.fullScreenState = False
+#         self.window.bind("<F11>", self.toggleFullScreen)
+#         self.window.bind("<Escape>", self.quitFullScreen)
+        
+#         self.window.setGeometry(300,300,500,400)
+#         self.window.setMinimumHeight(500)
+#         self.window.setMinimumWidth(800)
+#         self.window.setMaximumHeight(500)
+#         self.window.setMaximumWidth(800)
+#         # Call function initGui
         self.initGui()
-        # Parameter the steelsheet
-        self.style_sheet = """
+        # Parameter the stylesheet from external file
+        app.setStyleSheet(open('./style.css').read())
         
-            QMainWindow{
-                background-color:#333333
-            }
-            QPushButton{
-            
-                background-color:#005BA9;
-               border: none
-            }
-            QPushButton#cancel_btn{
-                background-color:#ff9900
-            }
-            QPushButton#AdminButton{
-            
-                background-color:grey;
-                margin-right: 2px;
-            }
-        """
-        
-        
+        #set fullscreen
+        self.window.showFullScreen()
         #show the window
         self.window.show()
-        app.setStyleSheet(self.style_sheet)
+        #app.setStyleSheet(self.style_sheet)
         sys.exit(app.exec_())
-        
 
+    def toggleFullScreen(self,event):
+        self.fullScreenState = not self.fullScreenState
+        self.window.attributes("-zoomed", self.fullScreenState)
+        
+    def quitFullScreen(self, event):
+        self.fullScreenState = False
+        self.window.attributes("-zoomed", self.fullScreenState)
+        
     def initGui(self):
          #Create the buttons
         self.setButtonIn()
@@ -95,4 +97,5 @@ class MainWindow():
         self.windowProgressBar = ProgressBar.MainWindow()
         self.windowProgressBar.show()   
 # instantiate an object to class main window
-main = MainWindow()    
+main = MainWindow()
+
