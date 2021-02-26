@@ -9,6 +9,7 @@ import AdminLogin
 import ProgressBar
 import Read
 
+
 class MainWindow():
     def __init__(self):
         app = QtWidgets.QApplication(sys.argv)
@@ -93,5 +94,5 @@ class MainWindow():
         QMessageBox.information(self, "Badge", "Vous avez 10 secondes pour passer le badge.")
         self.windowProgressBar = ProgressBar.MainWindow()
         self.windowProgressBar.show()   
-# instantiate an object to class main window        
+# instantiate an object to class main window
 main = MainWindow()    
