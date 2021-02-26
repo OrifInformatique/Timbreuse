@@ -1,0 +1,24 @@
+/* File to configure style using CSS*/
+
+            QMainWindow{
+                background-color:'#333333'
+                
+            }
+             QPushButton#AdminButton{
+            
+                background-color:'#005BA9';
+                border: none;
+                font-size:15px;
+                font-weight:none;
+                color:white;
+            }
+            
+            QPushButton{
+            
+                background-color:'#005BA9';
+                border: none;
+                font-size:120px;
+                font-weight:BOLD;
+                color:white;
+            }
+           
