@@ -35,7 +35,7 @@ class Window(QtWidgets):
         self.window.show()
         sys.exit(app.exec_())
 
-    # Create the GUI function which import all buttons
+    # Create the GUI function which import all buttons and add icon
     def initGui(self):
         # Create buttons
         self.setButtonIn()
@@ -47,6 +47,10 @@ class Window(QtWidgets):
 
         #do not show progress bar
         self.windowProgressBar = None
+
+    # set Icon
+    def setIcon(self):
+        self.setWindowIcon(QtGui.QIcon('logo_orif_square_transparent.png'))
 
     # Create Button IN
     def setButtonIn(self):
