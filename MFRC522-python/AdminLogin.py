@@ -86,4 +86,4 @@ class MainWindow():
         else :
             QMessageBox.information(self.window, "Erreur", "Vous n'avez pas le droit à l'accès.")
 
-AdminMain = MainWindow()
+main = MainWindow()
