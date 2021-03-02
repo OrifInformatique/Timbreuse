@@ -10,47 +10,67 @@ import Write
 import ConfigWindow
 
 #Create the main window
-class Window(QWidget):
+class MainWindow():
     def __init__(self):
         super().__init__()
- 
-        self.setWindowTitle("Administrator")
-        self.setGeometry(300,300,500,400)
-        self.setMinimumHeight(480)
-        self.setMinimumWidth(800)
-        self.setMaximumHeight(480)
-        self.setMaximumWidth(800)
-        palette = self.palette()
-        palette.setColor(QPalette.Window, QColor("#DBCEB1"))
-        self.setPalette(palette)
-        self.setAutoFillBackground(True)
-        self.setIcon()
-        self.setWriteButton()
-        self.setConfigButton()
-        self.windowConfigWindow = None
-    #Insert the icon
-    def setIcon(self):
-        appIcon = QIcon("logo_orif_square_transparent.png")
-        self.setWindowIcon(appIcon)
 
-    #Create the buttons
+        #Create the app and window
+        appAdministration = QtWidgets.QApplication(sys.argv)
+        self.window = QtWidgets.QMainWindow()
+
+        # Set window title
+        self.window.setWindowTitle("Administrator")
+
+        #call init gui
+        self.initGui()
+
+        # Set the css as stylesheet for appAdministration
+        appAdministration.setStyleSheet(open('./style.css').read())
+
+        # set window in full screen
+        self.window.showFullScreen()
+
+        #sys exit
+        sys.exit(appAdministration.exec_())
+    
+    # define initGui
+    def initGui(self):
+
+        # call icon
+        self.setIcon()
+
+        # call write button
+        self.setWriteButton()
+
+        # call configuration button
+        self.setConfigButton
+
+    # define setIcon
+    def setIcon(self):
+        self.window.setWindowIcon(QtGui.QIcon('logo_orif_square_transparent.png'))
+    
+    # define setWriteButton
     def setWriteButton(self):
-        writeButton = QPushButton("Write", self)
-        writeButton.setStyleSheet('QPushButton {background-color: #AE9B70; color: black;}')
-        writeButton.setFixedSize(300,300)
-        writeButton.move(50,100)
-        writeButton.clicked.connect(self.WriteApp)
+        writeButton = QPushButton(self.window)
+        writeButton.setText("Write")
+        writeButton.move(450,100)
+        writeButton.clicked.connect(self.window.WriteApp)
+    
+    # define setConfigButton
     def setConfigButton(self):
-        configButton = QPushButton("Configure", self)
-        configButton.setStyleSheet('QPushButton {background-color: #AE9B70; color: black;}')
-        configButton.setFixedSize(300,300)
+        configButton = QPushButton(self)
+        configButton.setText("Configure")
         configButton.move(450,100)
-        configButton.clicked.connect(self.configWindow)
-    #Open Config Window
+        configButton.clicked.connect(self.window.configWindow)
+
+    # define config window
     def configWindow(self):
         self.windowConfigWindow = ConfigWindow.Window()
         self.windowConfigWindow.show()
-     
+    
+    # define write app
     def WriteApp(self):
         Write.Write()
 
+# Instantiate main window
+main = MainWindow()
