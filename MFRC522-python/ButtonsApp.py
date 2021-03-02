@@ -40,6 +40,10 @@ class MainWindow():
 
     # Create the GUI function which import all buttons and add icon
     def initGui(self):
+
+        # Set Icon
+        self.setIcon()
+        
         # Create buttons
         self.setButtonIn()
         self.setButtonOut()
