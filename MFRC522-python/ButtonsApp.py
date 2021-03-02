@@ -1,5 +1,7 @@
 import sys
 import time
+from PySide2 import QtCore, QtGui, QtWidgets
+
 #Import from other file present in the project
 import AdminWindow
 import AdminLogin
@@ -11,13 +13,13 @@ from PySide2.QtGui import *
 
 #Create main class
 
-class Window(QtWidgets):
+class MainWindow():
     # create __init__ function
     def __init__(self):
 
         # Creation of the app and window
         app = QtWidgets.QApplication(sys.argv)
-        self.window = QtWidgets.QWindow()
+        self.window = QtWidgets.QMainWindow()
 
         # Set window title
         self.window.setWindowTitle("Buttons App")
@@ -89,8 +91,8 @@ class Window(QtWidgets):
             pass
     # Create badge window
     def badgeApp(self):
-        QMessageBox.information(self, "Badge", "Vous avez 10 secondes pour passer le bagde.")
+        QMessageBox.information(self.window, "Badge", "Vous avez 10 secondes pour passer le bagde.")
         self.windowProgressBar = ProgressBar.Window()
         self.windowProgressBar.show()
 # Instantiate object window
-main = Window()
+main = MainWindow()
