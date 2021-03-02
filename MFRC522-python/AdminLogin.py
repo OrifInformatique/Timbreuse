@@ -51,18 +51,18 @@ class MainWindow():
 
     #Create the labels
     def setLabelUser(self):
-        labelUser = QLabel("Nom d'utilisateur : ", self)
+        labelUser = QLabel("Nom d'utilisateur : ", self.window)
         labelUser.setStyleSheet('QLabel {background-color: none; color: black;}')
         labelUser.move(50,150)
 
     def setLabelPassword(self):
-        labelPassword = QLabel("Mot de Passe : ", self)
+        labelPassword = QLabel("Mot de Passe : ", self.window)
         labelPassword.setStyleSheet('QLabel {background-color: none; color: black;}')
         labelPassword.move(50,300)
 
     #Create the button
     def setLoginButton(self):
-        loginButton = QPushButton("Login",self)
+        loginButton = QPushButton("Login",self.window)
         loginButton.setStyleSheet('QPushButton {background-color: #AE9B70; color: black;}')
         loginButton.setFixedSize(100,30)
         loginButton.move(350, 350)
