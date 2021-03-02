@@ -16,7 +16,7 @@ class MainWindow(QtWidgets):
 
         #Creation of the window and app
         appLogin = QtWidgets.QApplication(sys.argv)
-        self.window = QtWidgets.QDialog()
+        self.window = QtWidgets.QMainWindow()
         
         #Set window title
         self.window.setWindowTitle("Administrator Login")
