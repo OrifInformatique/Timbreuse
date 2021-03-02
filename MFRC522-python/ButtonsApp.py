@@ -43,7 +43,7 @@ class MainWindow():
 
         # Set Icon
         self.setIcon()
-        
+
         # Create buttons
         self.setButtonIn()
         self.setButtonOut()

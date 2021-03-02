@@ -1,42 +1,53 @@
 import sys
+import time
+# PySide2
+from PySide2 import QtCore, QtGui, QtWidgets
+from PySide2 import QtGui
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2.QtCore import *
+#Import from other file present in the project
 import AdminWindow
 
 #Create the main window
-class Window(QWidget):
+class AdminLoginWindow():
     def __init__(self):
         super().__init__()
- 
-        self.setWindowTitle("Administrator Login")
-        self.setGeometry(300,300,500,400)
-        self.setMinimumHeight(480)
-        self.setMinimumWidth(800)
-        self.setMaximumHeight(480)
-        self.setMaximumWidth(800)
-        palette = self.palette()
-        palette.setColor(QPalette.Window, QColor("#DBCEB1"))
-        self.setPalette(palette)
-        self.setAutoFillBackground(True)
-        self.setIcon()
-        self.setLabelUser()
-        self.setLabelPassword()
-        self.setLoginButton()
-        self.userLine = QLineEdit("",self)
-        self.userLine.setGeometry(QRect(90, 310, 221, 21))
-        self.userLine.move(190,150)
-        self.passwordLine = QLineEdit(self)
-        self.passwordLine.setEchoMode(QLineEdit.Password)
-        self.passwordLine.setGeometry(QRect(90, 310, 221, 21))
-        self.passwordLine.move(190, 300)
-        self.windowAdminWindow = None
+
+        #Creation of the window and app
+        appLogin = QtWidgets.QApplication(sys.argv)
+        self.window = QtWidgets.QAdminLoginWindow()
         
+        #Set window title
+        self.window.setWindowTitle("Administrator Login")
+
+        # call the initGui
+        self.initGui()
+
+        #Set file css as stylesheet
+        appLogin.setStyleSheet(open('./style.css').red())
+
+        # set window in full screeen
+        self.window.showFullScreen()
+
+        #show window
+        self.window.show()
+
+    # creation of the gui init
+    def initGui(self):
+        # SetIcon
+        self.setIcon()
+
+        #Create Label, line, button
+        self.setLabelUser()
+        self.setUserLine()
+        self.setLabelPassword()
+        self.setPasswordLine()
+        self.setLoginButton()
 
     #Insert the icon
     def setIcon(self):
-        appIcon = QIcon("Y:\Administratif\LogoEtModeles\logo_orif_square_transparent.png")
-        self.setWindowIcon(appIcon)
+        self.window.setWindowIcon(QtGui.QIcon('logo_orif_square_transparent.png'))
 
     #Create the labels
     def setLabelUser(self):
@@ -70,8 +81,9 @@ class Window(QWidget):
     def validation(self):
         if (self.setUserLine() and self.setPasswordLine()) : 
             self.windowAdminWindow = AdminWindow.Window()
-            self.windowAdminWindow.show()
+            self.windowAdminWindow.showFullScreen()
         
         else :
-            QMessageBox.information(self, "Erreur", "Vous n'avez pas le droit à l'accès.")
-        
+            QMessageBox.information(self.window, "Erreur", "Vous n'avez pas le droit à l'accès.")
+
+AdminMain = AdminLoginWindow()
