@@ -1,15 +1,16 @@
 import sys
 import time
+# PySide2
 from PySide2 import QtCore, QtGui, QtWidgets
-
+from PySide2 import QtGui
+from PySide2.QtWidgets import *
+from PySide2.QtGui import *
 #Import from other file present in the project
 import AdminWindow
 import AdminLogin
 import ProgressBar
 import Read
-from PySide2 import QtGui
-from PySide2.QtWidgets import *
-from PySide2.QtGui import *
+
 
 #Create main class
 
@@ -83,7 +84,7 @@ class MainWindow():
     
     # Create question window for admin app
     def adminApp(self):
-        adminInfo = QMessageBox.question(self, "Admin", "Voulez-vous vous connecter au compte administrateur ?", QMessageBox.Yes | QMessageBox.No)
+        adminInfo = QMessageBox.question(self.window, "Admin", "Voulez-vous vous connecter au compte administrateur ?", QMessageBox.Yes | QMessageBox.No)
         if adminInfo == QMessageBox.Yes:
             self.windowAdminLogin = AdminLogin.Window()
             self.windowAdminLogin.showFullScreen()
