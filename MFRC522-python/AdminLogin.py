@@ -10,7 +10,7 @@ from PySide2.QtCore import *
 import AdminWindow
 
 #Create the main window
-class MainWindow():
+class MainWindow(QtWidgets):
     def __init__(self):
         super().__init__()
 
