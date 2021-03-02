@@ -68,7 +68,8 @@ class MainWindow():
         loginButton.setStyleSheet('QPushButton {background-color: #AE9B70; color: black;}')
         loginButton.setFixedSize(100,30)
         loginButton.move(350, 350)
-        loginButton.clicked.connect(self.validation)
+        loginButton.clicked.connect(self.validate)
+        #loginButton.clicked.connect(self.validation)
 
 #******************************************************************************************************
 #                                       TEST OF PYQT.QTextEdit
@@ -77,12 +78,16 @@ class MainWindow():
     # Create user text edit
     def setUserText(self):
         self.pseudo = QtWidgets.QTextEdit(self.window)
-        return pseudo == "Admin"
+        self.pseudo.setGeometry(60,150,250,40)
+        self.pseudo.setText("Pseudo")
+        #return pseudo == "Admin"
     
     # Create password text edit
     def setPasswordText(self):
         self.password = QtWidgets.QTextEdit(self.window)
-        return password == "Password"
+        self.password.setGeometry(60,300,250,40)
+        self.password.setText("Password")
+        #return password == "Password"
 
     # VALIDATE
     def validate(self):
@@ -96,21 +101,21 @@ class MainWindow():
 #                                       END TEST OF PYQT.QTextEdit
 #******************************************************************************************************
     #Create the text's line
-    def setUserLine(self):
-        user = self.userLine.text()
-        return user == "Admin"
+#     def setUserLine(self):
+#         user = self.userLine.text()
+#         return user == "Admin"
+# 
+#     def setPasswordLine(self):
+#         password = self.passwordLine.text()
+#         return password == "Password"
+# 
+#     #Validate the login
+#     def validation(self):
+#         if (self.setUserLine() and self.setPasswordLine()) : 
+#             self.windowAdminWindow = AdminWindow.Window()
+#             self.windowAdminWindow.showFullScreen()
+#         
+#         else :
+#             QMessageBox.information(self.window, "Erreur", "Vous n'avez pas le droit à l'accès.")
 
-    def setPasswordLine(self):
-        password = self.passwordLine.text()
-        return password == "Password"
-
-    #Validate the login
-    def validation(self):
-        if (self.setUserLine() and self.setPasswordLine()) : 
-            self.windowAdminWindow = AdminWindow.Window()
-            self.windowAdminWindow.showFullScreen()
-        
-        else :
-            QMessageBox.information(self.window, "Erreur", "Vous n'avez pas le droit à l'accès.")
-
-main = MainLoginWindow()
+main = MainWindow()
