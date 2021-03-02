@@ -10,13 +10,13 @@ from PySide2.QtCore import *
 import AdminWindow
 
 #Create the main window
-class MainWindow(QtWidgets):
+class MainLoginWindow():
     def __init__(self):
         super().__init__()
 
         #Creation of the window and app
         appLogin = QtWidgets.QApplication(sys.argv)
-        self.window = QtWidgets.QMainWindow()
+        self.window = QtWidgets.QMainLoginWindow()
         
         #Set window title
         self.window.setWindowTitle("Administrator Login")
@@ -32,7 +32,7 @@ class MainWindow(QtWidgets):
 
         #show window
         self.window.show()
-
+        sys.exit(appLogin.exec_())
     # creation of the gui init
     def initGui(self):
         # SetIcon
@@ -40,9 +40,9 @@ class MainWindow(QtWidgets):
 
         #Create Label, line, button
         self.setLabelUser()
-        self.setUserLine()
+       # self.setUserLine()
         self.setLabelPassword()
-        self.setPasswordLine()
+        #self.setPasswordLine()
         self.setLoginButton()
 
     #Insert the icon
@@ -70,11 +70,11 @@ class MainWindow(QtWidgets):
 
     #Create the text's line
     def setUserLine(self):
-        user = self.window.userLine.text()
+        user = self.userLine.text()
         return user == "Admin"
 
     def setPasswordLine(self):
-        password = self.window.passwordLine.text()
+        password = self.passwordLine.text()
         return password == "Password"
 
     #Validate the login
@@ -86,4 +86,4 @@ class MainWindow(QtWidgets):
         else :
             QMessageBox.information(self.window, "Erreur", "Vous n'avez pas le droit à l'accès.")
 
-main = MainWindow()
+main = MainLoginWindow()
