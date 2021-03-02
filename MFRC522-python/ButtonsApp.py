@@ -100,4 +100,4 @@ class MainWindow():
         self.windowProgressBar = ProgressBar.Window()
         self.windowProgressBar.show()
 # Instantiate object window
-main = MainWindow()
+main = ButtonsApp.MainWindow()
