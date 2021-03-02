@@ -25,7 +25,7 @@ class MainWindow():
         self.initGui()
 
         #Set file css as stylesheet
-        appLogin.setStyleSheet(open('./style.css').red())
+        appLogin.setStyleSheet(open('./style.css').read())
 
         # set window in full screeen
         self.window.showFullScreen()
@@ -70,11 +70,11 @@ class MainWindow():
 
     #Create the text's line
     def setUserLine(self):
-        user = self.userLine.text()
+        user = self.window.userLine.text()
         return user == "Admin"
 
     def setPasswordLine(self):
-        password = self.passwordLine.text()
+        password = self.window.passwordLine.text()
         return password == "Password"
 
     #Validate the login
