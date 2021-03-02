@@ -1,8 +1,14 @@
 import sys
+# PySide2
+from PySide2 import QtCore, QtGui, QtWidgets
+from PySide2 import QtGui
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
+from PySide2.QtCore import *
+#Import from other file present in the project
 import Write
 import ConfigWindow
+
 #Create the main window
 class Window(QWidget):
     def __init__(self):
