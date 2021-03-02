@@ -79,15 +79,15 @@ class MainWindow():
     def setUserText(self):
         self.pseudo = QtWidgets.QTextEdit(self.window)
         self.pseudo.setGeometry(60,150,250,40)
-        self.pseudo.setText("Pseudo")
-        #return pseudo == "Admin"
+        pseudo = self.pseudo.setText()
+        return pseudo == "Admin"
     
     # Create password text edit
     def setPasswordText(self):
         self.password = QtWidgets.QTextEdit(self.window)
         self.password.setGeometry(60,300,250,40)
-        self.password.setText("Password")
-        #return password == "Password"
+        password = self.password.setText()
+        return password == "Password"
 
     # VALIDATE
     def validate(self):
