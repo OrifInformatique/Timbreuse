@@ -10,13 +10,13 @@ from PySide2.QtCore import *
 import AdminWindow
 
 #Create the main window
-class AdminLoginWindow():
+class MainWindow():
     def __init__(self):
         super().__init__()
 
         #Creation of the window and app
         appLogin = QtWidgets.QApplication(sys.argv)
-        self.window = QtWidgets.QAdminLoginWindow()
+        self.window = QtWidgets.QMainWindow()
         
         #Set window title
         self.window.setWindowTitle("Administrator Login")
@@ -86,4 +86,4 @@ class AdminLoginWindow():
         else :
             QMessageBox.information(self.window, "Erreur", "Vous n'avez pas le droit à l'accès.")
 
-AdminMain = AdminLoginWindow()
+AdminMain = MainWindow()
