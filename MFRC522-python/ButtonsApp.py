@@ -90,7 +90,7 @@ class MainWindow():
     def adminApp(self):
         adminInfo = QMessageBox.question(self.window, "Admin", "Voulez-vous vous connecter au compte administrateur ?", QMessageBox.Yes | QMessageBox.No)
         if adminInfo == QMessageBox.Yes:
-            self.windowAdminLogin = AdminLogin.Window()
+            self.windowAdminLogin = AdminLogin.MainWindow()
             self.windowAdminLogin.showFullScreen()
         elif adminInfo == QMessageBox.No:
             pass
