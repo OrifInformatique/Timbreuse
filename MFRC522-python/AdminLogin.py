@@ -10,13 +10,13 @@ from PySide2.QtCore import *
 import AdminWindow
 
 #Create the main window
-class MainLoginWindow():
+class MainWindow():
     def __init__(self):
         super().__init__()
 
         #Creation of the window and app
         appLogin = QtWidgets.QApplication(sys.argv)
-        self.window = QtWidgets.QMainLoginWindow()
+        self.window = QtWidgets.QMainWindow()
         
         #Set window title
         self.window.setWindowTitle("Administrator Login")
@@ -40,8 +40,10 @@ class MainLoginWindow():
 
         #Create Label, line, button
         self.setLabelUser()
+        self.setUserText()
        # self.setUserLine()
         self.setLabelPassword()
+        self.setPasswordText()
         #self.setPasswordLine()
         self.setLoginButton()
 
@@ -68,6 +70,31 @@ class MainLoginWindow():
         loginButton.move(350, 350)
         loginButton.clicked.connect(self.validation)
 
+#******************************************************************************************************
+#                                       TEST OF PYQT.QTextEdit
+#******************************************************************************************************
+
+    # Create user text edit
+    def setUserText(self):
+        self.pseudo = QtWidgets.QTextEdit(self.window)
+        return pseudo == "Admin"
+    
+    # Create password text edit
+    def setPasswordText(self):
+        self.password = QtWidgets.QTextEdit(self.window)
+        return password == "Password"
+
+    # VALIDATE
+    def validate(self):
+        if(self.pseudo() and self.password()):
+            self.windowAdminWindow == AdminWindow.MainWindow()
+            self.windowAdminWindow.showFullScreen()
+        else:
+            QMessageBox.information(self.window, "Erreur", "Vous n'avez pas le droit à l'accès.")
+
+#******************************************************************************************************
+#                                       END TEST OF PYQT.QTextEdit
+#******************************************************************************************************
     #Create the text's line
     def setUserLine(self):
         user = self.userLine.text()
