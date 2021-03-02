@@ -53,7 +53,7 @@ class MainWindow():
 
     # set Icon
     def setIcon(self):
-        self.setWindowIcon(QtGui.QIcon('logo_orif_square_transparent.png'))
+        self.window.setWindowIcon(QtGui.QIcon('logo_orif_square_transparent.png'))
 
     # Create Button IN
     def setButtonIn(self):
