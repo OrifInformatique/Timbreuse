@@ -15,7 +15,7 @@ class MainWindow():
         super().__init__()
 
         #Creation of the window and app
-        appLogin = QtWidgets.QApplication(sys.argv)
+#         appLogin = QtWidgets.QApplication(sys.argv)
         self.window = QtWidgets.QMainWindow()
         
         #Set window title
@@ -25,26 +25,27 @@ class MainWindow():
         self.initGui()
 
         #Set file css as stylesheet
-        appLogin.setStyleSheet(open('./style.css').read())
+#         appLogin
+        self.setStyleSheet(open('./style.css').read())
 
         # set window in full screeen
         self.window.showFullScreen()
 
         #show window
         self.window.show()
-        sys.exit(appLogin.exec_())
+#         sys.exit(appLogin.exec_())
     # creation of the gui init
     def initGui(self):
         # SetIcon
         self.setIcon()
 
         #Create Label, line, button
-        self.setLabelUser()
-        self.setUserText()
-       # self.setUserLine()
+#         self.setLabelUser()
+#         self.setUserText()
+        self.setUserLine()
         self.setLabelPassword()
-        self.setPasswordText()
-        #self.setPasswordLine()
+#         self.setPasswordText()
+        self.setPasswordLine()
         self.setLoginButton()
 
     #Insert the icon
@@ -54,22 +55,22 @@ class MainWindow():
     #Create the labels
     def setLabelUser(self):
         labelUser = QLabel("Nom d'utilisateur : ", self.window)
-        labelUser.setStyleSheet('QLabel {background-color: none; color: black;}')
+#         labelUser.setStyleSheet('QLabel {background-color: none; color: black;}')
         labelUser.move(50,150)
 
     def setLabelPassword(self):
         labelPassword = QLabel("Mot de Passe : ", self.window)
-        labelPassword.setStyleSheet('QLabel {background-color: none; color: black;}')
+#         labelPassword.setStyleSheet('QLabel {background-color: none; color: black;}')
         labelPassword.move(50,300)
 
     #Create the button
     def setLoginButton(self):
         loginButton = QPushButton("Login",self.window)
-        loginButton.setStyleSheet('QPushButton {background-color: #AE9B70; color: black;}')
+#         loginButton.setStyleSheet('QPushButton {background-color: #AE9B70; color: black;}')
         loginButton.setFixedSize(100,30)
         loginButton.move(350, 350)
-        loginButton.clicked.connect(self.validate)
-        #loginButton.clicked.connect(self.validation)
+#         loginButton.clicked.connect(self.validate)
+        loginButton.clicked.connect(self.validation)
 
 #******************************************************************************************************
 #                                       TEST OF PYQT.QTextEdit
@@ -101,16 +102,17 @@ class MainWindow():
 #                                       END TEST OF PYQT.QTextEdit
 #******************************************************************************************************    
     #Create the text's line
-     def setUserLine(self):
-         user = self.userLine.text()
-         return user == "Admin"
+
+    def setUserLine(self):
+     user = self.userLine.text()
+     return user == "Admin"
  
-     def setPasswordLine(self):
+    def setPasswordLine(self):
          password = self.passwordLine.text()
          return password == "Password"
  
      #Validate the login
-     def validation(self):
+    def validation(self):
          if (self.setUserLine() and self.setPasswordLine()) : 
              self.windowAdminWindow = AdminWindow.Window()
              self.windowAdminWindow.showFullScreen()
