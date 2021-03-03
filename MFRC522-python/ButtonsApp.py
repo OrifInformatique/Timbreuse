@@ -1,7 +1,7 @@
 import sys
 import time
 # PySide2
-from PySide2 import QtCore, QtGui, QtWidgets
+from PySide2 import QtCore, QtGui, QtWidgets, QWidget
 from PySide2 import QtGui
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
@@ -10,6 +10,7 @@ import AdminWindow
 import AdminLogin
 import ProgressBar
 import Read
+import Write
 
 
 #Create main class
@@ -92,7 +93,7 @@ class MainWindow():
         if adminInfo == QMessageBox.Yes:
 #             app.destroy()
             # self.windowAdminLogin = AdminLogin.MainWindow()
-            self.windowAdminLogin = AdministrationWindow().__init__()
+            self.windowAdminLogin = AdministrationWindow.main
             # self.windowAdminLogin.showFullScreen()
         elif adminInfo == QMessageBox.No:
             pass
@@ -105,9 +106,14 @@ class MainWindow():
 main = MainWindow()
 
 #****************************************************************************************************************
-#                                          Classe d'administration
+#                                          Login to Administrator Class
 #****************************************************************************************************************
-class AdministrationWindow(QtWidget):
+
+
+#****************************************************************************************************************
+#                                          Administration Class
+#****************************************************************************************************************
+class AdministrationWindow(QWidget):
     def __init__(self):
         super().__init__()
 
@@ -171,4 +177,4 @@ class AdministrationWindow(QtWidget):
     # define write app
     def WriteApp(self):
         Write.Write()
-
+main = AdministrationWindow()
