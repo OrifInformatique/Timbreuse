@@ -91,8 +91,9 @@ class MainWindow():
         adminInfo = QMessageBox.question(self.window, "Admin", "Voulez-vous vous connecter au compte administrateur ?", QMessageBox.Yes | QMessageBox.No)
         if adminInfo == QMessageBox.Yes:
 #             app.destroy()
-            self.windowAdminLogin = AdminLogin.MainWindow()
-            self.windowAdminLogin.showFullScreen()
+            # self.windowAdminLogin = AdminLogin.MainWindow()
+            self.windowAdminLogin = AdministrationWindow()
+            # self.windowAdminLogin.showFullScreen()
         elif adminInfo == QMessageBox.No:
             pass
     # Create badge window
@@ -102,3 +103,72 @@ class MainWindow():
         self.windowProgressBar.show()
 # Instantiate object window
 main = MainWindow()
+
+#****************************************************************************************************************
+#                                          Classe d'administration
+#****************************************************************************************************************
+class AdministrationWindow(QtWidget):
+     def __init__(self):
+        super().__init__()
+
+        #Create the app and window
+        appAdministration = QtWidgets.QApplication(sys.argv)
+        self.window = QtWidgets.QMainWindow()
+
+        # Set window title
+        self.window.setWindowTitle("Administrator")
+
+        #call init gui
+        self.initGui()
+
+        # Set the css as stylesheet for appAdministration
+        appAdministration.setStyleSheet(open('./style.css').read())
+
+        # set window in full screen
+        self.window.showFullScreen()
+
+        #sys exit
+        sys.exit(appAdministration.exec_())
+    
+    # define initGui
+    def initGui(self):
+
+        # call icon
+        self.setIcon()
+
+        # call write button
+        self.setWriteButton()
+
+        # call configuration button
+        self.setConfigButton()
+
+    # define setIcon
+    def setIcon(self):
+        self.window.setWindowIcon(QtGui.QIcon('logo_orif_square_transparent.png'))
+    
+    # define setWriteButton
+    def setWriteButton(self):
+        writeButton = QPushButton(self.window)
+        writeButton.setText("Write")
+        writeButton.setFixedSize(300,300)
+        writeButton.move(50,100)
+        writeButton.clicked.connect(self.WriteApp)
+    
+    # define setConfigButton
+    def setConfigButton(self):
+        configButton = QPushButton(self.window)
+        configButton.setText("Conf")
+        configButton.move(450,100)
+        configButton.setFixedSize(300,300)
+        configButton.clicked.connect(self.configWindow)
+
+    # define config window
+    def configWindow(self):
+        appLogin.destroy()
+        self.windowConfigWindow = ConfigWindow.Window()
+        self.windowConfigWindow.show()
+    
+    # define write app
+    def WriteApp(self):
+        Write.Write()
+
