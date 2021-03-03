@@ -108,7 +108,7 @@ main = MainWindow()
 #                                          Classe d'administration
 #****************************************************************************************************************
 class AdministrationWindow(QtWidget):
-     def __init__(self):
+    def __init__(self):
         super().__init__()
 
         #Create the app and window
