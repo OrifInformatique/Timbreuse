@@ -12,24 +12,20 @@ class MainWindow():
         
         # SET TITLE
         self.window.setWindowTitle("Administrator Configuration")
-        # self.setGeometry(300,300,500,400)
-        # self.setMinimumHeight(480)
-        # self.setMinimumWidth(800)
-        # self.setMaximumHeight(480)
-        # self.setMaximumWidth(800)
-        # palette = self.palette()
-        # palette.setColor(QPalette.Window, QColor("#DBCEB1"))
-        # self.setPalette(palette)
-        # self.setAutoFillBackground(True)
-
+        
+        # call init gui
         self.initGui()
 
+        # set the style as mentionned in the css
         appConfiguration.setStyleSheet(open('./style.css').read())
 
+        # show the window in full screen
         self.window.showFullScreen()
 
+        # sys exit
         sys.exit(appConfiguration.exec_())
 
+    # define method initGui
     def initGui(self):
 
         self.setIcon()
@@ -39,4 +35,5 @@ class MainWindow():
         appIcon = QIcon("logo_orif_square_transparent.png")
         self.setWindowIcon(appIcon)
 
+# Instantiate main app
 main = MainWindow()
