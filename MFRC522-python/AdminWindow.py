@@ -15,7 +15,7 @@ class MainWindow():
         super().__init__()
 
         #Create the app and window
-#         appAdministration = QtWidgets.QApplication(sys.argv)
+        appAdministration = QtWidgets.QApplication(sys.argv)
         self.window = QtWidgets.QMainWindow()
 
         # Set window title
@@ -25,13 +25,13 @@ class MainWindow():
         self.initGui()
 
         # Set the css as stylesheet for appAdministration
-        self.setStyleSheet(open('./style.css').read())
+        appAdministration.setStyleSheet(open('./style.css').read())
 
         # set window in full screen
         self.window.showFullScreen()
 
         #sys exit
-#         sys.exit(appAdministration.exec_())
+        sys.exit(appAdministration.exec_())
     
     # define initGui
     def initGui(self):
@@ -76,4 +76,4 @@ class MainWindow():
         Write.Write()
 
 # Instantiate main window
-# AdminMain = MainWindow()
+AdminMain = MainWindow()

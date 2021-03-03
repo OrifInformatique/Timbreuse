@@ -15,7 +15,7 @@ class MainWindow():
         super().__init__()
 
         #Creation of the window and app
-#         appLogin = QtWidgets.QApplication(sys.argv)
+        appLogin = QtWidgets.QApplication(sys.argv)
         self.window = QtWidgets.QMainWindow()
         
         #Set window title
@@ -25,8 +25,7 @@ class MainWindow():
         self.initGui()
 
         #Set file css as stylesheet
-#         appLogin
-        self.setStyleSheet(open('./style.css').read())
+        appLogin.setStyleSheet(open('./style.css').read())
 
         # set window in full screeen
         self.window.showFullScreen()
