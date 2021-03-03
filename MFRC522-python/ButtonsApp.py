@@ -92,7 +92,7 @@ class MainWindow():
         if adminInfo == QMessageBox.Yes:
 #             app.destroy()
             # self.windowAdminLogin = AdminLogin.MainWindow()
-            windowAdminLogin = AdministrationWindow()
+            self.windowAdminLogin = AdministrationWindow().__init__()
             # self.windowAdminLogin.showFullScreen()
         elif adminInfo == QMessageBox.No:
             pass
