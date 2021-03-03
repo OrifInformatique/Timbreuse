@@ -2,7 +2,8 @@
 
             QMainWindow{
                 /*background-color:'#333333';*/
-                background-image: url('logo_orif_square_white.jpg');
+                background-image: url('logo_orif_square_transparent.png');
+                background-size: cover;
                 
             }
              QPushButton#AdminButton{
