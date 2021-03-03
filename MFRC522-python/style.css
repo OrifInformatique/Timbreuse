@@ -1,11 +1,13 @@
 /* File to configure style using CSS*/
 
+            /*We parameter the look of all the MainWindow essentially for background*/
             QMainWindow{
                 /*background-color:'#333333';*/
                 background-image: url('logo_orif_square_transparent.png');
                 background-size: cover;
                 
             }
+            /* Parameter for the AdminButton as color, background, color text-size-weight */
              QPushButton#AdminButton{
             
                 background-color:'#005BA9';
@@ -14,7 +16,7 @@
                 font-weight:none;
                 color:white;
             }
-            
+            /* Parameter for other buttons as color, background, color text-size-weight */
             QPushButton{
             
                 background-color:'#005BA9';
@@ -23,4 +25,5 @@
                 font-weight:BOLD;
                 color:white;
             }
-            
+/* GH - 03.03.2021 - For the moment, we consider that there's no need to give a name to all the buttons. Once the database's created, it
+will be to reconsider this decision.*/ 
