@@ -1,7 +1,8 @@
 /* File to configure style using CSS*/
 
             QMainWindow{
-                background-color:'#333333'
+                /*background-color:'#333333';*/
+                background-image: url('logo_orif_square_white.jpg');
                 
             }
              QPushButton#AdminButton{
