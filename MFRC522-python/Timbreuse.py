@@ -121,7 +121,7 @@ class MainWindow():
         buttonAdmin.setObjectName("AdminButton")
         #add action when buttonAdmin is pressed
 
-        buttonAdmin.clicked.connect(self.adminWindow())
+        buttonAdmin.clicked.connect(self.adminWindow)
 
 
 
