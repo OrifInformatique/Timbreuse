@@ -120,11 +120,14 @@ class MainWindow():
         buttonAdmin.move(725,0)
         buttonAdmin.setObjectName("AdminButton")
         #add action when buttonAdmin is pressed
-
         buttonAdmin.clicked.connect(self.adminWindow)
+        
         '''
+        Actually this button is showed in the base window for testing action
+
          when button clicked : it should print admin window in console OK
                                 it should show up config and write button DOES'NT WORK
+                                it's like we have to refresh the app's window
         '''
 
     # '''
