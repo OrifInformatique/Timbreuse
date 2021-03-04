@@ -1,7 +1,7 @@
 # Necessary imports
 import sys
 import PySide2
-from PySide2 import QtCore, QtWidgets, QtGui, QProgressBar
+from PySide2 import QtCore, QtWidgets, QtGui
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2.QtCore import *
@@ -51,7 +51,7 @@ class MainWindow():
 
         if(self.base == True):
             print("base")
-            # self.baseWindow()
+            self.baseWindow()
         
         elif(self.admin == True):
             print("admin")
@@ -73,7 +73,7 @@ class MainWindow():
     def baseWindow(self):
         self.setButtonIn()
         self.setButtonOut()
-
+        self.setButtonAdmin()
      # Create Button IN
     def setButtonIn(self):
         buttonIn = QPushButton(self.window)
