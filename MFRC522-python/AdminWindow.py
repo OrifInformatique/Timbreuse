@@ -67,7 +67,6 @@ class MainWindow():
 
     # define config window
     def configWindow(self):
-        appLogin.destroy()
         self.windowConfigWindow = ConfigWindow.Window()
         self.windowConfigWindow.show()
     
