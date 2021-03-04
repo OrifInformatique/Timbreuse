@@ -8,10 +8,11 @@ import sys
 
 class MainWindow():
     # Declare boolean in order to show what's necessary
-    base = True
-    admin = False
-    config = False
-
+    def boolean(self):
+        base = True
+        admin = False
+        config = False
+        return base, admin, config
     def __init__(self):
         super().__init__()
 
@@ -34,6 +35,7 @@ class MainWindow():
         self.window.showFullScreen()
 
     def initGui(self):
+        
 
         #set Icon
         self.setIcon()
