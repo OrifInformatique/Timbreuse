@@ -8,11 +8,10 @@ import sys
 
 class MainWindow():
     # Declare boolean in order to show what's necessary
-    def boolean(self):
-        base = True
-        admin = False
-        config = False
-        return base, admin, config
+    base = True
+    admin = False
+    config = False
+    
     def __init__(self):
         super().__init__()
 
@@ -33,9 +32,12 @@ class MainWindow():
 
         # Set window in full screen
         self.window.showFullScreen()
+        sys.exit(app.exec_())
 
     def initGui(self):
-        
+        global base
+        global admin
+        global config
 
         #set Icon
         self.setIcon()
@@ -55,7 +57,7 @@ class MainWindow():
     
     # Insert Icon
     def setIcon(self):
-        self.window.setIcon(QtGui.QIcon('logo_orif_square_transparent.png'))
+        self.window.setWindowIcon(QtGui.QIcon('logo_orif_square_transparent.png'))
     
     # Window with in/out button
     def baseWindow(self):
