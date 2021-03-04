@@ -73,7 +73,7 @@ class MainWindow():
     def baseWindow(self):
         self.setButtonIn()
         self.setButtonOut()
-        # self.setButtonAdmin()
+        self.setButtonAdmin()
      # Create Button IN
     def setButtonIn(self):
         buttonIn = QPushButton(self.window)
