@@ -122,14 +122,17 @@ class MainWindow():
         #add action when buttonAdmin is pressed
 
         buttonAdmin.clicked.connect(self.adminWindow)
-
-
+        '''
+         when button clicked : it should print admin window in console OK
+                                it should show up config and write button DOES'NT WORK
+        '''
 
     # '''
     #                             WINDOW ADMINISTRATOR
     # '''
     # Window for admin
     def adminWindow(self):
+        self.window = QtWidgets.MainWindow()
         self.setWriteButton()
         self.setConfigButton()
         print("In admin window")
