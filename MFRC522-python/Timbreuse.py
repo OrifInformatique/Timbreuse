@@ -135,3 +135,4 @@ class MainWindow():
     # Window to link RFID card to user
     def configWindow(self):
         pass
+main = MainWindow()
