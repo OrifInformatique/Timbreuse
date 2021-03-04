@@ -49,15 +49,15 @@ class MainWindow():
         #set Icon
         self.setIcon()
 
-        if(base == True):
+        if(self.base == True):
             print("base")
             # self.baseWindow()
         
-        elif(admin == True):
+        elif(self.admin == True):
             print("admin")
             # self.adminWindow()
         
-        elif(config == True):
+        elif(self.config == True):
             print("config")
             # self.configWindow()
         
@@ -122,9 +122,9 @@ class MainWindow():
 
 
 
-    '''
-                                WINDOW ADMINISTRATOR
-    '''
+    # '''
+    #                             WINDOW ADMINISTRATOR
+    # '''
     # Window for admin
     def adminWindow(self):
         pass
