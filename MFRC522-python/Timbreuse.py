@@ -132,7 +132,7 @@ class MainWindow():
     # '''
     # Window for admin
     def adminWindow(self):
-        self.window = QtWidgets.MainWindow()
+        
         self.setWriteButton()
         self.setConfigButton()
         print("In admin window")
