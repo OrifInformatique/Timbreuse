@@ -127,8 +127,33 @@ class MainWindow():
     # '''
     # Window for admin
     def adminWindow(self):
-        pass
+        self.setWriteButton()
+        self.setConfigButton()
 
+    # define setWriteButton
+    def setWriteButton(self):
+        writeButton = QPushButton(self.window)
+        writeButton.setText("Write")
+        writeButton.setFixedSize(300,300)
+        writeButton.move(50,100)
+        writeButton.clicked.connect(self.WriteApp)
+    
+    # define setConfigButton
+    def setConfigButton(self):
+        configButton = QPushButton(self.window)
+        configButton.setText("Conf")
+        configButton.move(450,100)
+        configButton.setFixedSize(300,300)
+        configButton.clicked.connect(self.configWindow)
+
+    # # define config window
+    # def configWindow(self):
+    #     self.windowConfigWindow = ConfigWindow.Window()
+    #     self.windowConfigWindow.show()
+    
+    # define write app
+    def WriteApp(self):
+        Write.Write()
     '''
                                 WINDOW CONFIGURATION
     '''
