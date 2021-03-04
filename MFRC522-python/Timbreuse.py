@@ -113,11 +113,14 @@ class MainWindow():
         '''
     # Create admin button
     def setButtonAdmin(self):
+        global base
+        global admin
         buttonAdmin = QPushButton(self.window)
         buttonAdmin.setText("Admin")
         buttonAdmin.move(725,0)
         buttonAdmin.setObjectName("AdminButton")
         #add action when buttonAdmin is pressed
+
         buttonAdmin.clicked.connect(self.adminWindow())
 
 
@@ -127,8 +130,15 @@ class MainWindow():
     # '''
     # Window for admin
     def adminWindow(self):
-        self.setWriteButton()
-        self.setConfigButton()
+        global admin
+        global base 
+        base = False
+
+        if(self.admin == True):
+            self.setWriteButton()
+            self.setConfigButton()
+        else:
+            pass
 
     # define setWriteButton
     def setWriteButton(self):
