@@ -130,15 +130,9 @@ class MainWindow():
     # '''
     # Window for admin
     def adminWindow(self):
-        global admin
-        global base 
-        base = False
-
-        if(self.admin == True):
-            self.setWriteButton()
-            self.setConfigButton()
-        else:
-            pass
+        self.setWriteButton()
+        self.setConfigButton()
+        print("In admin window")
 
     # define setWriteButton
     def setWriteButton(self):
