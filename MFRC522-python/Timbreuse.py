@@ -205,10 +205,10 @@ class MainWindow():
         self.scrollableListSection.setVerticalScrollBar(self.scroll_bar)
 
         # get scroll bar
-        self.value = self.scrollableListSection.setVerticalScrollBar()
+        # self.value = self.scrollableListSection.setVerticalScrollBar()
         
-        # show all
-        self.scrollableListSection.show()
-        self.scroll_bar.show()
+        # # show all
+        # self.scrollableListSection.show()
+        # self.scroll_bar.show()
 
 main = MainWindow()
