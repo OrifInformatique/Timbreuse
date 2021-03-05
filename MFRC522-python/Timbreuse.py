@@ -176,14 +176,16 @@ class MainWindow():
     '''
     # Window to link RFID card to user
     def configWindow(self):
-        print("config")
+        self.configButton.hide()
+        self.writeButton.hide()
+        self.setSettingsButton()
     
     def setSettingsButton(self):
         self.buttonSection = QPushButton(self.window)
         self.buttonSection.setText("Section")
         self.buttonSection.move(50,100)
         self.buttonSection.setFixedSize(300,300)
-        self.buttonSection.clicked.connect()
+        self.buttonSection.clicked.connect(self.setSection())
         self.buttonSection.show()
     
     def setSection(self):
