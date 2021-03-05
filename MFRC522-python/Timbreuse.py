@@ -180,8 +180,8 @@ class MainWindow():
     def configWindow(self):
         self.configButton.hide()
         self.writeButton.hide()
-        self.buttonSection.show()
-        self.buttonAttributeRFID.show()
+        self.setSettingsButton()
+        self.attributeRFID()
 
     # Show set section button  
     def setSettingsButton(self):
