@@ -189,9 +189,17 @@ class MainWindow():
         self.buttonSection.show()
     
     def setSection(self):
+        # Create scroll list
         self.scrollableListSection = QListWidget(self.window)
+        
+        #  Set size of scroll list
+        self.scrollableListSection.setFixedSize(50,100,300,300)
+
+        # Create Item
         self.itemSectionInformatique = QListWidgetItem("Section Informatique Pomy")
         self.itemSIT = QListWidgetItem("SIT Préverenges")
+
+        # Add Item to scrollable list
         self.scrollableListSection.addItem(self.itemSectionInformatique)
         self.scrollableListSection.addItem(self.itemSIT)
         
@@ -207,8 +215,8 @@ class MainWindow():
         # get scroll bar
         # self.value = self.scrollableListSection.setVerticalScrollBar()
         
-        # # show all
-        # self.scrollableListSection.show()
-        # self.scroll_bar.show()
+        # show all
+        self.scrollableListSection.show()
+        self.scroll_bar.show()
 
 main = MainWindow()
