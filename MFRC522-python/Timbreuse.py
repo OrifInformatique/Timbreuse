@@ -87,12 +87,12 @@ class MainWindow():
 
     # Create button OUT
     def setButtonOut(self):
-        buttonOut = QPushButton(self.window)
-        buttonOut.setText("OUT")
-        buttonOut.setFixedSize(300,300)
+        self.buttonOut = QPushButton(self.window)
+        self.buttonOut.setText("OUT")
+        self.buttonOut.setFixedSize(300,300)
         buttonOut.move(450,100)
         #add action when buttonOut is pressed
-        buttonOut.clicked.connect(self.badgeApp)
+        self.buttonOut.clicked.connect(self.badgeApp)
     
     # Create badge window
     def badgeApp(self):
@@ -118,12 +118,12 @@ class MainWindow():
     def setButtonAdmin(self):
         global base
         global admin
-        buttonAdmin = QPushButton(self.window)
-        buttonAdmin.setText("Admin")
-        buttonAdmin.move(725,0)
-        buttonAdmin.setObjectName("AdminButton")
+        self.buttonAdmin = QPushButton(self.window)
+        self.buttonAdmin.setText("Admin")
+        self.buttonAdmin.move(725,0)
+        self.buttonAdmin.setObjectName("AdminButton")
         #add action when buttonAdmin is pressed
-        buttonAdmin.clicked.connect(self.adminWindow)
+        self.buttonAdmin.clicked.connect(self.adminWindow)
         
         '''
         Actually this button is showed in the base window for testing action
@@ -139,25 +139,26 @@ class MainWindow():
     # Window for admin
     def adminWindow(self):
         self.buttonIn.hide()
+        self.buttonOut.hide()
         self.setWriteButton()
         self.setConfigButton()
         print("In admin window")
 
     # define setWriteButton
     def setWriteButton(self):
-        writeButton = QPushButton(self.window)
-        writeButton.setText("Write")
-        writeButton.setFixedSize(300,300)
-        writeButton.move(50,100)
-        writeButton.clicked.connect(self.WriteApp)
+        self.writeButton = QPushButton(self.window)
+        self.writeButton.setText("Write")
+        self.writeButton.setFixedSize(300,300)
+        self.writeButton.move(50,100)
+        self.writeButton.clicked.connect(self.WriteApp)
     
     # define setConfigButton
     def setConfigButton(self):
-        configButton = QPushButton(self.window)
-        configButton.setText("Conf")
-        configButton.move(450,100)
-        configButton.setFixedSize(300,300)
-        configButton.clicked.connect(self.configWindow)
+        self.configButton = QPushButton(self.window)
+        self.configButton.setText("Conf")
+        self.configButton.move(450,100)
+        self.configButton.setFixedSize(300,300)
+        self.configButton.clicked.connect(self.configWindow)
 
     # # define config window
     # def configWindow(self):
