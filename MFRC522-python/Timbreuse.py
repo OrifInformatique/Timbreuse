@@ -177,5 +177,32 @@ class MainWindow():
     # Window to link RFID card to user
     def configWindow(self):
         print("config")
+    
+    def setSettingsButton(self):
+        self.buttonSection = QPushButton(self.window)
+        self.buttonSection.setText("Section")
+        self.buttonSection.move(50,100)
+        self.buttonSection.setFixedSize(300,300)
+        self.buttonSection.clicked.connect()
+        self.buttonSection.show()
+    
+    def setSection(self):
+        self.scrollableListSection = QListWidget(self.window)
+        self.itemSectionInformatique = QListWidgetItem("Section Informatique Pomy")
+        self.itemSIT = QListWidgetItem("SIT Préverenges")
+        self.scrollableListSection.addItem(self.itemSectionInformatique)
+        self.scrollableListSection.addItem(self.itemSIT)
+
+        # scroll bar
+        self.scroll_bar = QScrollBar(self.window)
+
+        # stylesheet
+        self.scroll_bar.setStyleSheet(open('./style.css').read())
+
+        # setting vertical scroll bar
+        self.scrollableListSection.setVerticalScrollBar(self.scroll_bar)
+
+        # get scroll bar
+        self.value = self.scrollableListSection.setVerticalScrollBar()
         
 main = MainWindow()
