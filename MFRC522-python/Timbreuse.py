@@ -18,6 +18,7 @@ class MainWindow():
     base = True
     admin = False
     config = False
+    buttonIn = QPushButton()
 
     def __init__(self):
         super().__init__()
@@ -76,12 +77,12 @@ class MainWindow():
         self.setButtonAdmin()
      # Create Button IN
     def setButtonIn(self):
-        buttonIn = QPushButton(self.window)
-        buttonIn.setText("IN")
-        buttonIn.setFixedSize(300,300)
-        buttonIn.move(50,100)
+        # buttonIn = QPushButton(self.window)
+        self.buttonIn.setText("IN")
+        self.buttonIn.setFixedSize(300,300)
+        self.buttonIn.move(50,100)
         #add action when buttonIn is pressed
-        buttonIn.clicked.connect(self.badgeApp)
+        self.buttonIn.clicked.connect(self.badgeApp)
 
     # Create button OUT
     def setButtonOut(self):
@@ -130,12 +131,12 @@ class MainWindow():
                                 it's like we have to refresh the app's window
         '''
 
-    # '''
-    #                             WINDOW ADMINISTRATOR
-    # '''
+    '''
+                                WINDOW ADMINISTRATOR
+    '''
     # Window for admin
     def adminWindow(self):
-        
+        self.buttonIn.hide()
         self.setWriteButton()
         self.setConfigButton()
         print("In admin window")
