@@ -7,7 +7,7 @@ class MainWindow():
         super().__init__()
  
         # Create window and app
-        appConfiguration = QtWidgets.QApplication(sys.argv)
+#         appConfiguration = QtWidgets.QApplication(sys.argv)
         self.window = QtWidgets.QMainWindow()
         
         # SET TITLE

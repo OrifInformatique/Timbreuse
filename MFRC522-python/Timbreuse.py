@@ -18,7 +18,7 @@ class MainWindow():
     base = True
     admin = False
     config = False
-    buttonIn = QPushButton()
+    buttonIn
 
     def __init__(self):
         super().__init__()
@@ -77,7 +77,7 @@ class MainWindow():
         self.setButtonAdmin()
      # Create Button IN
     def setButtonIn(self):
-        # buttonIn = QPushButton(self.window)
+        buttonIn = QPushButton(self.window)
         self.buttonIn.setText("IN")
         self.buttonIn.setFixedSize(300,300)
         self.buttonIn.move(50,100)

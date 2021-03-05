@@ -1,7 +1,8 @@
 import sys
 import time
 # PySide2
-from PySide2 import QtCore, QtGui, QtWidgets, QWidget
+from PySide2 import QtCore, QtGui, QtWidgets
+
 from PySide2 import QtGui
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
