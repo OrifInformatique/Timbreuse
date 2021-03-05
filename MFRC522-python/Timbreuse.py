@@ -193,7 +193,8 @@ class MainWindow():
         self.scrollableListSection = QListWidget(self.window)
         
         #  Set size of scroll list
-        self.scrollableListSection.setFixedSize(50,100,300,300)
+        self.scrollableListSection.setFixedSize(300,300)
+        self.scrollableListSection.move(225,50)
 
         # Create Item
         self.itemSectionInformatique = QListWidgetItem("Section Informatique Pomy")
