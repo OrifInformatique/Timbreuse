@@ -84,6 +84,7 @@ class MainWindow():
         #add action when buttonIn is pressed
         self.buttonIn.setObjectName("buttonIN")
         self.buttonIn.clicked.connect(self.badgeApp)
+        self.buttonIn.show()
 
     # Create button OUT
     def setButtonOut(self):
@@ -93,6 +94,7 @@ class MainWindow():
         self.buttonOut.move(450,100)
         #add action when buttonOut is pressed
         self.buttonOut.clicked.connect(self.badgeApp)
+        self.buttonOut.show()
     
     # Create badge window
     def badgeApp(self):
@@ -124,6 +126,7 @@ class MainWindow():
         self.buttonAdmin.setObjectName("AdminButton")
         #add action when buttonAdmin is pressed
         self.buttonAdmin.clicked.connect(self.adminWindow)
+        self.buttonAdmin.show()
         
         '''
         Actually this button is showed in the base window for testing action
@@ -151,7 +154,7 @@ class MainWindow():
         self.writeButton.setFixedSize(300,300)
         self.writeButton.move(50,100)
         self.writeButton.clicked.connect(self.WriteApp)
-    
+        self.writeButton.show()
     # define setConfigButton
     def setConfigButton(self):
         self.configButton = QPushButton(self.window)
@@ -159,7 +162,7 @@ class MainWindow():
         self.configButton.move(450,100)
         self.configButton.setFixedSize(300,300)
         self.configButton.clicked.connect(self.configWindow)
-
+        self.configButton.show()
     # # define config window
     # def configWindow(self):
     #     self.windowConfigWindow = ConfigWindow.Window()
