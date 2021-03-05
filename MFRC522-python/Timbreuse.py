@@ -231,7 +231,9 @@ class MainWindow():
 
     # show attribution RFID card button
     def attributeRFID(self):
-        
+        # hide section button
+        self.buttonSection.hide()
+
         self.buttonAttributeRFID = QPushButton(self.window)
         self.buttonAttributeRFID.setText("Set UID")
         self.buttonAttributeRFID.setFixedSize(300,300)
@@ -245,20 +247,30 @@ class MainWindow():
         # UID
         self.lineUID = QLineEdit(self.window)
         self.lineUID.setText("")
-        self.labelUID = QLabel("RFID UID")
+        self.labelUID = QLineEdit(self.window)
+        self.labelUID.setText("RFID UID")
+        self.labelUID.setReadOnly(True)
         self.lineUID.setFixedSize(300,100)
         self.labelUID.setFixedSize(50,100)
         self.lineUID.move(150,50)
         self.labelUID.move(50,50)
 
+        
+
         # User
         self.lineName = QLineEdit(self.window)
         self.lineName.setText("")
-        self.labelName = QLabel("Name User")
+        self.labelName = QLineEdit(self.window)
+        self.labelName.setText("Name User")
+        self.labelName.setReadOnly(True)
         self.labelName.setFixedSize(50,100)
         self.lineName.setFixedSize(300,100)
         self.labelName.move(50,250)
         self.lineName.move(150,250)
+
+        # set stylesheet for label
+        self.labelUID.setStyleSheet(open('./style.css').read())
+        self.labelName.setStyleSheet(open('./style.css').read())
 
         self.lineUID.show()
         self.labelUID.show()
