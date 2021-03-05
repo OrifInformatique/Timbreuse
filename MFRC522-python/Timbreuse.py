@@ -185,7 +185,7 @@ class MainWindow():
         self.buttonSection.setText("Section")
         self.buttonSection.move(50,100)
         self.buttonSection.setFixedSize(300,300)
-        self.buttonSection.clicked.connect(self.setSection())
+        self.buttonSection.clicked.connect(self.setSection)
         self.buttonSection.show()
     
     def setSection(self):
