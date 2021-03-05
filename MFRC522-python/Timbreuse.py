@@ -90,7 +90,7 @@ class MainWindow():
         self.buttonOut = QPushButton(self.window)
         self.buttonOut.setText("OUT")
         self.buttonOut.setFixedSize(300,300)
-        buttonOut.move(450,100)
+        self.buttonOut.move(450,100)
         #add action when buttonOut is pressed
         self.buttonOut.clicked.connect(self.badgeApp)
     
