@@ -232,7 +232,7 @@ class MainWindow():
     # show attribution RFID card button
     def attributeRFID(self):
         # hide section button
-        self.buttonSection.hide()
+        
 
         self.buttonAttributeRFID = QPushButton(self.window)
         self.buttonAttributeRFID.setText("Set UID")
@@ -241,9 +241,9 @@ class MainWindow():
         self.buttonAttributeRFID.clicked.connect(self.setUID)
         self.buttonAttributeRFID.show()
     def setUID(self):
-        # hide rfid button
+        # hide rfid button + section
         self.buttonAttributeRFID.hide()
-
+        self.buttonSection.hide()
         # UID
         self.lineUID = QLineEdit(self.window)
         self.lineUID.setText("")
