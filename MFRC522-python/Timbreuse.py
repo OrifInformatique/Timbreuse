@@ -176,12 +176,14 @@ class MainWindow():
     '''
                                 WINDOW CONFIGURATION
     '''
-    # Window to link RFID card to user
+    # Window to link RFID card to user or set Section
     def configWindow(self):
         self.configButton.hide()
         self.writeButton.hide()
-        self.setSettingsButton()
-    
+        self.buttonSection.show()
+        self.buttonAttributeRFID.show()
+
+    # Show set section button  
     def setSettingsButton(self):
         self.buttonSection = QPushButton(self.window)
         self.buttonSection.setText("Section")
@@ -190,6 +192,7 @@ class MainWindow():
         self.buttonSection.clicked.connect(self.setSection)
         self.buttonSection.show()
     
+    # Show list of section available 
     def setSection(self):
         # Create scroll list
         self.scrollableListSection = QListWidget(self.window)
@@ -224,6 +227,44 @@ class MainWindow():
 
         # hide sectionbutton
         self.buttonSection.hide()
+        self.buttonAttributeRFID.hide()
 
+    # show attribution RFID card button
+    def attributeRFID(self):
+        # hide 
+        
+        self.buttonSection.hide()
 
+        self.buttonAttributeRFID = QPushButton(self.window)
+        self.buttonAttributeRFID.setText("Set UID")
+        self.buttonAttributeRFID.setFixedSize(300,300)
+        self.buttonAttributeRFID.move(450,100)
+        self.buttonAttributeRFID.clicked.connect(self.setUID)
+        self.buttonAttributeRFID.show()
+    def setUID(self):
+        # hide rfid button
+        self.buttonAttributeRFID.hide()
+
+        # UID
+        self.lineUID = QLineEdit(self.window)
+        self.lineUID.setText("")
+        self.labelUID = QLabel("RFID UID")
+        self.lineUID.setFixedSize(300,100)
+        self.labelUID.setFixedSize(50,100)
+        self.lineUID.move(150,50)
+        self.labelUID.move(50,50)
+
+        # User
+        self.lineName = QLineEdit(self.window)
+        self.lineName.setText("")
+        self.labelName = QLabel("Name User")
+        self.labelName.setFixedSize(50,100)
+        self.lineName.setFixedSize(300,100)
+        self.labelName.move(50,250)
+        self.lineName.move(150,250)
+
+        self.lineUID.show()
+        self.labelUID.show()
+        self.lineName.show()
+        self.labelName.show()
 main = MainWindow()
