@@ -143,6 +143,8 @@ class MainWindow():
     def adminWindow(self):
         self.buttonIn.hide()
         self.buttonOut.hide()
+        # disable admin Button
+        self.buttonAdmin.setEnabled(False)
         self.setWriteButton()
         self.setConfigButton()
         print("In admin window")
@@ -219,5 +221,9 @@ class MainWindow():
         # show all
         self.scrollableListSection.show()
         self.scroll_bar.show()
+
+        # hide sectionbutton
+        self.buttonSection.hide()
+
 
 main = MainWindow()
