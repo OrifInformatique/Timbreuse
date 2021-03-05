@@ -18,7 +18,7 @@ class MainWindow():
     base = True
     admin = False
     config = False
-    buttonIn
+    
 
     def __init__(self):
         super().__init__()
@@ -78,11 +78,12 @@ class MainWindow():
      # Create Button IN
     def setButtonIn(self):
         buttonIn = QPushButton(self.window)
-        self.buttonIn.setText("IN")
-        self.buttonIn.setFixedSize(300,300)
-        self.buttonIn.move(50,100)
+        buttonIn.setText("IN")
+        buttonIn.setFixedSize(300,300)
+        buttonIn.move(50,100)
         #add action when buttonIn is pressed
-        self.buttonIn.clicked.connect(self.badgeApp)
+        buttonIn.setObjectName("buttonIN")
+        buttonIn.clicked.connect(self.badgeApp)
 
     # Create button OUT
     def setButtonOut(self):
@@ -95,6 +96,7 @@ class MainWindow():
     
     # Create badge window
     def badgeApp(self):
+        self.window("buttonIN").hide()
         QMessageBox.information(self.window, "Badge", "Vous avez 10 secondes pour passer le bagde.")
         self.windowProgressBar = ProgressBar.Window()
         self.windowProgressBar.show()
