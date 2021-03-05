@@ -194,7 +194,7 @@ class MainWindow():
         self.itemSIT = QListWidgetItem("SIT Préverenges")
         self.scrollableListSection.addItem(self.itemSectionInformatique)
         self.scrollableListSection.addItem(self.itemSIT)
-
+        
         # scroll bar
         self.scroll_bar = QScrollBar(self.window)
 
@@ -207,4 +207,8 @@ class MainWindow():
         # get scroll bar
         self.value = self.scrollableListSection.setVerticalScrollBar()
         
+        # show all
+        self.scrollableListSection.show()
+        self.scroll_bar.show()
+
 main = MainWindow()
