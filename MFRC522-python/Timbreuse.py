@@ -268,6 +268,9 @@ class MainWindow():
         self.labelName.move(50,250)
         self.lineName.move(150,250)
 
+        # set name for label
+        self.labelUID.setObjectName("labelUID")
+        self.labelName.setObjectName("labelName")
         # set stylesheet for label
         self.labelUID.setStyleSheet(open('./style.css').read())
         self.labelName.setStyleSheet(open('./style.css').read())
