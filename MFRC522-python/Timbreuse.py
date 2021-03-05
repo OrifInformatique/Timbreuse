@@ -231,10 +231,7 @@ class MainWindow():
 
     # show attribution RFID card button
     def attributeRFID(self):
-        # hide 
         
-        self.buttonSection.hide()
-
         self.buttonAttributeRFID = QPushButton(self.window)
         self.buttonAttributeRFID.setText("Set UID")
         self.buttonAttributeRFID.setFixedSize(300,300)
