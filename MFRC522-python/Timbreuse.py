@@ -282,9 +282,16 @@ class MainWindow():
     def setButtonBackToConfigure(self):
         self.buttonBackConf = QPushButton(self.window)
         self.buttonBackConf.setText("Back")
-        self.buttonBackConf.setFixedSize(50,50)
+        self.buttonBackConf.setFixedSize(100,100)
         self.buttonBackConf.move(10,10)
         self.buttonBackConf.clicked.connect(self.configWindow)
         self.buttonBackConf.show()
+        # hide label-line-scroll
+        self.labelName.hide()
+        self.labelUID.hide()
+        self.lineName.hide()
+        self.lineName.hide()
+        self.scrollableListSection.hide()
+        self.scroll_bar.hide()
 
 main = MainWindow()
