@@ -188,8 +188,9 @@ class MainWindow():
         self.scrollableListSection.hide()
         self.scroll_bar.hide()
         self.buttonBackConf.hide()
-        self.setSettingsButton()
-        self.attributeRFID()
+        # show the 2 buttons
+        self.buttonSection(self)
+        self.buttonAttributeRFID(self)
         
 
     # Show set section button  
