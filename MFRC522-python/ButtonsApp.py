@@ -32,7 +32,7 @@ class Window(QWidget):
         self.setButtonOut()
         self.windowAdminLogin = None
         self.windowProgressBar = None
-        
+        self.setStylesheet
     #Insert the icon
     def setIcon(self):
         #appIcon = QIcon("/home/pi/Desktop/SPI-Py/MFRC522-python/logo_orif_square_transparent.png")
@@ -41,21 +41,23 @@ class Window(QWidget):
     #Create the buttons
     def setButtonIn(self):
         buttonIn = QPushButton("In", self)
-        buttonIn.setStyleSheet('QPushButton {background-color:#005BA9; color: white; font-size: 120px; font-weight: BOLD;border: none}')
+
+        #buttonIn.setStyleSheet('QPushButton {background-color:#005BA9; color: white; font-size: 120px; font-weight: BOLD;border: none}')
+
         buttonIn.setFixedSize(300,300)
         buttonIn.move(50,100)
         buttonIn.clicked.connect(self.badgeApp)
         
     def setButtonOut(self):
         buttonOut = QPushButton("Out", self)
-        buttonOut.setStyleSheet("QPushButton {background-color:#005BA9; color: white; font-size: 120px; font-weight: BOLD; border:none}")
+        #buttonOut.setStyleSheet("QPushButton {background-color:#005BA9; color: white; font-size: 120px; font-weight: BOLD; border:none}")
         buttonOut.setFixedSize(300,300)
         buttonOut.move(450,100)
         buttonOut.clicked.connect(self.badgeApp)
                 
     def setButtonAdmin(self):
         buttonAdmin = QPushButton("Admin", self)
-        buttonAdmin.setStyleSheet('QPushButton{background-color:#005BA9; color: black;}')
+        #buttonAdmin.setStyleSheet('QPushButton{background-color:#005BA9; color: black;}')
         buttonAdmin.move(725,0)
         buttonAdmin.clicked.connect(self.adminApp)
     #Create a question window
@@ -79,6 +81,10 @@ if __name__=="__main__":
     #Create Qt App
     mainApp = QApplication(sys.argv)
     window = Window()
+    #Apply stylesheet
+    # mainApp.setStyleSheet(open('./style.css').read())
+
+    
     #Show the window
     window.show()
     #run the main loop

@@ -21,3 +21,4 @@ class Window(QWidget):
     def setIcon(self):
         appIcon = QIcon("logo_orif_square_transparent.png")
         self.setWindowIcon(appIcon)
+
