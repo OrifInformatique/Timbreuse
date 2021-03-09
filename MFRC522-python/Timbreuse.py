@@ -228,7 +228,7 @@ class MainWindow():
         # hide sectionbutton
         self.buttonSection.hide()
         self.buttonAttributeRFID.hide()
-        self.buttonBackConf.show()
+        self.setButtonBackToConfigure()
 
     # show attribution RFID card button
     def attributeRFID(self):
@@ -277,13 +277,13 @@ class MainWindow():
         self.labelUID.show()
         self.lineName.show()
         self.labelName.show()
-        self.buttonBackConf.show()
+        self.setButtonBackToConfigure()
 
     def setButtonBackToConfigure(self):
         self.buttonBackConf = QPushButton(self.window)
         self.buttonBackConf.setText("Back")
         self.buttonBackConf.setFixedSize(50,50)
-        self.buttonBackConf.move(50,50)
+        self.buttonBackConf.move(10,10)
         self.buttonBackConf.clicked.connect(self.configWindow)
         self.buttonBackConf.show()
 
