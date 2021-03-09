@@ -180,8 +180,6 @@ class MainWindow():
     def configWindow(self):
         self.configButton.hide()
         self.writeButton.hide()
-        self.setSettingsButton()
-        self.attributeRFID()
         # hide label-line-scroll
         self.labelName.hide()
         self.labelUID.hide()
@@ -189,6 +187,10 @@ class MainWindow():
         self.lineName.hide()
         self.scrollableListSection.hide()
         self.scroll_bar.hide()
+        self.buttonBackConf.hide()
+        self.setSettingsButton()
+        self.attributeRFID()
+        
 
     # Show set section button  
     def setSettingsButton(self):
