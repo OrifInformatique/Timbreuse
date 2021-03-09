@@ -20,6 +20,7 @@ class MainWindow():
     # create __init__ function
     def __init__(self):
 
+
         # Creation of the app and window
         app = QtWidgets.QApplication(sys.argv)
         self.window = QtWidgets.QMainWindow()
@@ -63,8 +64,10 @@ class MainWindow():
 
     # Create Button IN
     def setButtonIn(self):
+
         buttonIn = QPushButton(self.window)
         buttonIn.setText("IN")
+
         buttonIn.setFixedSize(300,300)
         buttonIn.move(50,100)
         #add action when buttonIn is pressed
