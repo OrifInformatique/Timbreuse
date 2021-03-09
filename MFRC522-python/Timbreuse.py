@@ -247,9 +247,9 @@ class MainWindow():
         self.labelUID = QLineEdit(self.window)
         self.labelUID.setText("RFID UID")
         self.labelUID.setReadOnly(True)
-        self.lineUID.setFixedSize(300,50)
-        self.labelUID.setFixedSize(300,150)
-        self.lineUID.move(150,50)
+        self.lineUID.setFixedSize(100,50)
+        self.labelUID.setFixedSize(100,150)
+        self.lineUID.move(175,50)
         self.labelUID.move(50,50)
 
         
@@ -260,10 +260,10 @@ class MainWindow():
         self.labelName = QLineEdit(self.window)
         self.labelName.setText("Name User")
         self.labelName.setReadOnly(True)
-        self.labelName.setFixedSize(300,150)
-        self.lineName.setFixedSize(300,50)
+        self.labelName.setFixedSize(100,150)
+        self.lineName.setFixedSize(100,50)
         self.labelName.move(50,250)
-        self.lineName.move(150,250)
+        self.lineName.move(175,250)
 
         # set name for label
         self.labelUID.setObjectName("labelUID")
