@@ -283,7 +283,7 @@ class MainWindow():
         self.buttonBackConf = QPushButton(self.window)
         self.buttonBackConf.setText("Back")
         self.buttonBackConf.setFixedSize(50,50)
-        self.buttonBackConf.move(250,300)
+        self.buttonBackConf.move(250,250)
         self.buttonBackConf.clicked.connect(self.configWindow)
 
 main = MainWindow()
