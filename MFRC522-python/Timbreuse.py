@@ -184,8 +184,8 @@ class MainWindow():
 
         # self.buttonBackConf.hide()
         # show the 2 buttons
-        self.buttonSection(self)
-        self.buttonAttributeRFID(self)
+        self.buttonSection()
+        self.buttonAttributeRFID()
         
 
     # Show set section button  
