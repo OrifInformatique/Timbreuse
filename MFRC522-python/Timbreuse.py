@@ -283,7 +283,9 @@ class MainWindow():
         self.labelName.setStyleSheet(open('./style.css').read())
         
         self.labelUID.show()
+        print("Show label UID")
         self.lineUID.show()
+        print("Show line UID")
         self.labelName.show()
         self.lineName.show()
         
