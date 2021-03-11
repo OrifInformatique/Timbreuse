@@ -258,7 +258,7 @@ class MainWindow():
         self.labelUID.setFixedSize(100,50)
         
         self.lineUID.move(175,160)
-        self.labelUID.move(50,160)
+        self.labelUID.move(75,160)
 
         
 
