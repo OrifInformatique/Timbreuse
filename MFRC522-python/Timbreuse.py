@@ -182,7 +182,7 @@ class MainWindow():
         self.writeButton.hide()
         # hide label-line-scroll
 
-        self.buttonBackConf.hide()
+        # self.buttonBackConf.hide()
         # show the 2 buttons
         self.buttonSection(self)
         self.buttonAttributeRFID(self)
