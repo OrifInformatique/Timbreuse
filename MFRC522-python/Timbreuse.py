@@ -184,8 +184,8 @@ class MainWindow():
 
         # self.buttonBackConf.hide()
         # show the 2 buttons
-        self.buttonSection(self)
-        self.buttonAttributeRFID(self)
+        self.setSettingsButton()
+        self.attributeRFID()
         
 
     # Show set section button  
@@ -195,7 +195,7 @@ class MainWindow():
         self.buttonSection.move(50,100)
         self.buttonSection.setFixedSize(300,300)
         self.buttonSection.clicked.connect(self.setSection)
-        self.buttonSection.show(self)
+        self.buttonSection.show()
     
     # Show list of section available 
     def setSection(self):
