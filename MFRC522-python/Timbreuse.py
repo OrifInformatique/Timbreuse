@@ -18,6 +18,8 @@ class MainWindow():
     admin = False
     config = False
 
+
+
     def __init__(self):
         super().__init__()
 
@@ -181,22 +183,22 @@ class MainWindow():
         print("Retour dans config Window")
         
         # hide label-line-scroll
-        if (self.hidingLabelLineScroll == True):
-            print(" dans if de config")
-            self.labelName.hide()
-            self.labelUID.hide()
-            self.lineName.hide()
-            self.lineUID.hide()
-            self.scrollableListSection.hide()
-            self.scroll_bar.hide()
+        # if (self.hidingLabelLineScroll == True):
+        #     print(" dans if de config")
+        #     self.labelName.hide()
+        #     self.labelUID.hide()
+        #     self.lineName.hide()
+        #     self.lineUID.hide()
+        #     self.scrollableListSection.hide()
+        #     self.scroll_bar.hide()
             
-            # show buttons ConfigWindow
-            self.setSettingsButton()
-            self.attributeRFID()
-            self.buttonBackConf.hide()
-            self.hidingLabelLineScroll = False
-        else:
-            pass  
+        #     # show buttons ConfigWindow
+        #     self.setSettingsButton()
+        #     self.attributeRFID()
+        #     self.buttonBackConf.hide()
+        #     self.hidingLabelLineScroll = False
+        # else:
+        #     pass  
         # self.buttonBackConf.hide()
         # show the 2 buttons
         self.setSettingsButton()
@@ -304,9 +306,9 @@ class MainWindow():
         self.labelName.show()
         self.lineName.show()
         
-        self.setButtonBackToConfigure()
+        self.setButtonBackToConfigure("configWindow")
 
-    def setButtonBackToConfigure(self):
+    def setButtonBackToConfigure(self, last_page:str):
         # configure button
         self.buttonBackConf = QPushButton(self.window)
         self.buttonBackConf.setText("Back")
@@ -317,7 +319,7 @@ class MainWindow():
         # create boolean to say that we have to hide some objects
         self.hidingLabelLineScroll = True
         
-        self.buttonBackConf.clicked.connect(self.configWindow)
+        exec(f"self.buttonBackConf.clicked.connect(self.{last_page})")
         self.buttonBackConf.show()
         
         
