@@ -312,11 +312,14 @@ class MainWindow():
         self.buttonBackConf.setObjectName("BackToConf")
         self.buttonBackConf.setFixedSize(100,100)
         self.buttonBackConf.move(10,10)
-        self.buttonBackConf.clicked.connect(self.configWindow)
-        self.buttonBackConf.show()
         
         # create boolean to say that we have to hide some objects
         self.hidingLabelLineScroll = True
+        
+        self.buttonBackConf.clicked.connect(self.configWindow)
+        self.buttonBackConf.show()
+        
+        
         
 
 main = MainWindow()
