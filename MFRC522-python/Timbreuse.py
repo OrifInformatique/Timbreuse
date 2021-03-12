@@ -18,11 +18,12 @@ class MainWindow():
     admin = False
     config = False
 
-
+    
 
     def __init__(self):
         super().__init__()
-
+        self.scrollableListSection = QListWidget(self)
+        self.scrollableListSection.hide()
         #Creation of the app
         app = QtWidgets.QApplication(sys.argv)
 
@@ -47,6 +48,9 @@ class MainWindow():
         global admin
         global config
         self.hidingLabelLineScroll = False
+        self.scrollableListSection = None
+        self.scroll_bar = None
+        self.labelName = None
         #set Icon
         self.setIcon()
 
