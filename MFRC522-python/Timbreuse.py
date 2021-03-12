@@ -183,22 +183,22 @@ class MainWindow():
         print("Retour dans config Window")
         
         # hide label-line-scroll
-        # if (self.hidingLabelLineScroll == True):
-        #     print(" dans if de config")
-        #     self.labelName.hide()
-        #     self.labelUID.hide()
-        #     self.lineName.hide()
-        #     self.lineUID.hide()
-        #     self.scrollableListSection.hide()
-        #     self.scroll_bar.hide()
+        if (self.hidingLabelLineScroll == True):
+            print(" dans if de config")
+            self.labelName.hide()
+            self.labelUID.hide()
+            self.lineName.hide()
+            self.lineUID.hide()
+            self.scrollableListSection.hide()
+            self.scroll_bar.hide()
             
-        #     # show buttons ConfigWindow
-        #     self.setSettingsButton()
-        #     self.attributeRFID()
-        #     self.buttonBackConf.hide()
-        #     self.hidingLabelLineScroll = False
-        # else:
-        #     pass  
+            # show buttons ConfigWindow
+            self.setSettingsButton()
+            self.attributeRFID()
+            
+            self.hidingLabelLineScroll = False
+        else:
+            pass  
         # self.buttonBackConf.hide()
         # show the 2 buttons
         self.setSettingsButton()
