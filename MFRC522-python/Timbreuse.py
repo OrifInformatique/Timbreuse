@@ -180,8 +180,11 @@ class MainWindow():
     def configWindow(self):
         self.configButton.hide()
         self.writeButton.hide()
+        print("Retour dans config Window")
+        print("Valeur de hidingLabelLineScroll = " +self.hidingLabelLineScroll)
         # hide label-line-scroll
         if (self.hidingLabelLineScroll == True):
+            print(" dans if de config")
             self.labelName.hide()
             self.labelUID.hide()
             self.lineName.hide()
