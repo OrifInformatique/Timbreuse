@@ -250,7 +250,7 @@ class MainWindow():
         # hide sectionbutton
         self.buttonSection.hide()
         self.buttonAttributeRFID.hide()
-        self.setButtonBackToConfigure()
+        self.setButtonBackToConfigure("configWindow")
 
     # show attribution RFID card button
     def attributeRFID(self):
