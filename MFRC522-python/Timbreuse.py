@@ -269,11 +269,11 @@ class MainWindow():
         self.labelName.setText("Name User")
         self.labelName.setReadOnly(True)
         
-        # self.labelName.setFixedSize(100,50)
-        # self.labelName.move(50,250)
+        self.labelName.setFixedSize(100,50)
+        self.labelName.move(50,250)
         
-        # self.lineName.setFixedSize(300,50)
-        # self.lineName.move(175,250)
+        self.lineName.setFixedSize(300,50)
+        self.lineName.move(175,250)
 
         # set name for label
         self.labelUID.setObjectName("labelUID")
