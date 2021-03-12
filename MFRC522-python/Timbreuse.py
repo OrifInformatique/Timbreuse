@@ -18,7 +18,7 @@ class MainWindow():
     base = True
     admin = False
     config = False
-    self.hidingLabelLineScroll = False
+    
 
     def __init__(self):
         super().__init__()
@@ -46,7 +46,7 @@ class MainWindow():
         global base
         global admin
         global config
-
+        self.hidingLabelLineScroll = False
         #set Icon
         self.setIcon()
 
