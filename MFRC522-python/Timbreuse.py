@@ -47,7 +47,7 @@ class MainWindow():
         global admin
         global config
         self.hidingLabelLineScroll = False
-        self.scrollableListSection
+        self.scrollableListSection = QListWidget(self.window)
         #set Icon
         self.setIcon()
 
