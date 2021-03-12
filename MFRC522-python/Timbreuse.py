@@ -180,7 +180,6 @@ class MainWindow():
     def configWindow(self):
         self.configButton.hide()
         self.writeButton.hide()
-        self.hidingLabelLineScroll = False
         # hide label-line-scroll
         if (self.hidingLabelLineScroll == True):
             self.labelName.hide()
