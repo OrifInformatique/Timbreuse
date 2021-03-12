@@ -188,6 +188,10 @@ class MainWindow():
             self.lineUID.hide()
             self.scrollableListSection.hide()
             self.scroll_bar.hide()
+            
+            # show buttons ConfigWindow
+            self.setSettingsButton()
+            self.attributeRFID()
         else:
             pass  
         # self.buttonBackConf.hide()
