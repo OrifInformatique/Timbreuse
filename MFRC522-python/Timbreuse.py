@@ -180,8 +180,16 @@ class MainWindow():
     def configWindow(self):
         self.configButton.hide()
         self.writeButton.hide()
+        self.hidingLabelLineScroll = False
         # hide label-line-scroll
-
+        if (self.hidingLabelLineScroll == True):
+            self.labelName.hide()
+            self.labelUID.hide()
+            self.lineName.hide()
+            self.lineUID.hide()
+            self.scrollableListSection.hide()
+            self.scroll_bar.hide()
+            
         # self.buttonBackConf.hide()
         # show the 2 buttons
         self.setSettingsButton()
@@ -301,12 +309,8 @@ class MainWindow():
         self.buttonBackConf.clicked.connect(self.configWindow)
         self.buttonBackConf.show()
         
+        # create boolean to say that we have to hide some objects
+        self.hidingLabelLineScroll = True
         
-        # self.labelName.hide()
-        # self.labelUID.hide()
-        # self.lineName.hide()
-        # self.lineName.hide()
-        # self.scrollableListSection.hide()
-        # self.scroll_bar.hide()
 
 main = MainWindow()
