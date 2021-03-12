@@ -18,7 +18,7 @@ class MainWindow():
     base = True
     admin = False
     config = False
-    
+    self.hidingLabelLineScroll = False
 
     def __init__(self):
         super().__init__()
@@ -188,7 +188,8 @@ class MainWindow():
             self.lineUID.hide()
             self.scrollableListSection.hide()
             self.scroll_bar.hide()
-            
+        else:
+            pass  
         # self.buttonBackConf.hide()
         # show the 2 buttons
         self.setSettingsButton()
