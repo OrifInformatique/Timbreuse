@@ -7,7 +7,7 @@ from PySide2.QtGui import *
 from PySide2.QtCore import *
 
 # import log
-import logging
+# import logging
 
 # import from python files in MFRC522
 import Read
@@ -26,16 +26,16 @@ class MainWindow():
         
         
             
-        self.logger = logging.getLogger(__name__)
-        self.logger.setLevel(logging.DEBUG)
+        # self.logger = logging.getLogger(__name__)
+        # self.logger.setLevel(logging.DEBUG)
         
-        self.formatter = logging.Formatter('%(asctime)s:%(name)s:%(message)s')
+        # self.formatter = logging.Formatter('%(asctime)s:%(name)s:%(message)s')
         
-        self.file_handler = logging.FileHandler('traceback.log')
-        self.file_handler.setLevel(logging.ERROR)
-        self.file_handler.setFormatter(self.formatter)
+        # self.file_handler = logging.FileHandler('traceback.log')
+        # self.file_handler.setLevel(logging.ERROR)
+        # self.file_handler.setFormatter(self.formatter)
         
-        self.logger.addHandler(self.file_handler)
+        # self.logger.addHandler(self.file_handler)
 
         #Creation of the app
         app = QtWidgets.QApplication(sys.argv)
@@ -195,7 +195,7 @@ class MainWindow():
         self.configButton.hide()
         self.writeButton.hide()
         print("Retour dans config Window")
-        self.logger.exception('Exception Error')
+        # self.logger.exception('Exception Error')
         # hide label-line-scroll
         if (self.hidingLabelLineScroll == True):
             print(" dans if de config")
@@ -205,7 +205,7 @@ class MainWindow():
             self.lineUID.hide()
             self.scrollableListSection.hide()
             self.scroll_bar.hide()
-            self.logger.exception('Exception Error')
+            # self.logger.exception('Exception Error')
             # show buttons ConfigWindow
             self.setSettingsButton()
             self.attributeRFID()
