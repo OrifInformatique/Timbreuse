@@ -292,6 +292,7 @@ class MainWindow():
         self.setButtonBackToConfigure()
 
     def setButtonBackToConfigure(self):
+        # configure button
         self.buttonBackConf = QPushButton(self.window)
         self.buttonBackConf.setText("Back")
         self.buttonBackConf.setObjectName("BackToConf")
@@ -299,11 +300,13 @@ class MainWindow():
         self.buttonBackConf.move(10,10)
         self.buttonBackConf.clicked.connect(self.configWindow)
         self.buttonBackConf.show()
-        self.labelName.hide()
-        self.labelUID.hide()
-        self.lineName.hide()
-        self.lineName.hide()
-        self.scrollableListSection.hide()
-        self.scroll_bar.hide()
+        
+        
+        # self.labelName.hide()
+        # self.labelUID.hide()
+        # self.lineName.hide()
+        # self.lineName.hide()
+        # self.scrollableListSection.hide()
+        # self.scroll_bar.hide()
 
 main = MainWindow()
