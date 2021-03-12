@@ -47,6 +47,7 @@ class MainWindow():
         global admin
         global config
         self.hidingLabelLineScroll = False
+        self.scrollableListSection
         #set Icon
         self.setIcon()
 
@@ -181,7 +182,7 @@ class MainWindow():
         self.configButton.hide()
         self.writeButton.hide()
         print("Retour dans config Window")
-        print("Valeur de hidingLabelLineScroll = " +self.hidingLabelLineScroll)
+        
         # hide label-line-scroll
         if (self.hidingLabelLineScroll == True):
             print(" dans if de config")
