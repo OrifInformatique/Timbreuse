@@ -190,8 +190,8 @@ class MainWindow():
             self.scroll_bar.hide()
             
             # show buttons ConfigWindow
-            self.buttonSection.show()
-            self.buttonSection.show()
+            self.setSettingsButton()
+            self.attributeRFID()
             self.buttonBackConf.hide()
             self.hidingLabelLineScroll = False
         else:
