@@ -192,6 +192,8 @@ class MainWindow():
             # show buttons ConfigWindow
             self.setSettingsButton()
             self.attributeRFID()
+            self.buttonBackConf.hide()
+            self.hidingLabelLineScroll = False
         else:
             pass  
         # self.buttonBackConf.hide()
