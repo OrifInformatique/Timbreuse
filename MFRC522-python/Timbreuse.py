@@ -22,7 +22,7 @@ class MainWindow():
 
     def __init__(self):
         super().__init__()
-        self.scrollableListSection = QListWidget(self)
+        self.scrollableListSection = QListWidget(self.window
         self.scrollableListSection.hide()
         #Creation of the app
         app = QtWidgets.QApplication(sys.argv)
@@ -35,7 +35,8 @@ class MainWindow():
 
         # call the init gui
         self.initGui()
-
+        self.scrollableListSection = QListWidget(self.window)
+        self.scrollableListSection.hide()
         # set file css as stylesheet
         app.setStyleSheet(open('./style.css').read())
 
