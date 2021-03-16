@@ -63,7 +63,7 @@ class MainWindow():
         self.scrollableListSection.hide()
         
         self.scroll_bar = QScrollBar(self.window)
-        # self.scroll_bar.hide()
+        self.scroll_bar.hide()
         
             # Item
         self.itemSectionInformatique = QListWidgetItem("Section Informatique Pomy")
@@ -208,7 +208,7 @@ class MainWindow():
             self.lineName.hide()
             self.lineUID.hide()
             self.scrollableListSection.hide()
-            # self.scroll_bar.hide()
+            self.scroll_bar.hide()
 #             self.scroll_bar.hide()
             
             # show buttons AdminWindow
@@ -263,7 +263,7 @@ class MainWindow():
             self.lineName.hide()
             self.lineUID.hide()
             self.scrollableListSection.hide()
-            # self.scroll_bar.hide()
+            self.scroll_bar.hide()
 #             self.scroll_bar.hide()
             
             # show buttons ConfigWindow
@@ -311,14 +311,14 @@ class MainWindow():
         self.scroll_bar.setStyleSheet(open('./style.css').read())
 
         # setting vertical scroll bar
-        self.scrollableListSection.setVerticalScrollBar(self.scroll_bar)
+        # self.scrollableListSection.setVerticalScrollBar(self.scroll_bar)
 
         # get scroll bar
         # self.value = self.scrollableListSection.setVerticalScrollBar()
         
         # show all
         self.scrollableListSection.show()
-        self.scroll_bar.show()
+        # self.scroll_bar.show()
 
         # hide sectionbutton
         self.buttonSection.hide()
