@@ -200,12 +200,11 @@ class MainWindow():
             self.attributeRFID()
             
             self.hidingLabelLineScroll = False
-        else:
-            pass  
-        # self.buttonBackConf.hide()
-        # show the 2 buttons
-        self.setSettingsButton()
-        self.attributeRFID()
+        else:  
+            # self.buttonBackConf.hide()
+            # show the 2 buttons
+            self.setSettingsButton()
+            self.attributeRFID()
         
 
     # Show set section button  
