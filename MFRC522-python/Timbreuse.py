@@ -58,19 +58,19 @@ class MainWindow():
         self.writeButton = QPushButton(self.window)
         self.writeButton.hide()
         
-            # List
+            # List - scroll
         self.scrollableListSection = QListWidget(self.window)
         self.scrollableListSection.hide()
         
         self.scroll_bar = QScrollBar(self.window)
-        self.scroll_bar.hide()
+        # self.scroll_bar.hide()
         
             # Item
         self.itemSectionInformatique = QListWidgetItem("Section Informatique Pomy")
         # self.itemSectionInformatique.hide()
         
         self.itemSIT = QListWidgetItem("SIT Préverenges")
-#         self.itemSIT.hide()
+        # self.itemSIT.hide()
         
             # RFID
         self.labelName = QLineEdit(self.window)
