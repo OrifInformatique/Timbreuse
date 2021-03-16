@@ -31,10 +31,63 @@ class MainWindow():
         # Set window title
         self.window.setWindowTitle("Timbreuse")
 
-        # call the init gui
-        self.initGui()
+        
+        # define all objects
+            # Button
+        self.buttonAdmin = QPushButton(self.window)
+        self.buttonAdmin.hide()
+        
+        self.buttonAttributeRFID = QPushButton(self.window)
+        self.buttonAttributeRFID.hide()
+        
+        self.buttonBackConf = QPushButton(self.window)
+        self.buttonBackConf.hide()
+        
+        self.buttonIn = QPushButton(self.window)
+        # self.buttonIn.hide()
+        
+        self.buttonOut = QPushButton(self.window)
+        # self.buttonOut.hide()
+        
+        self.buttonSection = QPushButton(self.window)
+        self.buttonSection.hide()
+        
+        self.configButton = QPushButton(self.window)
+        self.configButton.hide()
+        
+        self.writeButton = QPushButton(self.window)
+        self.writeButton.hide()
+        
+            # List - scroll
         self.scrollableListSection = QListWidget(self.window)
         self.scrollableListSection.hide()
+        
+        self.scroll_bar = QScrollBar(self.window)
+        # self.scroll_bar.hide()
+        
+            # Item
+        self.itemSectionInformatique = QListWidgetItem("Section Informatique Pomy")
+        # self.itemSectionInformatique.hide()
+        
+        self.itemSIT = QListWidgetItem("SIT Préverenges")
+        # self.itemSIT.hide()
+        
+            # RFID
+        self.labelName = QLineEdit(self.window)
+        self.labelName.hide()
+        
+        self.labelUID = QLineEdit(self.window)
+        self.labelUID.hide()
+        
+        self.lineName = QLineEdit(self.window)
+        self.lineName.hide()
+        
+        self.lineUID = QLineEdit(self.window)
+        self.lineUID.hide()
+        
+        # call the init gui
+        self.initGui()
+        
         # set file css as stylesheet
         app.setStyleSheet(open('./style.css').read())
 
@@ -47,9 +100,9 @@ class MainWindow():
         global admin
         global config
         self.hidingLabelLineScroll = False
-        self.scrollableListSection = None
-        self.scroll_bar = None
-        self.labelName = None
+        # self.scrollableListSection = None
+        # self.scroll_bar = None
+        # self.labelName = None
         #set Icon
         self.setIcon()
 
@@ -80,7 +133,7 @@ class MainWindow():
         self.setButtonAdmin()
      # Create Button IN
     def setButtonIn(self):
-        self.buttonIn = QPushButton(self.window)
+        
         self.buttonIn.setText("IN")
         self.buttonIn.setFixedSize(300,300)
         self.buttonIn.move(50,100)
@@ -91,7 +144,7 @@ class MainWindow():
 
     # Create button OUT
     def setButtonOut(self):
-        self.buttonOut = QPushButton(self.window)
+        
         self.buttonOut.setText("OUT")
         self.buttonOut.setFixedSize(300,300)
         self.buttonOut.move(450,100)
@@ -123,7 +176,7 @@ class MainWindow():
     def setButtonAdmin(self):
         global base
         global admin
-        self.buttonAdmin = QPushButton(self.window)
+        
         self.buttonAdmin.setText("Admin")
         self.buttonAdmin.move(725,0)
         self.buttonAdmin.setObjectName("AdminButton")
@@ -146,15 +199,32 @@ class MainWindow():
     def adminWindow(self):
         self.buttonIn.hide()
         self.buttonOut.hide()
-        # disable admin Button
-        self.buttonAdmin.setEnabled(False)
-        self.setWriteButton()
-        self.setConfigButton()
+        
+        # hide label-line-scroll
+        if (self.hidingLabelLineScroll == False):
+            print(" dans if de config")
+            self.labelName.hide()
+            self.labelUID.hide()
+            self.lineName.hide()
+            self.lineUID.hide()
+            self.scrollableListSection.hide()
+            # self.scroll_bar.hide()
+#             self.scroll_bar.hide()
+            
+            # show buttons AdminWindow
+            self.setWriteButton()
+            self.setConfigButton()
+            
+            # disable admin Button
+            self.buttonAdmin.setEnabled(False)
+        else:
+            pass
+            
         print("In admin window")
 
     # define setWriteButton
     def setWriteButton(self):
-        self.writeButton = QPushButton(self.window)
+        
         self.writeButton.setText("Write")
         self.writeButton.setFixedSize(300,300)
         self.writeButton.move(50,100)
@@ -162,7 +232,7 @@ class MainWindow():
         self.writeButton.show()
     # define setConfigButton
     def setConfigButton(self):
-        self.configButton = QPushButton(self.window)
+        
         self.configButton.setText("Conf")
         self.configButton.move(450,100)
         self.configButton.setFixedSize(300,300)
@@ -193,6 +263,7 @@ class MainWindow():
             self.lineName.hide()
             self.lineUID.hide()
             self.scrollableListSection.hide()
+            # self.scroll_bar.hide()
 #             self.scroll_bar.hide()
             
             # show buttons ConfigWindow
@@ -200,17 +271,16 @@ class MainWindow():
             self.attributeRFID()
             
             self.hidingLabelLineScroll = False
-        else:
-            pass  
-        # self.buttonBackConf.hide()
-        # show the 2 buttons
-        self.setSettingsButton()
-        self.attributeRFID()
+        else:  
+            # self.buttonBackConf.hide()
+            # show the 2 buttons
+            self.setSettingsButton()
+            self.attributeRFID()
         
 
     # Show set section button  
     def setSettingsButton(self):
-        self.buttonSection = QPushButton(self.window)
+        
         self.buttonSection.setText("Section")
         self.buttonSection.move(50,100)
         self.buttonSection.setFixedSize(300,300)
@@ -226,16 +296,16 @@ class MainWindow():
         self.scrollableListSection.setFixedSize(300,300)
         self.scrollableListSection.move(225,50)
 
-        # Create Item
-        self.itemSectionInformatique = QListWidgetItem("Section Informatique Pomy")
-        self.itemSIT = QListWidgetItem("SIT Préverenges")
+        # # Create Item
+        # self.itemSectionInformatique = QListWidgetItem("Section Informatique Pomy")
+        # self.itemSIT = QListWidgetItem("SIT Préverenges")
 
         # Add Item to scrollable list
         self.scrollableListSection.addItem(self.itemSectionInformatique)
         self.scrollableListSection.addItem(self.itemSIT)
         
         # scroll bar
-        self.scroll_bar = QScrollBar(self.window)
+        # self.scroll_bar = QScrollBar(self.window)
 
         # stylesheet
         self.scroll_bar.setStyleSheet(open('./style.css').read())
@@ -257,7 +327,7 @@ class MainWindow():
 
     # show attribution RFID card button
     def attributeRFID(self):
-        self.buttonAttributeRFID = QPushButton(self.window)
+        
         self.buttonAttributeRFID.setText("Set UID")
         self.buttonAttributeRFID.setFixedSize(300,300)
         self.buttonAttributeRFID.move(450,100)
@@ -268,9 +338,9 @@ class MainWindow():
         self.buttonAttributeRFID.hide()
         self.buttonSection.hide()
         # UID
-        self.lineUID = QLineEdit(self.window)
+        # self.lineUID = QLineEdit(self.window)
         self.lineUID.setText("")
-        self.labelUID = QLineEdit(self.window)
+        # self.labelUID = QLineEdit(self.window)
         self.labelUID.setText("RFID UID")
         self.labelUID.setReadOnly(True)
         
@@ -283,9 +353,9 @@ class MainWindow():
         
 
         # User
-        self.lineName = QLineEdit(self.window)
+        # self.lineName = QLineEdit(self.window)
         self.lineName.setText("")
-        self.labelName = QLineEdit(self.window)
+        # self.labelName = QLineEdit(self.window)
         self.labelName.setText("Name User")
         self.labelName.setReadOnly(True)
         
@@ -313,7 +383,7 @@ class MainWindow():
 
     def setButtonBackToConfigure(self, last_page:str):
         # configure button
-        self.buttonBackConf = QPushButton(self.window)
+        
         self.buttonBackConf.setText("Back")
         self.buttonBackConf.setObjectName("BackToConf")
         self.buttonBackConf.setFixedSize(100,100)
