@@ -36,16 +36,35 @@ class MainWindow():
         # define all objects
             # Button
         self.buttonAdmin = QPushButton(self.window)
+        self.buttonAdmin.hide()
+        
         self.buttonAttributeRFID = QPushButton(self.window)
+        self.buttonAttributeRFID.hide()
+        
         self.buttonBackConf = QPushButton(self.window)
+        self.buttonBackConf.hide()
+        
         self.buttonIn = QPushButton(self.window)
+        self.buttonIn.hide()
+        
         self.buttonOut = QPushButton(self.window)
+        self.buttonOut.hide()
+        
         self.buttonSection = QPushButton(self.window)
+        self.buttonSection.hide()
+        
         self.configButton = QPushButton(self.window)
+        self.configButton.hide()
+        
         self.writeButton = QPushButton(self.window)
+        self.writeButton.hide()
+        
             # List
         self.scrollableListSection = QListWidget(self.window)
         self.scrollableListSection.hide()
+            # Item
+        self.itemSectionInformatique = QListWidgetItem("Section Informatique Pomy")
+        self.itemSIT = QListWidgetItem("SIT Préverenges")
         # set file css as stylesheet
         app.setStyleSheet(open('./style.css').read())
 
