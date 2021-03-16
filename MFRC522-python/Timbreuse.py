@@ -100,9 +100,9 @@ class MainWindow():
         global admin
         global config
         self.hidingLabelLineScroll = False
-        self.scrollableListSection = None
-        self.scroll_bar = None
-        self.labelName = None
+        # self.scrollableListSection = None
+        # self.scroll_bar = None
+        # self.labelName = None
         #set Icon
         self.setIcon()
 
