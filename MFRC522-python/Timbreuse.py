@@ -46,7 +46,7 @@ class MainWindow():
         global base
         global admin
         global config
-        self.hidingLabelLineScroll = False
+        self.hidingLabelLineScroll = True
         self.scrollableListSection = None
         self.scroll_bar = None
         self.labelName = None
