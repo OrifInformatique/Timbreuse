@@ -62,9 +62,30 @@ class MainWindow():
             # List
         self.scrollableListSection = QListWidget(self.window)
         self.scrollableListSection.hide()
+        
+        self.scroll_bar = QScrollBar(self.window)
+        self.scroll_bar.hide()
+        
             # Item
         self.itemSectionInformatique = QListWidgetItem("Section Informatique Pomy")
+        self.itemSectionInformatique.hide()
+        
         self.itemSIT = QListWidgetItem("SIT Préverenges")
+        self.itemSIT.hide()
+        
+            # RFID
+        self.labelName = QLineEdit(self.window)
+        self.labelName.hide()
+        
+        self.labelUID = QLineEdit(self.window)
+        self.labelUID.hide()
+        
+        self.lineName = QLineEdit(self.window)
+        self.lineName.hide()
+        
+        self.lineUID = QLineEdit(self.window)
+        self.lineUID.hide()
+        
         # set file css as stylesheet
         app.setStyleSheet(open('./style.css').read())
 
@@ -256,16 +277,16 @@ class MainWindow():
         self.scrollableListSection.setFixedSize(300,300)
         self.scrollableListSection.move(225,50)
 
-        # Create Item
-        self.itemSectionInformatique = QListWidgetItem("Section Informatique Pomy")
-        self.itemSIT = QListWidgetItem("SIT Préverenges")
+        # # Create Item
+        # self.itemSectionInformatique = QListWidgetItem("Section Informatique Pomy")
+        # self.itemSIT = QListWidgetItem("SIT Préverenges")
 
         # Add Item to scrollable list
         self.scrollableListSection.addItem(self.itemSectionInformatique)
         self.scrollableListSection.addItem(self.itemSIT)
         
         # scroll bar
-        self.scroll_bar = QScrollBar(self.window)
+        # self.scroll_bar = QScrollBar(self.window)
 
         # stylesheet
         self.scroll_bar.setStyleSheet(open('./style.css').read())
@@ -298,9 +319,9 @@ class MainWindow():
         self.buttonAttributeRFID.hide()
         self.buttonSection.hide()
         # UID
-        self.lineUID = QLineEdit(self.window)
+        # self.lineUID = QLineEdit(self.window)
         self.lineUID.setText("")
-        self.labelUID = QLineEdit(self.window)
+        # self.labelUID = QLineEdit(self.window)
         self.labelUID.setText("RFID UID")
         self.labelUID.setReadOnly(True)
         
@@ -313,9 +334,9 @@ class MainWindow():
         
 
         # User
-        self.lineName = QLineEdit(self.window)
+        # self.lineName = QLineEdit(self.window)
         self.lineName.setText("")
-        self.labelName = QLineEdit(self.window)
+        # self.labelName = QLineEdit(self.window)
         self.labelName.setText("Name User")
         self.labelName.setReadOnly(True)
         
