@@ -386,7 +386,7 @@ class MainWindow():
         
         self.buttonBackConf.setText("Back")
         self.buttonBackConf.setObjectName("BackToConf")
-        self.buttonBackConf.setFixedSize(100,100)
+        self.buttonBackConf.setFixedSize(75,75)
         self.buttonBackConf.move(10,10)
         
         # use style.css as styleshett
