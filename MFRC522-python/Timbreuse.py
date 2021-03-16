@@ -46,7 +46,7 @@ class MainWindow():
         global base
         global admin
         global config
-        self.hidingLabelLineScroll = True
+        self.hidingLabelLineScroll = False
         self.scrollableListSection = None
         self.scroll_bar = None
         self.labelName = None
@@ -193,6 +193,7 @@ class MainWindow():
             self.lineName.hide()
             self.lineUID.hide()
             self.scrollableListSection.hide()
+            self.scroll_bar.hide()
 #             self.scroll_bar.hide()
             
             # show buttons ConfigWindow
