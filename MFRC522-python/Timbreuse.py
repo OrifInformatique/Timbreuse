@@ -62,8 +62,8 @@ class MainWindow():
         self.scrollableListSection = QListWidget(self.window)
         self.scrollableListSection.hide()
         
-        # self.scroll_bar = QScrollBar(self.window)
-        # self.scroll_bar.hide()
+        self.scroll_bar = QScrollBar(self.window)
+        self.scroll_bar.hide()
         
             # Item
         self.itemSectionInformatique = QListWidgetItem("Section Informatique Pomy")
@@ -305,7 +305,7 @@ class MainWindow():
         self.scrollableListSection.addItem(self.itemSIT)
         
         # scroll bar
-        self.scroll_bar = QScrollBar(self.window)
+        # self.scroll_bar = QScrollBar(self.window)
 
         # stylesheet
         self.scroll_bar.setStyleSheet(open('./style.css').read())
