@@ -264,7 +264,7 @@ class MainWindow():
             self.lineUID.hide()
             self.scrollableListSection.hide()
             self.scroll_bar.hide()
-#             self.scroll_bar.hide()
+            self.buttonBackConf.hide()
             
             # show buttons ConfigWindow
             self.setSettingsButton()
