@@ -33,6 +33,17 @@ class MainWindow():
 
         # call the init gui
         self.initGui()
+        # define all objects
+            # Button
+        self.buttonAdmin = QPushButton(self.window)
+        self.buttonAttributeRFID = QPushButton(self.window)
+        self.buttonBackConf = QPushButton(self.window)
+        self.buttonIn = QPushButton(self.window)
+        self.buttonOut = QPushButton(self.window)
+        self.buttonSection = QPushButton(self.window)
+        self.configButton = QPushButton(self.window)
+        self.writeButton = QPushButton(self.window)
+            # List
         self.scrollableListSection = QListWidget(self.window)
         self.scrollableListSection.hide()
         # set file css as stylesheet
@@ -80,7 +91,7 @@ class MainWindow():
         self.setButtonAdmin()
      # Create Button IN
     def setButtonIn(self):
-        self.buttonIn = QPushButton(self.window)
+        
         self.buttonIn.setText("IN")
         self.buttonIn.setFixedSize(300,300)
         self.buttonIn.move(50,100)
@@ -91,7 +102,7 @@ class MainWindow():
 
     # Create button OUT
     def setButtonOut(self):
-        self.buttonOut = QPushButton(self.window)
+        
         self.buttonOut.setText("OUT")
         self.buttonOut.setFixedSize(300,300)
         self.buttonOut.move(450,100)
@@ -123,7 +134,7 @@ class MainWindow():
     def setButtonAdmin(self):
         global base
         global admin
-        self.buttonAdmin = QPushButton(self.window)
+        
         self.buttonAdmin.setText("Admin")
         self.buttonAdmin.move(725,0)
         self.buttonAdmin.setObjectName("AdminButton")
@@ -154,7 +165,7 @@ class MainWindow():
 
     # define setWriteButton
     def setWriteButton(self):
-        self.writeButton = QPushButton(self.window)
+        
         self.writeButton.setText("Write")
         self.writeButton.setFixedSize(300,300)
         self.writeButton.move(50,100)
@@ -162,7 +173,7 @@ class MainWindow():
         self.writeButton.show()
     # define setConfigButton
     def setConfigButton(self):
-        self.configButton = QPushButton(self.window)
+        
         self.configButton.setText("Conf")
         self.configButton.move(450,100)
         self.configButton.setFixedSize(300,300)
@@ -210,7 +221,7 @@ class MainWindow():
 
     # Show set section button  
     def setSettingsButton(self):
-        self.buttonSection = QPushButton(self.window)
+        
         self.buttonSection.setText("Section")
         self.buttonSection.move(50,100)
         self.buttonSection.setFixedSize(300,300)
@@ -257,7 +268,7 @@ class MainWindow():
 
     # show attribution RFID card button
     def attributeRFID(self):
-        self.buttonAttributeRFID = QPushButton(self.window)
+        
         self.buttonAttributeRFID.setText("Set UID")
         self.buttonAttributeRFID.setFixedSize(300,300)
         self.buttonAttributeRFID.move(450,100)
@@ -313,7 +324,7 @@ class MainWindow():
 
     def setButtonBackToConfigure(self, last_page:str):
         # configure button
-        self.buttonBackConf = QPushButton(self.window)
+        
         self.buttonBackConf.setText("Back")
         self.buttonBackConf.setObjectName("BackToConf")
         self.buttonBackConf.setFixedSize(100,100)
