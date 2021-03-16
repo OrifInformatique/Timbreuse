@@ -31,8 +31,7 @@ class MainWindow():
         # Set window title
         self.window.setWindowTitle("Timbreuse")
 
-        # call the init gui
-        self.initGui()
+        
         # define all objects
             # Button
         self.buttonAdmin = QPushButton(self.window)
@@ -45,10 +44,10 @@ class MainWindow():
         self.buttonBackConf.hide()
         
         self.buttonIn = QPushButton(self.window)
-        self.buttonIn.hide()
+        # self.buttonIn.hide()
         
         self.buttonOut = QPushButton(self.window)
-        self.buttonOut.hide()
+        # self.buttonOut.hide()
         
         self.buttonSection = QPushButton(self.window)
         self.buttonSection.hide()
@@ -86,6 +85,9 @@ class MainWindow():
         self.lineUID = QLineEdit(self.window)
         self.lineUID.hide()
         
+        # call the init gui
+        self.initGui()
+        
         # set file css as stylesheet
         app.setStyleSheet(open('./style.css').read())
 
@@ -98,15 +100,15 @@ class MainWindow():
         global admin
         global config
         self.hidingLabelLineScroll = False
-        self.scrollableListSection = None
-        self.scroll_bar = None
-        self.labelName = None
+        # self.scrollableListSection = None
+        # self.scroll_bar = None
+        # self.labelName = None
         #set Icon
         self.setIcon()
 
         if(self.base == True):
             print("base")
-            self.baseWindow()
+            # self.baseWindow()
         
         elif(self.admin == True):
             print("admin")
