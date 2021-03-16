@@ -22,7 +22,11 @@ class MainWindow():
 
     def __init__(self):
         super().__init__()
+<<<<<<< HEAD
         n
+=======
+        
+>>>>>>> 4abfb226335e6534f27303c4539dc873475d19eb
         #Creation of the app
         app = QtWidgets.QApplication(sys.argv)
 
@@ -194,7 +198,7 @@ class MainWindow():
             self.lineName.hide()
             self.lineUID.hide()
             self.scrollableListSection.hide()
-            self.scroll_bar.hide()
+#             self.scroll_bar.hide()
             
             # show buttons ConfigWindow
             self.setSettingsButton()
