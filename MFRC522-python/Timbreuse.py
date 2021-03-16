@@ -22,7 +22,6 @@ class MainWindow():
 
     def __init__(self):
         super().__init__()
-        
         #Creation of the app
         app = QtWidgets.QApplication(sys.argv)
 
@@ -221,7 +220,7 @@ class MainWindow():
     # Show list of section available 
     def setSection(self):
         # Create scroll list
-        self.scrollableListSection = QListWidget(self.window)
+        # self.scrollableListSection = QListWidget(self.window)
         
         #  Set size of scroll list
         self.scrollableListSection.setFixedSize(300,300)
