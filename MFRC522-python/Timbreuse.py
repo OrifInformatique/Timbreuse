@@ -22,11 +22,6 @@ class MainWindow():
 
     def __init__(self):
         super().__init__()
-<<<<<<< HEAD
-        n
-=======
-        
->>>>>>> 4abfb226335e6534f27303c4539dc873475d19eb
         #Creation of the app
         app = QtWidgets.QApplication(sys.argv)
 
