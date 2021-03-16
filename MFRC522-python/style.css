@@ -16,6 +16,13 @@
                 font-weight:none;
                 color:white;
             }
+            QPushButton#BackToConf{
+                background-color:'#005BA9';
+                border: none;
+                font-size:15px;
+                font-weight:none;
+                color:white;
+            }
             /* Parameter for other buttons as color, background, color text-size-weight */
             QPushButton{
             
@@ -25,5 +32,6 @@
                 font-weight:BOLD;
                 color:white;
             }
+
 /* GH - 03.03.2021 - For the moment, we consider that there's no need to give a name to all the buttons. Once the database's created, it
 will be to reconsider this decision.*/ 

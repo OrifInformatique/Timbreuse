@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/home/pi/Desktop/Timbreuse/MFRC522-python/Timbreuse.py", line 332, in <module>
+    main = MainWindow()
+  File "/home/pi/Desktop/Timbreuse/MFRC522-python/Timbreuse.py", line 25, in __init__
+    self.scrollableListSection = QListWidget(self)
+TypeError: 'PySide2.QtWidgets.QListWidget' called with wrong argument types:
+  PySide2.QtWidgets.QListWidget(MainWindow)
+Supported signatures:
+  PySide2.QtWidgets.QListWidget(PySide2.QtWidgets.QWidget = nullptr)

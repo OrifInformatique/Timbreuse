@@ -6,7 +6,6 @@ from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2.QtCore import *
 
-
 # import from python files in MFRC522
 import Read
 import Write
@@ -18,11 +17,12 @@ class MainWindow():
     base = True
     admin = False
     config = False
+
     
 
     def __init__(self):
         super().__init__()
-
+        
         #Creation of the app
         app = QtWidgets.QApplication(sys.argv)
 
@@ -34,7 +34,8 @@ class MainWindow():
 
         # call the init gui
         self.initGui()
-
+        self.scrollableListSection = QListWidget(self.window)
+        self.scrollableListSection.hide()
         # set file css as stylesheet
         app.setStyleSheet(open('./style.css').read())
 
@@ -46,7 +47,10 @@ class MainWindow():
         global base
         global admin
         global config
-
+        self.hidingLabelLineScroll = False
+        self.scrollableListSection = None
+        self.scroll_bar = None
+        self.labelName = None
         #set Icon
         self.setIcon()
 
@@ -180,8 +184,30 @@ class MainWindow():
     def configWindow(self):
         self.configButton.hide()
         self.writeButton.hide()
+        print("Retour dans config Window")
+        
+        # hide label-line-scroll
+        if (self.hidingLabelLineScroll == True):
+            print(" dans if de config")
+            self.labelName.hide()
+            self.labelUID.hide()
+            self.lineName.hide()
+            self.lineUID.hide()
+            self.scrollableListSection.hide()
+#             self.scroll_bar.hide()
+            
+            # show buttons ConfigWindow
+            self.setSettingsButton()
+            self.attributeRFID()
+            
+            self.hidingLabelLineScroll = False
+        else:
+            pass  
+        # self.buttonBackConf.hide()
+        # show the 2 buttons
         self.setSettingsButton()
         self.attributeRFID()
+        
 
     # Show set section button  
     def setSettingsButton(self):
@@ -228,7 +254,7 @@ class MainWindow():
         # hide sectionbutton
         self.buttonSection.hide()
         self.buttonAttributeRFID.hide()
-        self.setButtonBackToConfigure()
+        self.setButtonBackToConfigure("configWindow")
 
     # show attribution RFID card button
     def attributeRFID(self):
@@ -248,10 +274,12 @@ class MainWindow():
         self.labelUID = QLineEdit(self.window)
         self.labelUID.setText("RFID UID")
         self.labelUID.setReadOnly(True)
+        
         self.lineUID.setFixedSize(300,50)
         self.labelUID.setFixedSize(100,50)
-        self.lineUID.move(175,50)
-        self.labelUID.move(50,50)
+        
+        self.lineUID.move(175,160)
+        self.labelUID.move(75,160)
 
         
 
@@ -261,9 +289,11 @@ class MainWindow():
         self.labelName = QLineEdit(self.window)
         self.labelName.setText("Name User")
         self.labelName.setReadOnly(True)
+        
         self.labelName.setFixedSize(100,50)
-        self.lineName.setFixedSize(300,50)
         self.labelName.move(50,250)
+        
+        self.lineName.setFixedSize(300,50)
         self.lineName.move(175,250)
 
         # set name for label
@@ -272,19 +302,31 @@ class MainWindow():
         # set stylesheet for label
         self.labelUID.setStyleSheet(open('./style.css').read())
         self.labelName.setStyleSheet(open('./style.css').read())
-
-        self.lineUID.show()
+        
         self.labelUID.show()
-        self.lineName.show()
+        print("Show label UID")
+        self.lineUID.show()
+        print("Show line UID")
         self.labelName.show()
-        self.setButtonBackToConfigure()
+        self.lineName.show()
+        
+        self.setButtonBackToConfigure("configWindow")
 
-    def setButtonBackToConfigure(self):
+    def setButtonBackToConfigure(self, last_page:str):
+        # configure button
         self.buttonBackConf = QPushButton(self.window)
         self.buttonBackConf.setText("Back")
-        self.buttonBackConf.setFixedSize(50,50)
+        self.buttonBackConf.setObjectName("BackToConf")
+        self.buttonBackConf.setFixedSize(100,100)
         self.buttonBackConf.move(10,10)
-        self.buttonBackConf.clicked.connect(self.configWindow)
+        
+        # create boolean to say that we have to hide some objects
+        self.hidingLabelLineScroll = True
+        
+        exec(f"self.buttonBackConf.clicked.connect(self.{last_page})")
         self.buttonBackConf.show()
+        
+        
+        
 
 main = MainWindow()
