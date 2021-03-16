@@ -389,6 +389,9 @@ class MainWindow():
         self.buttonBackConf.setFixedSize(100,100)
         self.buttonBackConf.move(10,10)
         
+        # use style.css as styleshett
+        self.buttonBackConf.setStyleSheet(open('/style.css').read())
+        
         # create boolean to say that we have to hide some objects
         self.hidingLabelLineScroll = True
         
