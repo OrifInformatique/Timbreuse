@@ -67,23 +67,23 @@ class MainWindow():
         
             # Item
         self.itemSectionInformatique = QListWidgetItem("Section Informatique Pomy")
-        self.itemSectionInformatique.hide()
+#         self.itemSectionInformatique.hide()
         
         self.itemSIT = QListWidgetItem("SIT Préverenges")
-        self.itemSIT.hide()
+#         self.itemSIT.hide()
         
             # RFID
         self.labelName = QLineEdit(self.window)
-        self.labelName.hide()
+#         self.labelName.hide()
         
         self.labelUID = QLineEdit(self.window)
-        self.labelUID.hide()
+#         self.labelUID.hide()
         
         self.lineName = QLineEdit(self.window)
-        self.lineName.hide()
+#         self.lineName.hide()
         
         self.lineUID = QLineEdit(self.window)
-        self.lineUID.hide()
+#         self.lineUID.hide()
         
         # call the init gui
         self.initGui()
@@ -108,7 +108,7 @@ class MainWindow():
 
         if(self.base == True):
             print("base")
-            # self.baseWindow()
+            self.baseWindow()
         
         elif(self.admin == True):
             print("admin")
@@ -199,10 +199,27 @@ class MainWindow():
     def adminWindow(self):
         self.buttonIn.hide()
         self.buttonOut.hide()
-        # disable admin Button
-        self.buttonAdmin.setEnabled(False)
-        self.setWriteButton()
-        self.setConfigButton()
+        
+        # hide label-line-scroll
+        if (self.hidingLabelLineScroll == False):
+            print(" dans if de config")
+            self.labelName.hide()
+            self.labelUID.hide()
+            self.lineName.hide()
+            self.lineUID.hide()
+            self.scrollableListSection.hide()
+            self.scroll_bar.hide()
+#             self.scroll_bar.hide()
+            
+            # show buttons AdminWindow
+            self.setWriteButton()
+            self.setConfigButton()
+            
+            # disable admin Button
+            self.buttonAdmin.setEnabled(False)
+        else:
+            pass
+            
         print("In admin window")
 
     # define setWriteButton
