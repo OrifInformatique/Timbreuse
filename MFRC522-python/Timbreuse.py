@@ -160,7 +160,7 @@ class MainWindow():
     def badgeApp(self):
         self.buttonIn.hide()
         QMessageBox.information(self.window, "Badge", "Vous avez 10 secondes pour passer le bagde.")
-        self.progressBar()
+        self.ProgressBar()
         self.progressBar.show()
         # self.windowProgressBar = ProgressBar.Window()
         # self.windowProgressBar.show()
@@ -427,8 +427,10 @@ def ProgressBar(self):
     
     # Set step (=initial position)
     self.step = 0
+    
     self.startProgress()
     
+    self.progressBar.show()
     
     
 def startProgress(self):
