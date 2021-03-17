@@ -423,7 +423,7 @@ class MainWindow():
 class ProgressBar(MainWindow):
     
     def __init__(self):
-        super().__init__(self)
+        super().__init__()
         self.Read = Read.Read()
         
         self.progressBar = QProgressBar()
