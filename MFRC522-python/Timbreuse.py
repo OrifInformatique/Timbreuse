@@ -162,7 +162,7 @@ class MainWindow():
         QMessageBox.information(self.window, "Badge", "Vous avez 10 secondes pour passer le bagde.")
         
         
-        self.windowProgressBar = self.ProgressBar()
+        self.windowProgressBar = self.ProgressBar
         self.windowProgressBar.show()
     
     '''
