@@ -252,7 +252,7 @@ class MainWindow():
     # define write app
     def WriteApp(self):
         Write.Write()
-        self.startProgress()
+        self.progressBar()
         
     '''
                                 WINDOW CONFIGURATION
@@ -427,7 +427,7 @@ def ProgressBar(self):
     
     # Set step (=initial position)
     self.step = 0
-    
+    self.startProgress()
     
     
     
