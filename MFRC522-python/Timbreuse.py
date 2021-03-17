@@ -166,7 +166,7 @@ class MainWindow():
         
         
         self.windowProgressBar = ProgressBar.Window()
-        self.windowProgressBar.show(self.window)
+        self.windowProgressBar.show()
     
     '''
                                 WELCOME WINDOW
