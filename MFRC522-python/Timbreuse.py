@@ -162,8 +162,8 @@ class MainWindow():
         QMessageBox.information(self.window, "Badge", "Vous avez 10 secondes pour passer le bagde.")
         
         
-        self.windowProgressBar = self.ProgressBar()
-        self.windowProgressBar.show()
+        self.windowProgressBar = ProgressBar()
+        # self.windowProgressBar.show()
     
     '''
                                 WELCOME WINDOW
@@ -419,33 +419,42 @@ class MainWindow():
         exec(f"self.buttonBackConf.clicked.connect(self.{last_page})")
         self.buttonBackConf.show()
         
-def ProgressBar(self):
-    self.progressBar.setGeometry(30,40,200,25)
+        
+class ProgressBar(MainWindow):
     
-    # Set timer
-    self.timer = QBasicTimer()
-    
-    # Set step (=initial position)
-    self.step = 0
-    
-    self.startProgress()
-    
-    self.progressBar.show(self.window)
-    
-    
-def startProgress(self):
-    if self.timer.isActive():
-        self.timer.stop()
-    else:
-        self.timer.start(100,self)
+    def __init__(self):
+        super(self).__init__(self)
+        self.Read = Read.Read()
+        
+        self.progressBar = QProgressBar()
 
-def timerEvent(self, event):
-    if self.step >= 100:
-        self.timer.stop()
-        self.setButtonBackToConfigure("baseWindow")
-        return
-    self.step += 1
-    self.progressBar.setValue(self.step)
+
+    def ProgressBar(self):
+        self.progressBar.setGeometry(30,40,200,25)
+        
+        # Set timer
+        self.timer = QBasicTimer()
+        
+        # Set step (=initial position)
+        self.step = self.Read.startTime
+        
+        
+        self.progressBar.show(self.window)
+        
+        
+    def startProgress(self):
+        if self.timer.isActive():
+            self.timer.stop()
+        else:
+            self.timer.start(100,self)
+
+    def timerEvent(self, event):
+        if self.step >= 100:
+            self.timer.stop()
+            self.setButtonBackToConfigure("baseWindow")
+            return
+        self.step += 1
+        self.progressBar.setValue(self.step)
 
 
 main = MainWindow()
