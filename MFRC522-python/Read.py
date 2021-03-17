@@ -83,6 +83,8 @@ class Read():
                 else:
                     print("Erreur d'authentification!")
                     continue_reading = False
+                return uid
+            
                     
 
 
