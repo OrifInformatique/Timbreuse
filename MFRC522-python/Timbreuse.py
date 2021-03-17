@@ -10,7 +10,7 @@ from PySide2.QtCore import *
 import Read
 import Write
 import ProgressingBar
-from ProgressingBar import ProgressingBar
+from Timbreuse import ProgressingBar
 
 
 
