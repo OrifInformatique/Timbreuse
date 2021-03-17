@@ -10,7 +10,8 @@ from PySide2.QtCore import *
 import Read
 import Write
 import ProgressingBar
-from ProgressingBar import *
+from ProgressingBar import ProgressingBar
+
 
 
 
@@ -164,7 +165,7 @@ class MainWindow():
         QMessageBox.information(self.window, "Badge", "Vous avez 10 secondes pour passer le bagde.")
         
         
-        self.windowProgressBar = ProgressingBar()
+        self.windowProgressBar = ProgressingBar.ProgressBar()
         # self.windowProgressBar.show()
     
     '''
