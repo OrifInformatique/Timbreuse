@@ -9,6 +9,8 @@ from PySide2.QtCore import *
 # import from python files in MFRC522
 import Read
 import Write
+from Timbreuse import *
+
 
 class ProgressingBar(MainWindow):
     
