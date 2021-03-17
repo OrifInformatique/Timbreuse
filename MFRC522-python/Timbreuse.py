@@ -133,6 +133,7 @@ class MainWindow():
         self.setButtonIn()
         self.setButtonOut()
         self.setButtonAdmin()
+        
      # Create Button IN
     def setButtonIn(self):
         
@@ -158,8 +159,10 @@ class MainWindow():
     def badgeApp(self):
         self.buttonIn.hide()
         QMessageBox.information(self.window, "Badge", "Vous avez 10 secondes pour passer le bagde.")
-        self.windowProgressBar = ProgressBar.Window()
-        self.windowProgressBar.show()
+        self.progressBar()
+        self.progressBar.show()
+        # self.windowProgressBar = ProgressBar.Window()
+        # self.windowProgressBar.show()
     
     '''
                                 WELCOME WINDOW
@@ -248,6 +251,7 @@ class MainWindow():
     # define write app
     def WriteApp(self):
         Write.Write()
+        
     '''
                                 WINDOW CONFIGURATION
     '''
@@ -414,7 +418,31 @@ class MainWindow():
         self.buttonBackConf.show()
         
 def ProgressBar(self):
-        self.progressBar.setGeometry(30,40,200,25)
+    self.progressBar.setGeometry(30,40,200,25)
+    
+    # Set timer
+    self.timer = QBasicTimer()
+    
+    # Set step (=initial position)
+    self.step = 0
+    
+    # Call start
+    self.startProgress()
+    
+    
+def startProgress(self):
+    if self.timer.isActive():
+        self.timer.stop()
+    else:
+        self.timer.start(100,self)
+
+def timerEvent(self, event):
+    if self.step >= 100:
+        self.timer.stop()
+        self.setButtonBackToConfigure("baseWindow")
+        return
+    self.step += 1
+    self.progressBar.setValue(self.step)
 
 
 main = MainWindow()
