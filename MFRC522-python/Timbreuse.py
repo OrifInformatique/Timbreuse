@@ -416,6 +416,8 @@ class MainWindow():
         self.setButtonBackToConfigure("configWindow")
     def scanningRFID(self):
         Read.Read()
+        # Create an object of the class MFRC522
+        MIFAREReader = MFRC522.MFRC522()
         (status,uid) = MIFAREReader.MFRC522_Anticoll()
         self.uid = ("%s,%s,%s,%s" % (uid[0], uid[1], uid[2], uid[3]))
         print("SCANUID : " +self.uid)
