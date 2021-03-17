@@ -1,4 +1,7 @@
 # Necessary imports
+import RPi.GPIO as GPIO
+import MFRC522
+
 import sys
 import PySide2
 from PySide2 import QtCore, QtWidgets, QtGui
@@ -88,6 +91,7 @@ class MainWindow():
         self.lineUID = QLineEdit(self.window)
         self.lineUID.hide()
         
+        self.scanRFID = QPushButton(self.window)
             # ProgressBar
         # self.progressBar = QProgressBar(self)
         # self.progressBar.hide()
@@ -361,6 +365,13 @@ class MainWindow():
         self.buttonAttributeRFID.hide()
         self.buttonSection.hide()
         # UID
+        
+        self.scanRFID.setFixedSize(100,50)
+        self.scanRFID.setText("Scan RFID")
+        self.scanRFID.move(275,100)
+        self.scanRFID.clicked.connect(self.scanRFID)
+        self.scanRFID.show()
+        
         # self.lineUID = QLineEdit(self.window)
         self.lineUID.setText("")
         # self.labelUID = QLineEdit(self.window)
@@ -403,7 +414,12 @@ class MainWindow():
         self.lineName.show()
         
         self.setButtonBackToConfigure("configWindow")
-
+    def scanRFID(self):
+        Read.Read()
+        (status,uid) = MIFAREReader.MFRC522_Anticoll()
+        self.uid = ("%s,%s,%s,%s" % (uid[0], uid[1], uid[2], uid[3]))
+        print("SCANUID : " +self.uid)
+        
     def setButtonBackToConfigure(self, last_page:str):
         # configure button
         
