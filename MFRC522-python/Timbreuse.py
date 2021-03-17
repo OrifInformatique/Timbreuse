@@ -86,8 +86,8 @@ class MainWindow():
         self.lineUID.hide()
         
             # ProgressBar
-        self.progressBar = QProgressBar(self)
-        self.progressBar.hide()
+        # self.progressBar = QProgressBar(self)
+        # self.progressBar.hide()
         # call the init gui
         self.initGui()
         
