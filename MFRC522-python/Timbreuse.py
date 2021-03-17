@@ -70,7 +70,7 @@ class MainWindow():
         # self.itemSectionInformatique.hide()
         
         self.itemSIT = QListWidgetItem("SIT Préverenges")
-        # self.itemSIT.hide()
+        
         
             # RFID
         self.labelName = QLineEdit(self.window)
@@ -85,6 +85,7 @@ class MainWindow():
         self.lineUID = QLineEdit(self.window)
         self.lineUID.hide()
         
+
         # call the init gui
         self.initGui()
         
@@ -286,7 +287,9 @@ class MainWindow():
         self.buttonSection.setFixedSize(300,300)
         self.buttonSection.clicked.connect(self.setSection)
         self.buttonSection.show()
-    
+    '''
+                    LIST ITEM
+    '''
     # Show list of section available 
     def setSection(self):
         # Create scroll list
@@ -320,11 +323,22 @@ class MainWindow():
         self.scrollableListSection.show()
         # self.scroll_bar.show()
 
+        #  Get selected Item
+        self.scrollableListSection.itemDoubleClicked.connect(self.getSelectedSection)
+        self.section = self.getSelectedSection
+#         print("Print Section : " + self.section)
+        
         # hide sectionbutton
         self.buttonSection.hide()
         self.buttonAttributeRFID.hide()
         self.setButtonBackToConfigure("configWindow")
+        
+    def getSelectedSection(self, lstItem):
+        print(lstItem.text())
 
+    '''
+                    RFID CONFIGURATION
+    '''
     # show attribution RFID card button
     def attributeRFID(self):
         
