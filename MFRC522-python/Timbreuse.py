@@ -9,7 +9,7 @@ from PySide2.QtCore import *
 # import from python files in MFRC522
 import Read
 import Write
-import ProgressBar
+# import ProgressBar
 
 
 class MainWindow():
@@ -86,7 +86,7 @@ class MainWindow():
         self.lineUID.hide()
         
             # ProgressBar
-        self.progressBar = QProgressBar(self.window)
+        self.progressBar = QProgressBar(self)
         self.progressBar.hide()
         # call the init gui
         self.initGui()
@@ -162,7 +162,7 @@ class MainWindow():
         QMessageBox.information(self.window, "Badge", "Vous avez 10 secondes pour passer le bagde.")
         
         
-        self.windowProgressBar = self.ProgressBar
+        self.windowProgressBar = self.ProgressBar()
         self.windowProgressBar.show()
     
     '''
