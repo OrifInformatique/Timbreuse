@@ -92,6 +92,7 @@ class MainWindow():
         self.lineUID.hide()
         
         self.scanRFID = QPushButton(self.window)
+        self.scanRFID.hide()
             # ProgressBar
         # self.progressBar = QProgressBar(self)
         # self.progressBar.hide()
