@@ -87,6 +87,7 @@ class MainWindow():
         
             # ProgressBar
         self.progressBar = QProgressBar(self.window)
+        self.progressBar.hide()
         # call the init gui
         self.initGui()
         
@@ -251,6 +252,7 @@ class MainWindow():
     # define write app
     def WriteApp(self):
         Write.Write()
+        self.startProgress()
         
     '''
                                 WINDOW CONFIGURATION
@@ -426,8 +428,7 @@ def ProgressBar(self):
     # Set step (=initial position)
     self.step = 0
     
-    # Call start
-    self.startProgress()
+    
     
     
 def startProgress(self):
