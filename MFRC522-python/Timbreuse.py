@@ -85,7 +85,8 @@ class MainWindow():
         self.lineUID = QLineEdit(self.window)
         self.lineUID.hide()
         
-
+            # ProgressBar
+        self.progressBar = QProgressBar(self.window)
         # call the init gui
         self.initGui()
         
@@ -412,7 +413,8 @@ class MainWindow():
         exec(f"self.buttonBackConf.clicked.connect(self.{last_page})")
         self.buttonBackConf.show()
         
-        
-        
+def ProgressBar(self):
+        self.progressBar.setGeometry(30,40,200,25)
+
 
 main = MainWindow()
