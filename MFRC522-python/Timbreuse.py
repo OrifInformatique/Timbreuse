@@ -326,7 +326,7 @@ class MainWindow():
         #  Get selected Item
         self.scrollableListSection.itemDoubleClicked.connect(self.getSelectedSection)
         self.section = self.getSelectedSection
-        print("Print Section : " + self.section)
+#         print("Print Section : " + self.section)
         
         # hide sectionbutton
         self.buttonSection.hide()
