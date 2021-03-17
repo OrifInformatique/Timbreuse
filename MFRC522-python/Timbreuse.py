@@ -9,8 +9,8 @@ from PySide2.QtCore import *
 # import from python files in MFRC522
 import Read
 import Write
-import ProgressingBar
-from Timbreuse import ProgressingBar
+import ProgressBar
+# from Timbreuse import ProgressingBar
 
 
 
@@ -165,8 +165,8 @@ class MainWindow():
         QMessageBox.information(self.window, "Badge", "Vous avez 10 secondes pour passer le bagde.")
         
         
-        self.windowProgressBar = ProgressingBar.ProgressBar()
-        # self.windowProgressBar.show()
+        self.windowProgressBar = ProgressBar.Window()
+        self.windowProgressBar.show(self.window)
     
     '''
                                 WELCOME WINDOW
