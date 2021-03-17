@@ -369,7 +369,7 @@ class MainWindow():
         self.scanRFID.setFixedSize(100,50)
         self.scanRFID.setText("Scan RFID")
         self.scanRFID.move(275,100)
-        self.scanRFID.clicked.connect(self.scanRFID)
+        self.scanRFID.clicked.connect(self.scanningRFID)
         self.scanRFID.show()
         
         # self.lineUID = QLineEdit(self.window)
@@ -414,7 +414,7 @@ class MainWindow():
         self.lineName.show()
         
         self.setButtonBackToConfigure("configWindow")
-    def scanRFID(self):
+    def scanningRFID(self):
         Read.Read()
         (status,uid) = MIFAREReader.MFRC522_Anticoll()
         self.uid = ("%s,%s,%s,%s" % (uid[0], uid[1], uid[2], uid[3]))
