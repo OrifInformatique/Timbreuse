@@ -70,7 +70,7 @@ class MainWindow():
         # self.itemSectionInformatique.hide()
         
         self.itemSIT = QListWidgetItem("SIT Préverenges")
-        self.itemDoubleClicked
+        
         
             # RFID
         self.labelName = QLineEdit(self.window)
