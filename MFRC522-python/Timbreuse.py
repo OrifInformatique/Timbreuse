@@ -324,7 +324,7 @@ class MainWindow():
         # self.scroll_bar.show()
 
         #  Get selected Item
-        self.itemDoubleClicked.connect(self.getSelectedSection)
+        self.scrollableListSection.itemDoubleClicked.connect(self.getSelectedSection)
         self.section = self.getSelectedSection
         print("Print Section : " + self.section)
         
