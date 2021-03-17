@@ -83,10 +83,10 @@ class Read():
                 else:
                     print("Erreur d'authentification!")
                     continue_reading = False
-                def uid(self):
-                    MIFAREReader = MFRC522.MFRC522()
-                    (status,uid) = MIFAREReader.MFRC522_Anticoll()
-                    return uid
+    def uid(self):
+        MIFAREReader = MFRC522.MFRC522()
+        (status,uid) = MIFAREReader.MFRC522_Anticoll()
+        return uid
             
                     
 
