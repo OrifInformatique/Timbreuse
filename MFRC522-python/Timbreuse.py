@@ -333,7 +333,7 @@ class MainWindow():
         self.buttonAttributeRFID.hide()
         self.setButtonBackToConfigure("configWindow")
         
-    def getSelectedSection(window, lstItem):
+    def getSelectedSection(self, lstItem):
         print(lstItem.text())
 
     '''
