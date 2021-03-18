@@ -374,7 +374,7 @@ class MainWindow():
         self.scanRFID.show()
         
         # self.lineUID = QLineEdit(self.window)
-        self.lineUID.setText(self.scanningRFID)
+        self.lineUID.setText("{}" .format(self.scanningRFID))
         # self.labelUID = QLineEdit(self.window)
         self.labelUID.setText("RFID UID")
         self.labelUID.setReadOnly(True)
