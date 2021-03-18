@@ -421,7 +421,7 @@ class MainWindow():
         MIFAREReader = MFRC522.MFRC522()
         (status,uid) = MIFAREReader.MFRC522_Anticoll()
         self.uid = read.uid()
-        print("SCANUID : " +self.uid)
+        print("SCANUID : {}" .format(self.uid))
         
     def setButtonBackToConfigure(self, last_page:str):
         # configure button
