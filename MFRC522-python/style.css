@@ -23,6 +23,13 @@
                 font-weight:none;
                 color:white;
             }
+            QPushButton#attributeRFID{
+                background-color:'#005BA9';
+                border: none;
+                font-size:120px;
+                font-weight:none;
+                color:white;
+            }
             /* Parameter for other buttons as color, background, color text-size-weight */
             QPushButton{
             
