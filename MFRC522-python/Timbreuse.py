@@ -369,7 +369,7 @@ class MainWindow():
         # UID
         self.scanning = False
         self.scanRFID.setFixedSize(150,50)
-        self.scanRFID.setText("Scan RFID")
+        self.scanRFID.setText("scan")
         self.scanRFID.move(500,160)
         self.buttonAttributeRFID.setObjectName("attributeRFID")
         self.buttonAttributeRFID.setStyleSheet(open('./style.css').read())
