@@ -368,7 +368,7 @@ class MainWindow():
         self.buttonSection.hide()
         # UID
         self.scanning = False
-        self.scanRFID.setFixedSize(150,50)
+        self.scanRFID.setFixedSize(75,75)
         self.scanRFID.setText("scan")
         self.scanRFID.move(500,160)
         self.buttonAttributeRFID.setObjectName("attributeRFID")
