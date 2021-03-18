@@ -360,6 +360,7 @@ class MainWindow():
         self.buttonAttributeRFID.setFixedSize(300,300)
         self.buttonAttributeRFID.move(450,100)
         self.buttonAttributeRFID.setObjectName("attributeRFID")
+        self.buttonAttributeRFID.setStyleSheet(open('./style.css').read())
         self.buttonAttributeRFID.clicked.connect(self.setUID)
         self.buttonAttributeRFID.show()
     def setUID(self):
