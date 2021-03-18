@@ -86,7 +86,7 @@ class Read():
     def uid(self):
         MIFAREReader = MFRC522.MFRC522()
         (status,uid) = MIFAREReader.MFRC522_Anticoll()
-        returnUID = "%s,%s,%s,%s" % (uid[0], uid[1], uid[2], uid[3]))
+        returnUID = ("%s,%s,%s,%s" % (uid[0], uid[1], uid[2], uid[3]))
         return returnUID
             
                     
