@@ -280,7 +280,7 @@ class MainWindow():
             self.scrollableListSection.hide()
             self.scroll_bar.hide()
             self.buttonBackConf.hide()
-            
+            self.scanRFID.hide()
             # show buttons ConfigWindow
             self.setSettingsButton()
             self.attributeRFID()
