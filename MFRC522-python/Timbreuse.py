@@ -423,7 +423,7 @@ class MainWindow():
         self.uid = read.uid()
         print("SCANUID : {}" .format(self.uid))
         
-        self.scannedUID = ("{}".format(self.scanningRFID))
+        self.scannedUID = ("{}".format(self.uid))
         self.lineUID.setText(self.scannedUID)  
         
         return self.uid
