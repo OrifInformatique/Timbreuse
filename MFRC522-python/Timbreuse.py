@@ -367,9 +367,9 @@ class MainWindow():
         self.buttonSection.hide()
         # UID
         self.scanning = False
-        self.scanRFID.setFixedSize(100,50)
+        self.scanRFID.setFixedSize(150,50)
         self.scanRFID.setText("Scan RFID")
-        self.scanRFID.move(275,100)
+        self.scanRFID.move(500,160)
         self.scanRFID.clicked.connect(self.scanningRFID)
         self.scanRFID.show()
         
@@ -378,12 +378,13 @@ class MainWindow():
         # self.labelUID = QLineEdit(self.window)
         self.labelUID.setText("RFID UID")
         self.labelUID.setReadOnly(True)
+        self.lineUID.setReadOnly(True)
         
         self.lineUID.setFixedSize(300,50)
         self.labelUID.setFixedSize(100,50)
         
         self.lineUID.move(175,160)
-        self.labelUID.move(75,160)
+        self.labelUID.move(50,160)
 
         
 
