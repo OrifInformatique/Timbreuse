@@ -1,4 +1,7 @@
 # Necessary imports
+import RPi.GPIO as GPIO
+import MFRC522
+
 import sys
 import PySide2
 from PySide2 import QtCore, QtWidgets, QtGui
@@ -10,6 +13,9 @@ from PySide2.QtCore import *
 import Read
 import Write
 import ProgressBar
+# from Timbreuse import ProgressingBar
+
+
 
 
 class MainWindow():
@@ -85,7 +91,11 @@ class MainWindow():
         self.lineUID = QLineEdit(self.window)
         self.lineUID.hide()
         
-
+        self.scanRFID = QPushButton(self.window)
+        self.scanRFID.hide()
+            # ProgressBar
+        # self.progressBar = QProgressBar(self)
+        # self.progressBar.hide()
         # call the init gui
         self.initGui()
         
@@ -132,6 +142,7 @@ class MainWindow():
         self.setButtonIn()
         self.setButtonOut()
         self.setButtonAdmin()
+        
      # Create Button IN
     def setButtonIn(self):
         
@@ -157,6 +168,8 @@ class MainWindow():
     def badgeApp(self):
         self.buttonIn.hide()
         QMessageBox.information(self.window, "Badge", "Vous avez 10 secondes pour passer le bagde.")
+        
+        
         self.windowProgressBar = ProgressBar.Window()
         self.windowProgressBar.show()
     
@@ -247,6 +260,7 @@ class MainWindow():
     # define write app
     def WriteApp(self):
         Write.Write()
+        
     '''
                                 WINDOW CONFIGURATION
     '''
@@ -266,7 +280,7 @@ class MainWindow():
             self.scrollableListSection.hide()
             self.scroll_bar.hide()
             self.buttonBackConf.hide()
-            
+            self.scanRFID.hide()
             # show buttons ConfigWindow
             self.setSettingsButton()
             self.attributeRFID()
@@ -345,6 +359,7 @@ class MainWindow():
         self.buttonAttributeRFID.setText("Set UID")
         self.buttonAttributeRFID.setFixedSize(300,300)
         self.buttonAttributeRFID.move(450,100)
+        
         self.buttonAttributeRFID.clicked.connect(self.setUID)
         self.buttonAttributeRFID.show()
     def setUID(self):
@@ -352,17 +367,27 @@ class MainWindow():
         self.buttonAttributeRFID.hide()
         self.buttonSection.hide()
         # UID
-        # self.lineUID = QLineEdit(self.window)
-        self.lineUID.setText("")
+        self.scanning = False
+        self.scanRFID.setFixedSize(150,50)
+        self.scanRFID.setText("scan")
+        self.scanRFID.move(500,160)
+        self.scanRFID.setObjectName("attributeRFID")
+        self.scanRFID.setStyleSheet(open('./style.css').read())
+        self.scanRFID.clicked.connect(self.scanningRFID)
+        self.scanRFID.show()
+        
+        # self.lineUID = QLineEdit(self.window)           
+        self.lineUID.setText(" NO SCANNED UID")
         # self.labelUID = QLineEdit(self.window)
         self.labelUID.setText("RFID UID")
         self.labelUID.setReadOnly(True)
+        self.lineUID.setReadOnly(True)
         
         self.lineUID.setFixedSize(300,50)
         self.labelUID.setFixedSize(100,50)
         
         self.lineUID.move(175,160)
-        self.labelUID.move(75,160)
+        self.labelUID.move(50,160)
 
         
 
@@ -394,7 +419,18 @@ class MainWindow():
         self.lineName.show()
         
         self.setButtonBackToConfigure("configWindow")
-
+    def scanningRFID(self):
+        read = Read.Read()
+        # Create an object of the class MFRC522
+        MIFAREReader = MFRC522.MFRC522()
+        (status,uid) = MIFAREReader.MFRC522_Anticoll()
+        self.uid = read.uid()
+        print("SCANUID : {}" .format(self.uid))
+        
+        self.scannedUID = ("{}".format(self.uid))
+        self.lineUID.setText(self.scannedUID)  
+        
+        return self.uid
     def setButtonBackToConfigure(self, last_page:str):
         # configure button
         
@@ -411,8 +447,5 @@ class MainWindow():
         
         exec(f"self.buttonBackConf.clicked.connect(self.{last_page})")
         self.buttonBackConf.show()
-        
-        
-        
 
 main = MainWindow()

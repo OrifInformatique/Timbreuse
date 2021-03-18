@@ -66,7 +66,7 @@ class Read():
 
                 # Print UID
                 print("Badge lu UID: %s,%s,%s,%s" % (uid[0], uid[1], uid[2], uid[3]))
-                
+                self.returningUID = ("%s-%s-%s-%s" % (uid[0], uid[1], uid[2], uid[3]))
                 # This is the default key for authentication
                 key = [0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
                 
@@ -83,6 +83,12 @@ class Read():
                 else:
                     print("Erreur d'authentification!")
                     continue_reading = False
+    def uid(self):
+        MIFAREReader = MFRC522.MFRC522()
+        (status,uid) = MIFAREReader.MFRC522_Anticoll()
+        returnUID = self.returningUID
+        return returnUID
+            
                     
 
 
