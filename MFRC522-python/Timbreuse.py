@@ -374,7 +374,7 @@ class MainWindow():
         self.scanRFID.show()
         
         # self.lineUID = QLineEdit(self.window)
-        self.lineUID.setText("")
+        self.lineUID.setText(self.scanningRFID)
         # self.labelUID = QLineEdit(self.window)
         self.labelUID.setText("RFID UID")
         self.labelUID.setReadOnly(True)
@@ -422,7 +422,7 @@ class MainWindow():
         (status,uid) = MIFAREReader.MFRC522_Anticoll()
         self.uid = read.uid()
         print("SCANUID : {}" .format(self.uid))
-        
+        return self.uid
     def setButtonBackToConfigure(self, last_page:str):
         # configure button
         
