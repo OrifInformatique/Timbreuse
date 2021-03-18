@@ -359,8 +359,7 @@ class MainWindow():
         self.buttonAttributeRFID.setText("Set UID")
         self.buttonAttributeRFID.setFixedSize(300,300)
         self.buttonAttributeRFID.move(450,100)
-        self.buttonAttributeRFID.setObjectName("attributeRFID")
-        self.buttonAttributeRFID.setStyleSheet(open('./style.css').read())
+        
         self.buttonAttributeRFID.clicked.connect(self.setUID)
         self.buttonAttributeRFID.show()
     def setUID(self):
@@ -372,6 +371,8 @@ class MainWindow():
         self.scanRFID.setFixedSize(150,50)
         self.scanRFID.setText("Scan RFID")
         self.scanRFID.move(500,160)
+        self.buttonAttributeRFID.setObjectName("attributeRFID")
+        self.buttonAttributeRFID.setStyleSheet(open('./style.css').read())
         self.scanRFID.clicked.connect(self.scanningRFID)
         self.scanRFID.show()
         
