@@ -66,7 +66,7 @@ class Read():
 
                 # Print UID
                 print("Badge lu UID: %s,%s,%s,%s" % (uid[0], uid[1], uid[2], uid[3]))
-                self.returningUID = ("Badge lu UID: %s,%s,%s,%s" % (uid[0], uid[1], uid[2], uid[3]))
+                self.returningUID = ("%s-%s-%s-%s" % (uid[0], uid[1], uid[2], uid[3]))
                 # This is the default key for authentication
                 key = [0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
                 
