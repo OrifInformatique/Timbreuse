@@ -366,7 +366,7 @@ class MainWindow():
         self.buttonAttributeRFID.hide()
         self.buttonSection.hide()
         # UID
-        
+        self.scanning = False
         self.scanRFID.setFixedSize(100,50)
         self.scanRFID.setText("Scan RFID")
         self.scanRFID.move(275,100)
@@ -374,8 +374,12 @@ class MainWindow():
         self.scanRFID.show()
         
         # self.lineUID = QLineEdit(self.window)
-        self.scannedUID = ("{}".format(self.scanningRFID))
-        self.lineUID.setText(self.scannedUID)
+        if(self.scanning == True):
+            self.scannedUID = ("{}".format(self.scanningRFID))
+            self.lineUID.setText(self.scannedUID)    
+        
+        else:
+            self.lineUID.setText(" NO SCANNED UID")
         # self.labelUID = QLineEdit(self.window)
         self.labelUID.setText("RFID UID")
         self.labelUID.setReadOnly(True)
@@ -423,6 +427,7 @@ class MainWindow():
         (status,uid) = MIFAREReader.MFRC522_Anticoll()
         self.uid = read.uid()
         print("SCANUID : {}" .format(self.uid))
+        self.scanning = True
         return self.uid
     def setButtonBackToConfigure(self, last_page:str):
         # configure button
