@@ -358,6 +358,8 @@ class MainWindow():
                                     password=password,
                                     database=db)
             QMessageBox.information(self.window, "Connection", "Connected to DataBase")
+            cursor = connection.cursor()
+
             cursor.execute("SELECT nom_section FROM t_section")
             
             for x in cursor:
@@ -365,7 +367,8 @@ class MainWindow():
         
         except MC.Error as err:
             QMessageBox.information(self.window, "Failed", "Failed to connect to database")
-                
+            cursor.close()
+            connection.close()
             sys.exit(app.exec_())
 
         # Add Item to scrollable list
