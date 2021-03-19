@@ -345,9 +345,32 @@ class MainWindow():
         # self.itemSectionInformatique = QListWidgetItem("Section Informatique Pomy")
         # self.itemSIT = QListWidgetItem("SIT Préverenges")
 
+        # USE DATABASE TO INTEGRATES ITEM
+        try:
+            host = '127.0.0.1'
+            user = 'admin'
+            password = 'OrifInfo2009'
+            db = "timbreuse-orif"
+        
+
+            connection = MC.connect(host=host,
+                                    user=user,
+                                    password=password,
+                                    database=db)
+            QMessageBox.information(self.window, "Connection", "Connected to DataBase")
+            cursor.execute("SELECT nom_section FROM t_section")
+            
+            for x in cursor:
+                self.scrollableListSection.addItem(x)
+        
+        except MC.Error as err:
+            QMessageBox.information(self.window, "Failed", "Failed to connect to database")
+                
+            sys.exit(app.exec_())
+
         # Add Item to scrollable list
-        self.scrollableListSection.addItem(self.itemSectionInformatique)
-        self.scrollableListSection.addItem(self.itemSIT)
+        # self.scrollableListSection.addItem(self.itemSectionInformatique)
+        # self.scrollableListSection.addItem(self.itemSIT)
         
         # scroll bar
         # self.scroll_bar = QScrollBar(self.window)
