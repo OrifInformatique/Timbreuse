@@ -38,9 +38,9 @@ class MainWindow():
                                     user=user,
                                     password=password,
                                     database=db)
-            QMessageBox.about(self, "Connection", "Connected to DataBase")
+            QMessageBox.information(self.window, "Connection", "Connected to DataBase")
         except MC.Error as err:
-            QMessageBox.warning(self, "Failed", "Failed to connect to database")
+            QMessageBox.information(self.window, "Failed", "Failed to connect to database")
             
             sys.exit(app.exec_())
             
