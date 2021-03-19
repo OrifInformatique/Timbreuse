@@ -166,7 +166,7 @@ class MainWindow():
         
     def databaseButton(self):
        self.db.setText("db") 
-       self.db.setFixedSize(50,50)
+       self.db.setFixedSize(120,90)
        self.db.move(90,10)
        self.db.clicked.connect(self.DataBaseConnection)
        self.db.show()
