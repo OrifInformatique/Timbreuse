@@ -365,7 +365,7 @@ class MainWindow():
             # print(records)
             print_records = ''
             for record in records:
-                print_records += str(record[0])
+                print_records = str(record[0])
                 print(print_records)
                 self.scrollableListSection.addItem(print_records)
                 
