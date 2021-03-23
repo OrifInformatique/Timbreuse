@@ -361,7 +361,8 @@ class MainWindow():
             cursor = connection.cursor()
 
             cursor.execute("SELECT nom_section FROM t_section")
-            
+            records = cursor.fetchall()
+            print(records)
             for x in cursor:
                 self.scrollableListSection.addItem("{}".format(str(x)))
         
