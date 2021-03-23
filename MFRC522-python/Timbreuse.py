@@ -362,10 +362,12 @@ class MainWindow():
 
             cursor.execute("SELECT nom_section FROM t_section")
             records = cursor.fetchall()
-            print(records)
-            for x in cursor:
-                self.scrollableListSection.addItem("{}".format(str(x)))
-        
+            # print(records)
+            print_records = ''
+            for record in records:
+                print_records += str(record[1])
+                self.scrollableListSection.addItem(print_records)
+                
         except MC.Error as err:
             QMessageBox.information(self.window, "Failed", "Failed to connect to database")
             cursor.close()
