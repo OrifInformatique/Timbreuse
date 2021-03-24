@@ -201,11 +201,11 @@ class MainWindow():
     # Create badge window
     def badgeApp(self):
         self.buttonIn.hide()
-        QMessageBox.information(self.window, "Badge", "Vous avez 10 secondes pour passer le bagde.")
+#         QMessageBox.information(self.window, "Badge", "Vous avez 10 secondes pour passer le bagde.")
         
         self.countDown(10)
-        self.windowProgressBar = ProgressBar.Window()
-        self.windowProgressBar.show()
+#         self.windowProgressBar = ProgressBar.Window()
+#         self.windowProgressBar.show()
     
     '''
                                 WELCOME WINDOW
@@ -518,11 +518,15 @@ class MainWindow():
             mins, secs = divmod(t, 60)
             timer = ("{:02d}:{:02d}".format(mins,secs))
             print(timer, end="\r")
-            
             self.countDownLabel.setFixedSize(100,50)
             self.countDownLabel.move(400,100)
-            self.countDownLabel.setText(str(timer))
-            self.countDownLabel.show()
+            
+            for i in range(10,0):
+                self.countDownLabel.setText(str(timer))
+                self.countDownLabel.show()
+                i-=1
+                
+            
             time.sleep(1)
             t -= 1
             
