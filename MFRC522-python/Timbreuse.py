@@ -16,7 +16,8 @@ import Write
 import ProgressBar
 # from Timbreuse import ProgressingBar
 
-
+# import time to make the countdown
+import time
 
 
 class MainWindow():
@@ -505,5 +506,17 @@ class MainWindow():
         
         exec(f"self.buttonBackConf.clicked.connect(self.{last_page})")
         self.buttonBackConf.show()
+
+    # create countdown function
+    def countDown(self):
+        self.step = 10
+        
+        while self.step>=0:
+            mins, secs = divmod(self.step, 60)
+            timer = '{02d}:{02d}'.format(mins,secs)
+            print(timer, end="\r")
+            time.sleep(1)
+            self.step -= 1
+        
 
 main = MainWindow()
