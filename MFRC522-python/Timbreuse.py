@@ -521,10 +521,12 @@ class MainWindow():
             self.countDownLabel.setFixedSize(100,50)
             self.countDownLabel.move(400,100)
             
-            for i in range(10,0):
-                self.countDownLabel.setText(str(timer))
+            i=t
+            
+            for i in range(t):
+                self.countDownLabel.configure(str(timer))
                 self.countDownLabel.show()
-                i-=1
+                
                 
             
             time.sleep(1)
