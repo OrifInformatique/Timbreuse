@@ -198,7 +198,7 @@ class MainWindow():
         self.buttonIn.hide()
         QMessageBox.information(self.window, "Badge", "Vous avez 10 secondes pour passer le bagde.")
         
-        self.countDown
+        self.countDown(10)
         self.windowProgressBar = ProgressBar.Window()
         self.windowProgressBar.show()
     
@@ -508,15 +508,13 @@ class MainWindow():
         self.buttonBackConf.show()
 
     # create countdown function
-    def countDown(self):
-        self.step = 10
-        
-        while self.step>=0:
-            mins, secs = divmod(self.step, 60)
-            timer = '{02d}:{02d}'.format(mins,secs)
+    def countDown(self,t):
+        while t:
+            mins, secs = divmod(t, 60)
+            timer = ("{:02d}:{:02d}".format(mins,secs))
             print(timer, end="\r")
             time.sleep(1)
-            self.step -= 1
+            t -= 1
         
 
 main = MainWindow()
