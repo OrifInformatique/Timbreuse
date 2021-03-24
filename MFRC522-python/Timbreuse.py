@@ -524,7 +524,9 @@ class MainWindow():
         
         counter = t
         for counter in range(t):
+            self.countDownLabel.show()
             self.countDownLabel.setText(str(t))
+            self.countDownLabel.show()
             time.sleep(1)
             counter = counter -1
             t = t - 1
