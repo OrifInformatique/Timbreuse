@@ -117,6 +117,10 @@ class MainWindow():
             # ProgressBar
         # self.progressBar = QProgressBar(self)
         # self.progressBar.hide()
+            # Countdown line
+        self.countDownLabel = QLineEdit(self.window)
+        self.countDownLabel.hide()
+        
         # call the init gui
         self.initGui()
         
@@ -164,6 +168,7 @@ class MainWindow():
         self.setButtonOut()
         self.setButtonAdmin()
         self.databaseButton()
+        self.countDownLabel.hide()
         
     def databaseButton(self):
        self.db.setText("db") 
@@ -513,8 +518,14 @@ class MainWindow():
             mins, secs = divmod(t, 60)
             timer = ("{:02d}:{:02d}".format(mins,secs))
             print(timer, end="\r")
+            
+            self.countDownLabel.setFixedSize(100,50)
+            self.countDownLabel.move(400,100)
+            self.countDownLabel.setText(str(timer))
+            self.countDownLabel.show()
             time.sleep(1)
             t -= 1
-        
+            
+        self.setButtonBackToConfigure("baseWindow")
 
 main = MainWindow()
