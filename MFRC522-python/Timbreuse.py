@@ -519,13 +519,14 @@ class MainWindow():
         self.countDownLabel.setFixedSize(100,50)
         self.countDownLabel.move(350,350)
         self.countDownLabel.setText("")
-        self.countDownLabel.readOnly(True)
+        self.countDownLabel.setReadOnly(True)
         self.countDownLabel.show()
         
         counter = t
         for counter in range(t):
             self.countDownLabel.show()
             self.countDownLabel.setText(str(t))
+            QApplication.instance().processEvents()
             self.countDownLabel.show()
             time.sleep(1)
             counter = counter -1
