@@ -8,6 +8,7 @@ from PySide2 import QtCore, QtWidgets, QtGui
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2.QtCore import *
+import mysql.connector as MC
 
 # import from python files in MFRC522
 import Read
@@ -25,7 +26,24 @@ class MainWindow():
     config = False
 
     
+    def DataBaseConnection(self):
+        try:
+            host = '127.0.0.1'
+            user = 'admin'
+            password = 'OrifInfo2009'
+            db = "timbreuse-orif"
+    
 
+            connection = MC.connect(host=host,
+                                    user=user,
+                                    password=password,
+                                    database=db)
+            QMessageBox.information(self.window, "Connection", "Connected to DataBase")
+        except MC.Error as err:
+            QMessageBox.information(self.window, "Failed", "Failed to connect to database")
+            
+            sys.exit(app.exec_())
+            
     def __init__(self):
         super().__init__()
         #Creation of the app
@@ -40,6 +58,8 @@ class MainWindow():
         
         # define all objects
             # Button
+            # Database connection testing
+        self.db = QPushButton(self.window)
         self.buttonAdmin = QPushButton(self.window)
         self.buttonAdmin.hide()
         
@@ -142,7 +162,15 @@ class MainWindow():
         self.setButtonIn()
         self.setButtonOut()
         self.setButtonAdmin()
+        self.databaseButton()
         
+    def databaseButton(self):
+       self.db.setText("db") 
+       self.db.setFixedSize(120,90)
+       self.db.move(90,10)
+       self.db.clicked.connect(self.DataBaseConnection)
+       self.db.show()
+       
      # Create Button IN
     def setButtonIn(self):
         
@@ -317,9 +345,39 @@ class MainWindow():
         # self.itemSectionInformatique = QListWidgetItem("Section Informatique Pomy")
         # self.itemSIT = QListWidgetItem("SIT Préverenges")
 
+        # USE DATABASE TO INTEGRATES ITEM
+        try:
+            host = '127.0.0.1'
+            user = 'admin'
+            password = 'OrifInfo2009'
+            db = "timbreuse-orif"
+        
+
+            connection = MC.connect(host=host,
+                                    user=user,
+                                    password=password,
+                                    database=db)
+            QMessageBox.information(self.window, "Connection", "Connected to DataBase")
+            cursor = connection.cursor()
+
+            cursor.execute("SELECT nom_section FROM t_section")
+            records = cursor.fetchall()
+            # print(records)
+            print_records = ''
+            for record in records:
+                print_records = str(record[0])
+                # print(print_records)
+                self.scrollableListSection.addItem(print_records)
+                
+        except MC.Error as err:
+            QMessageBox.information(self.window, "Failed", "Failed to connect to database")
+            cursor.close()
+            connection.close()
+            sys.exit(app.exec_())
+
         # Add Item to scrollable list
-        self.scrollableListSection.addItem(self.itemSectionInformatique)
-        self.scrollableListSection.addItem(self.itemSIT)
+        # self.scrollableListSection.addItem(self.itemSectionInformatique)
+        # self.scrollableListSection.addItem(self.itemSIT)
         
         # scroll bar
         # self.scroll_bar = QScrollBar(self.window)
