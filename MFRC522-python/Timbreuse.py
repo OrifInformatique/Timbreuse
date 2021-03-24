@@ -118,7 +118,7 @@ class MainWindow():
         # self.progressBar = QProgressBar(self)
         # self.progressBar.hide()
             # Countdown line
-        self.countDownLabel = QLabel(self.window)
+        self.countDownLabel = QLineEdit(self.window)
         self.countDownLabel.hide()
         
         # call the init gui
@@ -517,33 +517,17 @@ class MainWindow():
         self.buttonIn.hide()
         self.buttonOut.hide()
         self.countDownLabel.setFixedSize(100,50)
-        self.countDownLabel.move(400,100)
+        self.countDownLabel.move(350,350)
+        self.countDownLabel.setText("")
+        self.countDownLabel.readOnly(True)
+        self.countDownLabel.show()
         
-        i = t
-        for i in range(t):
-            
-#             mins, secs = divmod(t, 60)
-#             timer = ("{:02d}:{:02d}".format(mins,secs))
-#             print(timer, end="\r")
-            
+        counter = t
+        for counter in range(t):
             self.countDownLabel.setText(str(t))
-            self.countDownLabel.show()
-            time.sleep(0.05)
-            i -= 1
-            t -= 1
-        
-        
-#         self.countDownLabel.show()
-        
-#         while t:
-#             mins, secs = divmod(t, 60)
-#             timer = ("{:02d}:{:02d}".format(mins,secs))
-#             print(timer, end="\r")
-#             self.countDownLabel.setText(str(timer))
-#             self.countDownLabel.show()
-# 
-#             time.sleep(1)
-#             t -= 1
+            time.sleep(1)
+            counter = counter -1
+            t = t - 1
             
         self.setButtonBackToConfigure("baseWindow")
 
