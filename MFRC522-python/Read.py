@@ -51,6 +51,7 @@ class Read():
         self.endTime = self.startTime + 10
             
         # This loop keeps checking for chips. If one is near it will get the UID and authenticate
+       
         while continue_reading and self.startTime < self.endTime:
             self.startTime = time.time()
             # Scan for cards    
@@ -83,6 +84,7 @@ class Read():
                 else:
                     print("Erreur d'authentification!")
                     continue_reading = False
+                        
     def uid(self):
         MIFAREReader = MFRC522.MFRC522()
         (status,uid) = MIFAREReader.MFRC522_Anticoll()

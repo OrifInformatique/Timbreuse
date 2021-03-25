@@ -16,7 +16,8 @@ import Write
 import ProgressBar
 # from Timbreuse import ProgressingBar
 
-
+# import time to make the countdown
+import time
 
 
 class MainWindow():
@@ -116,6 +117,10 @@ class MainWindow():
             # ProgressBar
         # self.progressBar = QProgressBar(self)
         # self.progressBar.hide()
+            # Countdown line
+        self.countDownLabel = QLineEdit(self.window)
+        self.countDownLabel.hide()
+        
         # call the init gui
         self.initGui()
         
@@ -163,6 +168,7 @@ class MainWindow():
         self.setButtonOut()
         self.setButtonAdmin()
         self.databaseButton()
+        self.countDownLabel.hide()
         
     def databaseButton(self):
        self.db.setText("db") 
@@ -194,12 +200,16 @@ class MainWindow():
     
     # Create badge window
     def badgeApp(self):
+        
         self.buttonIn.hide()
-        QMessageBox.information(self.window, "Badge", "Vous avez 10 secondes pour passer le bagde.")
+        self.countDown(10)
+        Read.Read()
         
+        # Read.Read()
+#         QMessageBox.information(self.window, "Badge", "Vous avez 10 secondes pour passer le bagde.")
         
-        self.windowProgressBar = ProgressBar.Window()
-        self.windowProgressBar.show()
+#         self.windowProgressBar = ProgressBar.Window()
+#         self.windowProgressBar.show()
     
     '''
                                 WELCOME WINDOW
@@ -505,5 +515,41 @@ class MainWindow():
         
         exec(f"self.buttonBackConf.clicked.connect(self.{last_page})")
         self.buttonBackConf.show()
+
+    # create countdown function
+    def countDown(self,t):
+        print("Debut def countDown t= : " +str(t))
+        t=10
+        print("Après réinitialisation t= : " +str(t))
+        self.buttonIn.hide()
+        self.buttonOut.hide()
+        self.countDownLabel.setFixedSize(100,50)
+        self.countDownLabel.move(350,350)
+        self.countDownLabel.setText("")
+        self.countDownLabel.setReadOnly(True)
+        self.countDownLabel.show()
+        
+        counter = t
+        print("Av for counter= : " +str(t))
+        t = 10
+        for counter in range (t):
+            
+            print("Debut for countDown t= : " +str(t))
+            # print("Debut for countDown counter= : " +str(t))
+            # self.countDownLabel.show()
+            self.countDownLabel.setText(str(t))
+            QApplication.instance().processEvents()
+            # self.countDownLabel.show()
+            time.sleep(1)
+            # counter = counter - 1
+            # print("counter -1 = : " +str(counter))
+            t = t - 1
+            print("t -1 = : " +str(t))
+#         counter = 0
+        # print("Remise 0 counter = : " +str(counter))
+#         t=0
+        print("Remise 0 t = : " +str(t))
+        self.baseWindow()
+#         self.setButtonBackToConfigure("baseWindow")
 
 main = MainWindow()
