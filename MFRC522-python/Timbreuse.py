@@ -536,12 +536,12 @@ class MainWindow():
             
             print("Debut for countDown t= : " +str(t))
             # print("Debut for countDown counter= : " +str(t))
-            self.countDownLabel.show()
+            # self.countDownLabel.show()
             self.countDownLabel.setText(str(t))
             QApplication.instance().processEvents()
-            self.countDownLabel.show()
+            # self.countDownLabel.show()
             time.sleep(1)
-            counter = counter - 1
+            # counter = counter - 1
             # print("counter -1 = : " +str(counter))
             t = t - 1
             print("t -1 = : " +str(t))
