@@ -202,8 +202,8 @@ class MainWindow():
     def badgeApp(self):
         
         self.buttonIn.hide()
-        
-        self.countDown(10)
+        Read.Read()
+        # self.countDown(10)
         # Read.Read()
 #         QMessageBox.information(self.window, "Badge", "Vous avez 10 secondes pour passer le bagde.")
         
