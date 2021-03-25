@@ -200,11 +200,13 @@ class MainWindow():
     
     # Create badge window
     def badgeApp(self):
-        Read.Read()
+        
         self.buttonIn.hide()
-#         QMessageBox.information(self.window, "Badge", "Vous avez 10 secondes pour passer le bagde.")
         
         self.countDown(10)
+        # Read.Read()
+#         QMessageBox.information(self.window, "Badge", "Vous avez 10 secondes pour passer le bagde.")
+        
 #         self.windowProgressBar = ProgressBar.Window()
 #         self.windowProgressBar.show()
     
@@ -530,6 +532,7 @@ class MainWindow():
         print("Av for counter= : " +str(t))
         t = 10
         for counter in range (t):
+            Read.Read()
             print("Debut for countDown t= : " +str(t))
             # print("Debut for countDown counter= : " +str(t))
             self.countDownLabel.show()
