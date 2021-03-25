@@ -528,20 +528,20 @@ class MainWindow():
         
         counter = t
         print("Av for counter= : " +str(t))
-        for counter in range(t):
+        while t:
             print("Debut for countDown t= : " +str(t))
-            print("Debut for countDown counter= : " +str(t))
+            # print("Debut for countDown counter= : " +str(t))
             self.countDownLabel.show()
             self.countDownLabel.setText(str(t))
             QApplication.instance().processEvents()
             self.countDownLabel.show()
             time.sleep(1)
             counter = counter - t1
-            print("counter -1 = : " +str(counter))
+            # print("counter -1 = : " +str(counter))
             t = t - 1
             print("t -1 = : " +str(t))
 #         counter = 0
-        print("Remise 0 counter = : " +str(t))
+        # print("Remise 0 counter = : " +str(counter))
 #         t=0
         print("Remise 0 t = : " +str(t))
         self.setButtonBackToConfigure("baseWindow")
