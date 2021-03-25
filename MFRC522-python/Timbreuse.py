@@ -514,6 +514,7 @@ class MainWindow():
 
     # create countdown function
     def countDown(self,t):
+        t=10
         self.buttonIn.hide()
         self.buttonOut.hide()
         self.countDownLabel.setFixedSize(100,50)
@@ -531,7 +532,8 @@ class MainWindow():
             time.sleep(1)
             counter = counter -1
             t = t - 1
-            
+        counter= 0
+        t=0    
         self.setButtonBackToConfigure("baseWindow")
 
 main = MainWindow()
