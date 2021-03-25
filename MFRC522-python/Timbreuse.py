@@ -514,7 +514,9 @@ class MainWindow():
 
     # create countdown function
     def countDown(self,t):
+        print("Debut def countDown t= : " +str(t))
         t=10
+        print("Après réinitialisation t= : " +str(t))
         self.buttonIn.hide()
         self.buttonOut.hide()
         self.countDownLabel.setFixedSize(100,50)
@@ -524,16 +526,23 @@ class MainWindow():
         self.countDownLabel.show()
         
         counter = t
+        print("Av for counter= : " +str(t))
         for counter in range(t):
+            print("Debut for countDown t= : " +str(t))
+            print("Debut for countDown counter= : " +str(t))
             self.countDownLabel.show()
             self.countDownLabel.setText(str(t))
             QApplication.instance().processEvents()
             self.countDownLabel.show()
             time.sleep(1)
             counter = counter -1
+            print("counter -1 = : " +str(counter))
             t = t - 1
-        counter= 0
-        t=0    
+            print("t -1 = : " +str(t))
+#         counter = 0
+        print("Remise 0 counter = : " +str(t))
+#         t=0
+        print("Remise 0 t = : " +str(t))
         self.setButtonBackToConfigure("baseWindow")
 
 main = MainWindow()
