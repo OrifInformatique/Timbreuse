@@ -526,10 +526,10 @@ class MainWindow():
         self.countDownLabel.setReadOnly(True)
         self.countDownLabel.show()
         
-        # counter = t
+        counter = t
         print("Av for counter= : " +str(t))
         t = 10
-        while t:
+        for counter in range (t):
             print("Debut for countDown t= : " +str(t))
             # print("Debut for countDown counter= : " +str(t))
             self.countDownLabel.show()
@@ -537,7 +537,7 @@ class MainWindow():
             QApplication.instance().processEvents()
             self.countDownLabel.show()
             time.sleep(1)
-            # counter = counter - 1
+            counter = counter - 1
             # print("counter -1 = : " +str(counter))
             t = t - 1
             print("t -1 = : " +str(t))
@@ -545,6 +545,7 @@ class MainWindow():
         # print("Remise 0 counter = : " +str(counter))
 #         t=0
         print("Remise 0 t = : " +str(t))
-        self.setButtonBackToConfigure("baseWindow")
+        self.baseWindow()
+#         self.setButtonBackToConfigure("baseWindow")
 
 main = MainWindow()
