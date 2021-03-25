@@ -200,6 +200,7 @@ class MainWindow():
     
     # Create badge window
     def badgeApp(self):
+        Read.Read()
         self.buttonIn.hide()
 #         QMessageBox.information(self.window, "Badge", "Vous avez 10 secondes pour passer le bagde.")
         
@@ -535,7 +536,7 @@ class MainWindow():
             QApplication.instance().processEvents()
             self.countDownLabel.show()
             time.sleep(1)
-            counter = counter -1
+            counter = counter - t1
             print("counter -1 = : " +str(counter))
             t = t - 1
             print("t -1 = : " +str(t))
