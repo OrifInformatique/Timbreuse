@@ -51,42 +51,40 @@ class Read():
         self.endTime = self.startTime + 10
             
         # This loop keeps checking for chips. If one is near it will get the UID and authenticate
-        t=10
-        counter = t
-        for counter in range (t):
-            while continue_reading and self.startTime < self.endTime:
-                self.startTime = time.time()
-                # Scan for cards    
-                (status,TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
-                # If a card is found
-                if status == MIFAREReader.MI_OK:
-                    print("Badge détecté")
-                time.sleep(1)
-                # Get the UID of the card
-                (status,uid) = MIFAREReader.MFRC522_Anticoll()
-                # If we have the UID, continue
-                if status == MIFAREReader.MI_OK:
+       
+        while continue_reading and self.startTime < self.endTime:
+            self.startTime = time.time()
+            # Scan for cards    
+            (status,TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
+            # If a card is found
+            if status == MIFAREReader.MI_OK:
+                print("Badge détecté")
+            time.sleep(1)
+            # Get the UID of the card
+            (status,uid) = MIFAREReader.MFRC522_Anticoll()
+            # If we have the UID, continue
+            if status == MIFAREReader.MI_OK:
 
-                    # Print UID
-                    print("Badge lu UID: %s,%s,%s,%s" % (uid[0], uid[1], uid[2], uid[3]))
-                    self.returningUID = ("%s-%s-%s-%s" % (uid[0], uid[1], uid[2], uid[3]))
-                    # This is the default key for authentication
-                    key = [0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
-                    
-                    # Select the scanned tag
-                    MIFAREReader.MFRC522_SelectTag(uid)
+                # Print UID
+                print("Badge lu UID: %s,%s,%s,%s" % (uid[0], uid[1], uid[2], uid[3]))
+                self.returningUID = ("%s-%s-%s-%s" % (uid[0], uid[1], uid[2], uid[3]))
+                # This is the default key for authentication
+                key = [0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
+                
+                # Select the scanned tag
+                MIFAREReader.MFRC522_SelectTag(uid)
 
-                    # Authenticate
-                    status = MIFAREReader.MFRC522_Auth(MIFAREReader.PICC_AUTHENT1A, 8, key, uid)
+                # Authenticate
+                status = MIFAREReader.MFRC522_Auth(MIFAREReader.PICC_AUTHENT1A, 8, key, uid)
+                continue_reading = False
+                # Check if authenticated
+                if status == MIFAREReader.MI_OK:
+                    MIFAREReader.MFRC522_Read(8)
+                    MIFAREReader.MFRC522_StopCrypto1()
+                else:
+                    print("Erreur d'authentification!")
                     continue_reading = False
-                    # Check if authenticated
-                    if status == MIFAREReader.MI_OK:
-                        MIFAREReader.MFRC522_Read(8)
-                        MIFAREReader.MFRC522_StopCrypto1()
-                    else:
-                        print("Erreur d'authentification!")
-                        continue_reading = False
-                        break
+                        
     def uid(self):
         MIFAREReader = MFRC522.MFRC522()
         (status,uid) = MIFAREReader.MFRC522_Anticoll()
