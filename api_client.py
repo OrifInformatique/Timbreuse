@@ -24,9 +24,7 @@ class APIClient:
         if local_test:
             self.base_url = 'http://localhost:8080'
         else:
-            self.base_url = 'https://timbreuse.sectioninformatique.net'
-        # self.controller = ('Logs', 'Badges')
-        # self.method = ('add', 'get_logs')
+            self.base_url = 'https://timbreuse.sectioninformatique.ch'
 
     @staticmethod
     def load_key() -> str:
