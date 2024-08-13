@@ -1,17 +1,11 @@
 # rfid pyton raspberry pi
-[mfrc522 PyPI](https://pypi.org/project/mfrc522/#description)  
-[mariadb PyPI](https://pypi.org/project/mariadb/)  
-[pygame](https://pypi.org/project/pygame/)
-[pygame-vkeyboard](https://pypi.org/project/pygame-vkeyboard/)
-
-github developer settings personal access tokens  
+- [mfrc522 PyPI](https://pypi.org/project/mfrc522/#description)
+- [mariadb PyPI](https://pypi.org/project/mariadb/)
+- [pygame](https://pypi.org/project/pygame/)
+- [pygame-vkeyboard](https://pypi.org/project/pygame-vkeyboard/)
 
 ```bash
-apache2
-php
-php-mysql
-mariadb-server
-
+apt install mariadb-server
 ```
 
 ## À ajouter ?
