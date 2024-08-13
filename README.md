@@ -6,7 +6,7 @@
 
 ```bash
 apt install mariadb-server
-sudo mariadb_secure_installation
+sudo mariadb-secure-installation
 ```
 
 ## À ajouter ?
