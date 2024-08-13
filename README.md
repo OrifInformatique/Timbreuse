@@ -5,7 +5,7 @@
 - [pygame-vkeyboard](https://pypi.org/project/pygame-vkeyboard/)
 
 ```bash
-apt install mariadb-server
+sudo apt install mariadb-server
 sudo mariadb-secure-installation
 ```
 
