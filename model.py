@@ -380,14 +380,14 @@ class Model:
 
     @staticmethod
     def cursor_to_dict_in_list(select_name: tuple,
-                               cursor: mariadb.connection.cursor) -> list:
+                               cursor: mariadb.Connection.cursor) -> list:
         l = list()
         for t in cursor:
             l.append(dict(zip(select_name, t)))
         return l
 
     @staticmethod
-    def cursor_to_tuple(cursor: mariadb.connection.cursor) -> tuple:
+    def cursor_to_tuple(cursor: mariadb.Connection.cursor) -> tuple:
         l = list()
         for i in cursor:
             for j in i:
@@ -395,7 +395,7 @@ class Model:
         return tuple(l)
 
     @staticmethod
-    def cursor_to_list(cursor: mariadb.connection.cursor) -> list:
+    def cursor_to_list(cursor: mariadb.Connection.cursor) -> list:
         l = list()
         for i in cursor:
             l.append(i)

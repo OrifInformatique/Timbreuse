@@ -1,0 +1,8 @@
+venv
+pygame==2.6.0
+pygame-vkeyboard==2.0.9
+libmariadb3
+libmariadb-dev
+mariadb-server
+mariadb==1.1.10
+mfrc522
