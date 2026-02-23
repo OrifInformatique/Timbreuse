@@ -6,7 +6,6 @@ import sys
 import os
 import datetime
 from model import Model
-import warnings
 
 
 class Button:
@@ -410,9 +409,6 @@ class SceneLog(SceneTime):
         text_inside, text_outside = info['text_inside'], info['text_outside']
 
         
-        # text_log = str(log['date'])[:-3] + ' ' + self.change_text_bool(
-        #     log['inside'], text_inside, text_outside)
-
         text_log = str(log['date']) + ' ' + self.change_text_bool(
             log['inside'], text_inside, text_outside)
         
@@ -519,18 +515,6 @@ class SceneWorkTime(SceneTime):
         else:
             return " sortie"
 
-    # deprecated
-    @staticmethod
-    def get_dict_log_list(log:list) -> dict:
-        warnings.warn("deprecated", DeprecationWarning)
-        log_dict = dict()
-        log_dict['date'] = log[0]
-        log_dict['inside'] = log[1]
-        log_dict['date_badge'] = log[2]
-        log_dict['date_modif'] = log[3]
-        log_dict['date_delete'] = log[4]
-        return log_dict
-
     def get_text_modal_row(self, log):
         #text = str(log['date'])[:-3]
         text = str(log['date'])
@@ -604,8 +588,6 @@ class SceneWorkTime(SceneTime):
 
     def draw(self):
         super().draw()
-#        for text in self.texts:
-#            text.draw(self.screen)
         for table in self.tables:
             table.draw(self.screen)
 
@@ -707,7 +689,7 @@ class SceneModal(SceneTime):
         self.set_table()
     
     def set_text(self):
-           pass 
+        pass
 
     def set_table(self):
         cx, cy = self.screen.get_size()
@@ -835,10 +817,6 @@ class SceneKeyboard(SceneTime):
                 Mouse().button['down'] | Mouse().button['up']), events))
         else:
             filtered_events = events
-        #print('filtered_events : ', filtered_events, file=sys.stderr)
-       #  if self.view.events.type in (Mouse.button['down'] |
-       #                               Mouse.button['up']):
-        # self.keyboard.update(self.view.events)
         self.keyboard.update(filtered_events)
         self.do_press_button()
 
@@ -1291,82 +1269,6 @@ class Loader:
         return img
 
 
-def test1():
-    # test value
-    pipe = dict()
-    pipe['name'] = 'Bob'
-    pipe['surname'] = 'Leta'
-    pipe['log'] = list()
-    pipe['log'].append(dict())
-    pipe['log'].append(dict())
-    pipe['log'][0]['date'] = datetime.datetime(2022, 2, 18, 15, 28, 49)
-    pipe['log'][1]['date'] = datetime.datetime(2022, 1, 19, 16, 30, 51)
-    pipe['log'][0]['inside'] = True
-    pipe['log'][1]['inside'] = False
-    pipe['time_last_week'] = datetime.timedelta(seconds=144243)
-    pipe['time_current_week'] = datetime.timedelta(seconds=144243)
-    pipe['day_current_week'] = ((datetime.date(2022, 4, 29), 
-        datetime.timedelta(seconds=28872)), (datetime.date(2022, 4, 28), 
-        datetime.timedelta(seconds=28843)), (datetime.date(2022, 4, 27),
-        datetime.timedelta(seconds=28843)), (datetime.date(2022, 4, 26),
-        datetime.timedelta(seconds=28843)), (datetime.date(2022, 4, 25),
-        datetime.timedelta(seconds=28843)))
-    pipe['day_last_week'] = ((datetime.date(2022, 4, 22), 
-        datetime.timedelta(seconds=28871)), (datetime.date(2022, 4, 21), 
-        datetime.timedelta(seconds=28843)), (datetime.date(2022, 4, 20),
-        datetime.timedelta(seconds=28843)), (datetime.date(2022, 4, 19),
-        datetime.timedelta(seconds=28843)), (datetime.date(2022, 4, 18),
-        datetime.timedelta(seconds=28843)))
-    pipe['current_week'] = ([(datetime.datetime(2022, 4, 29, 16, 9, 34), 0),
-        (datetime.datetime(2022, 4, 29, 15, 38, 54), 0),
-        (datetime.datetime(2022, 4, 29, 15, 38, 43), 1),
-        (datetime.datetime(2022, 4, 29, 8, 8, 51), 1)],
-        [(datetime.datetime(2022, 4, 28, 16, 9, 34), 0),
-        (datetime.datetime(2022, 4, 28, 15, 53, 23), 0),
-        (datetime.datetime(2022, 4, 28, 15, 53, 19), 1),
-        (datetime.datetime(2022, 4, 28, 8, 8, 51), 1)],
-        [(datetime.datetime(2022, 4, 27, 16, 9, 34), 0),
-        (datetime.datetime(2022, 4, 27, 8, 8, 51), 1)],
-        [(datetime.datetime(2022, 4, 26, 16, 9, 34), 0),
-        (datetime.datetime(2022, 4, 26, 8, 8, 51), 1)],
-        [(datetime.datetime(2022, 4, 25, 16, 9, 34), 0),
-        (datetime.datetime(2022, 4, 25, 15, 38, 54), 0),
-        (datetime.datetime(2022, 4, 25, 15, 38, 43), 1),
-        (datetime.datetime(2022, 4, 25, 8, 8, 51), 1)])
-
-    pipe['last_week'] = ([(datetime.datetime(2022, 4, 22, 16, 9, 34), 0),
-        (datetime.datetime(2022, 4, 22, 15, 38, 54), 0),
-        (datetime.datetime(2022, 4, 22, 15, 38, 43), 1),
-        (datetime.datetime(2022, 4, 22, 8, 8, 51), 1)],
-        [(datetime.datetime(2022, 4, 21, 16, 9, 34), 0),
-        (datetime.datetime(2022, 4, 21, 15, 53, 23), 0),
-        (datetime.datetime(2022, 4, 21, 15, 53, 19), 1),
-        (datetime.datetime(2022, 4, 21, 8, 8, 51), 1)],
-        [(datetime.datetime(2022, 4, 20, 16, 9, 34), 0),
-        (datetime.datetime(2022, 4, 20, 8, 8, 51), 1)],
-        [(datetime.datetime(2022, 4, 19, 16, 9, 34), 0),
-        (datetime.datetime(2022, 4, 19, 8, 8, 51), 1)],
-        [(datetime.datetime(2022, 4, 18, 16, 9, 34), 0),
-        (datetime.datetime(2022, 4, 18, 15, 38, 54), 0),
-        (datetime.datetime(2022, 4, 18, 15, 38, 43), 1),
-        (datetime.datetime(2022, 4, 18, 8, 8, 51), 1)])
-    view = View(pipe)
-    view.load()
-
-
-def main():
+if __name__ == "__main__":
     view = View()
     view.load()
-
-def doctest():
-    import doctest
-    doctest.testmod()
-
-if __name__ == "__main__":
-    mode = 2
-    if mode == 0:
-        main()
-    elif mode == 1:
-        test1()
-    elif mode == 2:
-        doctest()
