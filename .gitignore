@@ -73,3 +73,7 @@ nb-configuration.xml
 .key.json
 tags
 Session.vim
+
+# virtual environment
+.venv/
+timbreuse/

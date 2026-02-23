@@ -121,7 +121,7 @@ class ButtonText(Button):
     def inside_button(screen: pygame.Surface) -> 'ButtonText':
 
         cx, cy = screen.get_size()
-        x = 7 * (cx / 12)
+        x = 1 * (cx / 12)
         y = 4 * (cy / 12)
         w = 4 * (cx / 12)
         h = 7 * (cy / 12)
@@ -135,7 +135,7 @@ class ButtonText(Button):
     def outside_button(screen: pygame.Surface) -> 'ButtonText':
 
         cx, cy = screen.get_size()
-        x = 1 * (cx / 12)
+        x = 7 * (cx / 12)
         y = 4 * (cy / 12)
         w = 4 * (cx / 12)
         h = 7 * (cy / 12)
