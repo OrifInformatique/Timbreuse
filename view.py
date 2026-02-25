@@ -39,7 +39,7 @@ class Button:
         h = 7 * (cy / 12)
         img = 'in'
 
-        color = pygame.Color("#007bff")  # blue
+        color = pygame.Color("#007b00")  # green
         return Button(screen, x, y, w, h, color, img)
 
     @staticmethod
@@ -127,7 +127,7 @@ class ButtonText(Button):
         img = 'in'
         text = 'Entrée'
 
-        color = pygame.Color("#007bff")  # blue
+        color = pygame.Color("#007b00")  # green
         return ButtonText(screen, x, y, w, h, color, img, text)
 
     @staticmethod

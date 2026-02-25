@@ -77,3 +77,7 @@ Session.vim
 # virtual environment
 .venv/
 timbreuse/
+
+# autres
+perso_scripts/
+doc_perso/
