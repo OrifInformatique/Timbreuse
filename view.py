@@ -108,12 +108,15 @@ class ButtonText(Button):
                  color=pygame.Color("#6c767e"), img: str = 'cancel',
                  text: str = 't') -> None:
         super().__init__(screen, x, y, w, h, color, img)
+        self.border_width = 10
+        self.img = Loader.load_icon(img, color)
         self.size = 30 
         self.text = Text(x + w/2, y + h - self.size - 20, self.size,
-                         text, pygame.Color('white'), 'center')
+                         text, color, 'center')
     
     def draw(self, screen) -> None:
-        super().draw(screen)
+        pygame.draw.rect(screen, self.color, self.rect, self.border_width, 10)
+        self.draw_img_center(screen)
         self.text.draw(screen)
 
     @staticmethod
