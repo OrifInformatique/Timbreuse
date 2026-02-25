@@ -6,7 +6,6 @@ import json
 import urllib.error
 from functools import reduce
 import sys
-import warnings
 from enum import Enum
 
 class Method(Enum):
@@ -37,11 +36,6 @@ class APIClient:
         token_text = hmac.new(key, text, 'sha256').hexdigest()
         return token_text
 
-    @staticmethod
-    def create_url(base_url, method, arg) -> str:
-        warnings.warn("use create_url_n", DeprecationWarning)
-        return f'{base_url}/{method}/{arg}'
-
     def create_url_n(self, controller:str, method:str, arg:str) -> str:
         '''
         >>> api_client = APIClient()
@@ -61,13 +55,6 @@ class APIClient:
         print('send', file=sys.stderr)
         try:
             html_file = urlopen(url)
-            #html_file = urlopen(url, timeout=1)
-        #    # print(html_file.read())
-        #    # print()
-        #    # print(html_file.url)
-        #    # print(html_file.status)
-        #    # print(html_file.headers)
-        #    # return html_file
             return html_file, html_file.status
         except urllib.error.HTTPError as e:
             return None, str(e)
@@ -89,28 +76,6 @@ class APIClient:
         url = self.create_url_n(Controller.LOGS.value, Method.PUT.value, arg)
         print(url, file=sys.stderr)
         return self.send(url)
-
-    def _receive_logs(self, log_id) -> list[dict]:
-        '''
-        deprecated
-        receive all logs from the server
-        # >>> api_client = APIClient()
-        # >>> logs = api_client.receive_logs(413)
-        # >>> type(logs)
-        # <class 'list'>
-
-        # >>> type(logs[0])
-        # <class 'dict'>
-        '''
-        warnings.warn("deprecated", DeprecationWarning)
-        print('_receive_logs', file=sys.stderr)
-        print(log_id, file=sys.stderr)
-        url = self.create_url_n(Controller.LOGS.value, Method.GET.value, 
-            log_id)
-        print(url, file=sys.stderr)
-        html_file = self.send(url)[0]
-        
-        return json.loads(html_file.readline())
 
     def receive_logs(self, start_date) -> list[dict]:
         '''
@@ -143,26 +108,6 @@ class APIClient:
         url = self.create_url_n(Controller.BADGES.value, Method.PUT.value, arg)
         print(url, file=sys.stderr)
         return self.send(url)
-
-    def receive_users_and_badges(self, user_id) -> list[dict]:
-        '''
-        deprecated
-        # receive all users and badges from the server
-        #  >>> api_client = APIClient()
-        #  >>> logs = api_client.receive_users_and_badges(97)
-        #  >>> type(logs)
-        #  <class 'list'>
-        #  >>> type(logs[0])
-        #  <class 'dict'>
-        '''
-        print('receive_users_and_badges', file=sys.stderr)
-        warnings.warn("use create_arg_args", DeprecationWarning)
-        print(user_id, file=sys.stderr)
-        url = self.create_url_n(Controller.BADGES.value, Method.GET.value,
-            user_id)
-        print(url, file=sys.stderr)
-        html_file = self.send(url)[0]
-        return json.loads(html_file.readline())
 
     def receive_users(self, start_date) -> list[dict]:
         '''

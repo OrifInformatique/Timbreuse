@@ -10,8 +10,6 @@ except:
     import fake_rfid as rfid
 import model
 import sys
-import warnings
-
 
 class App:
     '''
@@ -241,15 +239,6 @@ class App:
                                 self.model.find_user_info, args=(self.pipe, ))
         print('end do_model_request', self.pipe, file=sys.stderr)
 
-    # deprecated
-    def do_model_new_user(self):
-        print('do_model_new_user()', file=sys.stderr)
-        self.safe_wait_thread(self.thread_model_new_user)
-        self.thread_model_new_user = threading.Thread(
-            target=self.model.invoke_new_user, args=(self.pipe, ))
-        self.thread_model_new_user.start()
-        self.thread_model_new_user.join()
-
     def safe_is_alive(self, thread):
         try:
             print('tread is alive', thread.is_alive(), file=sys.stderr)
@@ -273,13 +262,6 @@ class App:
             wait_thread.wait()
             print('choice done', file=sys.stderr)
             wait_thread.release()
-
-    def do_next_scene(self):
-        '''
-        in view
-        '''
-        self.view.current_scene = "select"
-        self.view.pipe = self.pipe
 
     def reset_pipe(self):
         self.pipe = dict()
@@ -335,8 +317,4 @@ def doctest():
     doctest.testmod()
 
 if __name__ == "__main__":
-    if False:
-        doctest()
-        exit()
-
     main()

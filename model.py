@@ -35,10 +35,7 @@ class Model:
         else:
             self.conn_params["user"] = "root"
             self.conn_params["password"] = ""
-            #self.conn_params["password"] = ""
             self.conn_params["host"] = "localhost"
-            #self.conn_params["database"] = "db20221007"
-            #self.conn_params["database"] = "tmp"
             self.conn_params["port"] = 3306
             self.conn_params["database"] = "timbreuse2022"
         try:
@@ -242,7 +239,6 @@ class Model:
         <class 'list'>
         '''
         print('call_get_unsync_log', file=sys.stderr)
-        # sql = 'CALL `get_unsync_log`;'
         sql = ('SELECT `date`, `id_badge`, `inside`'
         'FROM `log_write`'
         'WHERE (`date`, `id_badge`, `inside`)'
@@ -400,41 +396,6 @@ class Model:
         for i in cursor:
             l.append(i)
         return l
-
-    @staticmethod
-    def format_tuple(t: tuple) -> str:
-        txt = ""
-        for i in t:
-            txt += str(i) + ", "
-        return txt[0:-2]
-
-    @staticmethod
-    def give_quationmark(d: dict) -> str:
-        return (len(d) * "?, ")[0:-2]
-
-    @staticmethod
-    def format_name_column(d: dict) -> str:
-        '''
-        format a dictionary key in a, b, c
-        '''
-        txt = ""
-        for i in d:
-            txt += str(i) + ", "
-        return txt[0:-2]
-
-    @staticmethod
-    def format_value_column(d: dict) -> str:
-        '''
-        format a dictionary value in a, b, c
-        '''
-        txt = ""
-        for i in d:
-            txt += str(d[i]) + ", "
-        return txt[0:-2]
-
-    @staticmethod
-    def format_date_dict(d: dict, key):
-        d[key] = "'" + d[key] + "'"
 
     @classmethod
     def calcul_work_time(cls, logs: tuple):

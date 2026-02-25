@@ -22,7 +22,6 @@ class Rfid:
 
     def load(self) -> None:
         self.read()
-       # self.write()
         while self.running:
             self.update()
 

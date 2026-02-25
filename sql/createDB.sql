@@ -1,5 +1,3 @@
--- CREATE DATABASE `tmp`;
--- USE `tmp`;
 CREATE DATABASE `timbreuse2022`;
 USE `timbreuse2022`;
 CREATE TABLE `user_sync` ( `id_user` int(11) NOT NULL, `name` text COLLATE utf8mb4_unicode_ci NOT NULL, `surname` text COLLATE utf8mb4_unicode_ci NOT NULL, `date_modif` datetime NOT NULL, `date_delete` datetime, PRIMARY KEY (`id_user`)) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
@@ -21,16 +19,6 @@ CREATE PROCEDURE `delete_badge_write`() MODIFIES SQL DATA DELETE FROM `badge_wri
 CREATE PROCEDURE `insert_badge`(id_badge BIGINT, id_user INT) MODIFIES SQL DATA BEGIN INSERT INTO `badge_write` (`id_badge`, `id_user`) VALUES (id_badge, id_user); CALL `delete_badge_write`; END;
 CREATE PROCEDURE `delete_user_write`() MODIFIES SQL DATA DELETE FROM `user_write` WHERE (`name`, `surname`) IN ( SELECT `name`, `surname` FROM `user_sync`);
 CREATE PROCEDURE `insert_user`(_name TEXT, _surname TEXT) MODIFIES SQL DATA BEGIN INSERT INTO `user_write` (`name`, `surname`) VALUES (_name, _surname); CALL `delete_user_write`; END;
--- CREATE PROCEDURE `insert_users_and_badges`(id_badge BIGINT, id_user INT, _name TEXT, surname TEXT) MODIFIES SQL DATA BEGIN DECLARE EXIT HANDLER FOR SQLEXCEPTION BEGIN ROLLBACK; END; START TRANSACTION; INSERT INTO `user_sync` (`id_user`, `name`, `surname`) VALUES (id_user, _name, surname); INSERT INTO `badge_sync` (`id_badge`, `id_user`) VALUES (id_badge, id_user); COMMIT; CALL `delete_user_write`; CALL `delete_badge_write`; END;
 CREATE PROCEDURE `insert_user_sync`(_id_user int, _name text, _surname text, _date_modif datetime, _date_delete datetime) MODIFIES SQL DATA BEGIN INSERT INTO `user_sync` (`id_user`, `name`, `surname`, `date_modif`, `date_delete`) VALUES (_id_user, _name, _surname, _date_modif, _date_delete) ON DUPLICATE KEY UPDATE `id_user`=_id_user, `name`=_name, `surname`=_surname, `date_modif`=_date_modif, `date_delete`=_date_delete ; END;
 CREATE PROCEDURE `insert_badge_sync` (_id_badge bigint, _id_user int, _rowid_badge int, _date_modif datetime, _date_delete datetime) MODIFIES SQL DATA BEGIN INSERT INTO `badge_sync` (`id_badge`, `id_user`, `rowid_badge`, `date_modif`, `date_delete`) VALUES (_id_badge, _id_user, _rowid_badge, _date_modif, _date_delete) ON DUPLICATE KEY UPDATE `id_badge`=_id_badge, `id_user`=_id_user, `rowid_badge`=_rowid_badge, `date_modif`=_date_modif, `date_delete`=_date_delete ;  END;
 CREATE PROCEDURE `delete_badge_and_user_write`() MODIFIES SQL DATA BEGIN CALL `delete_badge_write`; CALL `delete_user_write`; END;
--- true
-
--- DELIMITER // CREATE PROCEDURE `insert_log`(id_badge BIGINT, inside BOOL) MODIFIES SQL DATA BEGIN INSERT INTO `log_write` (`date`, `id_badge`, `inside` ) VALUES (NOW(), id_badge, inside); CALL `delete_log_write`; END // DELIMITER ;
--- DELIMITER // DROP PROCEDURE IF EXISTS `insert_sync_log`; CREATE PROCEDURE `insert_sync_log`(_date DATETIME, id_badge BIGINT, inside BOOL, id_log INT, id_user INT) MODIFIES SQL DATA BEGIN INSERT INTO `log_sync` (`date`, `id_badge`, `inside`, `id_log`, `id_user`) VALUES (_date, id_badge, inside, id_log, id_user); CALL `delete_log_write`; END // DELIMITER ;
--- CREATE PROCEDURE `delete_badge_write`() MODIFIES SQL DATA DELETE FROM `badge_write` WHERE `id_badge` IN ( SELECT `id_badge` FROM `badge_sync`);
--- DELIMITER // CREATE PROCEDURE `insert_badge`(id_badge BIGINT, id_user INT) MODIFIES SQL DATA BEGIN INSERT INTO `badge_write` (`id_badge`, `id_user`) VALUES (id_badge, id_user); CALL `delete_badge_write`; END // DELIMITER ;
--- CREATE PROCEDURE `delete_user_write`() MODIFIES SQL DATA DELETE FROM `user_write` WHERE (`name`, `surname`) IN ( SELECT `name`, `surname` FROM `user_sync`);
--- DELIMITER // CREATE PROCEDURE `insert_user`(_name TEXT, surname TEXT) MODIFIES SQL DATA BEGIN INSERT INTO `user_write` (`name`, `surname`) VALUES (_name, surname); CALL `delete_user_write`; END // DELIMITER ;
--- DELIMITER // CREATE PROCEDURE `insert_users_and_badges`(id_badge BIGINT, id_user INT, _name TEXT, surname TEXT) MODIFIES SQL DATA BEGIN DECLARE EXIT HANDLER FOR SQLEXCEPTION BEGIN ROLLBACK; END; START TRANSACTION; INSERT INTO `user_sync` (`id_user`, `name`, `surname`) VALUES (id_user, _name, surname); INSERT INTO `badge_sync` (`id_badge`, `id_user`) VALUES (id_badge, id_user); COMMIT; CALL `delete_user_write`; CALL `delete_badge_write`; END // DELIMITER ;

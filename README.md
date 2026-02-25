@@ -1,84 +1,118 @@
-# rfid pyton raspberry pi
-- [mfrc522 PyPI](https://pypi.org/project/mfrc522/#description)
-- [mariadb PyPI](https://pypi.org/project/mariadb/)
-- [pygame](https://pypi.org/project/pygame/)
-- [pygame-vkeyboard](https://pypi.org/project/pygame-vkeyboard/)
+# Timbreuse
+
+Application de pointage RFID développée pour le Raspberry Pi, utilisée par l'ORIF (Section Informatique). Les utilisateurs badgent à l'entrée et à la sortie, et l'application calcule automatiquement les heures de travail.
+
+## Stack technique
+
+- **Python 3.9+** (compatible 3.11)
+- **Pygame** — interface graphique tactile
+- **MariaDB** — base de données locale
+- **MFRC522** — lecteur de badges RFID (Raspberry Pi)
+- **API REST** — synchronisation avec un serveur distant
+
+## Structure du projet
+
+```
+├── main.py            # Point d'entrée, orchestre view/model/rfid
+├── view.py            # Interface graphique Pygame (scènes, boutons, clavier)
+├── model.py           # Accès base de données MariaDB
+├── api_client.py      # Client API pour synchronisation distante
+├── rfid.py            # Lecture RFID via MFRC522 (Raspberry Pi)
+├── fake_rfid.py       # Mock RFID pour le développement sur PC
+├── requirements.txt   # Dépendances Python
+├── sql/
+│   ├── createDB.sql   # Schéma de la base de données
+│   ├── procedures.sql # Procédures stockées (format DELIMITER)
+│   └── test_data.sql  # Données de test
+├── fonts/             # Polices (LiberationSans)
+├── icons/             # Icônes des boutons (format BMP)
+├── img/               # Images (logo ORIF)
+├── run.sh             # Script de lancement sur Raspberry Pi
+└── make               # Script de build
+```
+
+## Installation (développement Windows)
+
+### Prérequis
+
+- Python 3.9+ installé
+- Docker Desktop (pour MariaDB)
+
+### 1. Créer le virtual environment
 
 ```bash
-sudo apt install mariadb-server
+python -m venv timbreuse
+source timbreuse/Scripts/activate   # Git Bash / MinGW
+# ou
+timbreuse\Scripts\activate.bat      # CMD
+```
+
+### 2. Installer les dépendances
+
+```bash
+pip install pygame pygame-vkeyboard mariadb
+```
+
+### 3. Lancer MariaDB via Docker
+
+```bash
+docker run -d --name timbreuse-db \
+  -p 3306:3306 \
+  -e MARIADB_ROOT_PASSWORD="" \
+  -e MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=1 \
+  -e MARIADB_DATABASE=timbreuse2022 \
+  mariadb:11.4
+```
+
+### 4. Initialiser la base de données
+
+```bash
+docker cp sql/createDB.sql timbreuse-db:/tmp/createDB.sql
+docker exec timbreuse-db bash -c "mariadb -u root < /tmp/createDB.sql"
+
+docker cp sql/procedures.sql timbreuse-db:/tmp/procedures.sql
+docker exec timbreuse-db bash -c "mariadb -u root < /tmp/procedures.sql"
+```
+
+### 5. Charger les données de test (optionnel)
+
+```bash
+docker cp sql/test_data.sql timbreuse-db:/tmp/test_data.sql
+docker exec timbreuse-db bash -c "mariadb -u root < /tmp/test_data.sql"
+```
+
+### 6. Lancer l'application
+
+```bash
+source timbreuse/Scripts/activate
+python main.py
+```
+
+L'application détecte automatiquement Windows (`os.name == 'nt'`) et utilise `fake_rfid.py` au lieu du vrai lecteur RFID.
+
+## Installation (Raspberry Pi)
+
+```bash
+sudo apt install mariadb-server libmariadb-dev
+pip install -r requirements.txt
 sudo mariadb-secure-installation
 ```
 
-## À ajouter ?
-- [x] voir le nom attribué à l’id
-- [x] sur l’écran d’attente voir les derniers pointages
-- avoir une scène de confirmation récapitulatif
-- couleur de orif 
-    - #005BA9 bannière, titre
-    - #DBCEB1 fond
-    - #AE9B70 text
-    - #FFFFFF
-    https://coolors.co/005ba9-dd1c1a-dbceb1-386641-3c362a
-- [x] wait screen avec rebond du text avec les bords
-- [x] 5 dernières décroisant
-- [x] nom, prénom
-- [x] temps limite
-- horaire d'allumage du Raspberry Pi
-- écran de confirmation du nom d'utilisateur entrer lors de la création
+Lancer avec `./run.sh` ou `python main.py`.
 
+## Utilisation
 
+- **Écran d'attente** : affiche l'heure et le logo ORIF (rebondissant)
+- **Badge détecté** : affiche le nom de l'utilisateur avec boutons Entrée/Sortie
+- **Badge inconnu** : clavier virtuel pour saisir nom/prénom
+- **Historique** : 5 derniers pointages, détail par jour, heures semaine courante/précédente
+- **Fermer** : `Escape`, clic sur X, ou `Ctrl+C` dans le terminal
 
+## Dépendances
 
-## sécurité
-- [ ] stockage temporaire des noms
-- [ ] hacher (sha2) les ids des badges
-- [ ] chiffrement de la connexion avec la base de données
-
-## à corrigé
-- [x] scene with unknow badge
-- [x] request log with unknow badge
-- [x] somme heures plus 24 heures
-- [x] désactiver la mise en veille de l'écran
-- [ ] les câbles ?
-- [ ] requête log quand le bouton est appuyé
-- [ ] ferme proprement le script quand la view est fermé
-- [x] mettre le jeton d’identification aussi pour le get log de l’api 
-
-## bug
-- [ ] plus de 12 logs dans le détail d'un provoque un empilement des caractère
-- [ ] Utilisateur peut mettre un nom vide
-- [ ] Utilisateur peut mettre un nom à double
-- [x] Un badge avec un user id à NULL provoque un dysfonctionnement de la 
-synchronisation
-
-## À faire
-* [ ] changer log_sync
-* [ ] changer les procedure strocked utilisant log_sync
-* [ ] changer la fonction python qui appelle la processure strocked utilisant log_sync
-
-## À faire plus tard
-* [x] mettre à jour la view log
-* [ ] rajouter l’affichage des date de modification
-
-
-## À voir
-- [ ] voir pour remettre les contraintes de clé étrangère sur les tables _write
-- [ ] enlever peut-être la contraint de clé étrangère sur les table sync sur la
- timbreuse
-
-## truc à tester avec de mettre sur la production
-- [x] envoye log + pas de fuite de connection/mémoire avec SHOW PROCESSLIST;
-- [s] envoye badge user + fuite
-- [s] table write vide
-- [s] création db à zéro
-- [s] modification nom user
-- [s] modificatio log 
-- [s] suppretion log
-- [s] téléchargement log site
-- [s] temps cours si pas de connection
-- [s] sauvegarder la db du serveur distant
-- [x] mettre vrai url avant commit
-- [ ] commit
-- [ ] pull
-- [ ] mettre l’autorisation sur run.sh
-- [ ] mettre faux url sur version local du pc de bureau
+| Paquet | Usage |
+|--------|-------|
+| [pygame](https://pypi.org/project/pygame/) | Interface graphique |
+| [pygame-vkeyboard](https://pypi.org/project/pygame-vkeyboard/) | Clavier virtuel tactile |
+| [mariadb](https://pypi.org/project/mariadb/) | Connecteur base de données |
+| [mfrc522](https://pypi.org/project/mfrc522/) | Lecteur RFID (Raspberry Pi uniquement) |
