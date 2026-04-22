@@ -108,7 +108,11 @@ Lancer avec `./run.sh` ou `python main.py`.
 - **Historique** : 5 derniers pointages, détail par jour, heures semaine courante/précédente
 - **Fermer** : `Escape`, clic sur X, ou `Ctrl+C` dans le terminal
 
-## Documentation E2E
+## Documentation 
+### Globale
+- Certaines procédures et / ou schéma sont disponible dans la KB ou sur Teams dans le Canal
+
+### E2E
 
 - Procédure complète, prérequis serveur et scénario de tests: [`tests/E2E/README.md`](tests/E2E/README.md)
 

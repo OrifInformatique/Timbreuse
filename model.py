@@ -106,19 +106,20 @@ class Model:
         data = self.cursor_to_tuple(cursor)
         return data
     
-    def get_5_last_logs(self, badge_id) -> list:
+    def get_5_last_logs(self, user_id: int) -> list:
         '''
         >>> model = Model()
         >>> type(model.get_5_last_logs(116))
         <class 'list'>
         '''
-        user_id = self.get_user_id_with_badge(badge_id)
+        if user_id in (None, -1):
+            return []
         sql = ('SELECT `date`, `inside`, `date_badge`, `date_modif`, '
-               '`date_delete` FROM `log` WHERE `id_user` = ? OR '
-               '`id_badge` = ? ORDER BY `date` DESC LIMIT 5;')
+               '`date_delete` FROM `log` WHERE `id_user` = ? '
+               'ORDER BY `date` DESC LIMIT 5;')
         connection = self.get_connection_auto_close()
         cursor = connection.cursor
-        cursor.execute(sql, (user_id, badge_id))
+        cursor.execute(sql, (user_id, ))
         data = self.cursor_to_list(cursor)
 
         # in test do not close otherside
@@ -128,10 +129,10 @@ class Model:
 
     def find_user_info(self, pipe: dict) -> None:
         user_id = self.get_user_id_with_badge(pipe['id_badge'])
-        if user_id is None:
+        if user_id in (None, -1):
             return
         pipe['name'], pipe['surname'] = self.get_usernames(user_id)
-        five_logs = self.get_5_last_logs(pipe['id_badge'])
+        five_logs = self.get_5_last_logs(user_id)
         pipe['log'] = self.cursor_to_dict_in_list(('date', 'inside',
                 'date_badge', 'date_modif', 'date_delete'), five_logs)
         # to refactory
@@ -668,13 +669,15 @@ class Model:
         True
         '''
         id_user = self.get_user_id_with_badge(pipe['id_badge'])
+        if id_user in (None, -1):
+            return tuple(), tuple()
         old_last_monday = self.find_last_monday(datetime.date.today(), 1)
         sql = ('SELECT `date`, `inside`, `date_badge`, `date_modif`, '
-               '`date_delete` FROM `log` WHERE (`id_badge` = ? OR '
-               '`id_user` = ?) AND `date` >= ? ORDER BY `date` DESC;')
+               '`date_delete` FROM `log` WHERE `id_user` = ? '
+               'AND `date` >= ? ORDER BY `date` DESC;')
         connection = self.get_connection_auto_close()
         cursor = connection.cursor
-        cursor.execute(sql, (pipe['id_badge'], id_user, old_last_monday))
+        cursor.execute(sql, (id_user, old_last_monday))
         names = ('date', 'inside', 'date_badge', 'date_modif', 'date_delete')
         two_week_log = self.cursor_to_dict_in_list(names, cursor)
         connection.connection.close()
