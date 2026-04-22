@@ -10,5 +10,5 @@ class Rfid:
         put a fake id in a dict in arg
         '''
         sleep(1)
-        pipe['id_badge'] = 63
+        pipe['id_badge'] = 42
         print('fake_badge', file=sys.stderr)

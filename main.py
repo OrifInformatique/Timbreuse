@@ -10,6 +10,7 @@ except:
     import fake_rfid as rfid
 import model
 import sys
+import time
 
 class App:
     '''
@@ -38,6 +39,8 @@ class App:
         self.thread_receive_log = None
         self.thread_receive_users = None
         self.thread_receive_badges = None
+        self.thread_receive_event_logs = None
+        self.thread_apply_event_logs = None
         self.thread_delete_badges_and_users = None
         self.thread_synchronize_user_badge_log_with_remote = None
         self.thread_Invoke_synchronize_before_rfid = None
@@ -65,6 +68,10 @@ class App:
             self.invoke_thread('thread_Invoke_synchronize_before_rfid',
                 self.Invoke_synchronize_before_rfid)
         self.do_rfid()
+        if self.HAS_REMOTE_SERVER:
+            if self.handle_deleted_remote_badge():
+                self.reset()
+                return
         if self.HAS_REMOTE_SERVER:
             self.invoke_thread('thread_Invoke_synchronize_after_rfid',
                 self.Invoke_synchronize_after_rfid)
@@ -239,6 +246,34 @@ class App:
                                 self.model.find_user_info, args=(self.pipe, ))
         print('end do_model_request', self.pipe, file=sys.stderr)
 
+    def wait_modal_ack(self):
+        while (not self.pipe.get('quit', False)
+                and self.view is not None
+                and self.view.current_scene == 'modal'):
+            time.sleep(0.1)
+
+    def handle_deleted_remote_badge(self) -> bool:
+        """
+        Retourne True si une suppression distante est detectee et geree.
+        """
+        check = self.model.check_badge_assignment_with_remote(self.pipe['id_badge'])
+        if check['remote_exists']:
+            return False
+
+        if check['local_exists']:
+            self.model.remove_local_badge_correspondance(self.pipe['id_badge'])
+            user_name = check['local_user_name'] or 'cet utilisateur'
+            texts = [
+                f"Ce badge n'est plus attribue a {user_name}.",
+                'Cette correspondance est supprimee egalement sur cet appareil.',
+            ]
+        else:
+            texts = ["Ce badge n'est pas attribue a un utilisateur."]
+
+        self.view.do_badge_sync_error(texts)
+        self.wait_modal_ack()
+        return True
+
     def safe_is_alive(self, thread):
         try:
             print('tread is alive', thread.is_alive(), file=sys.stderr)
@@ -290,6 +325,10 @@ class App:
 
     def get_threads_and_functions_list(self):
         threads_and_functions = list()
+        threads_and_functions.append(('thread_receive_event_logs',
+                                self.model.invoke_receive_event_logs))
+        threads_and_functions.append(('thread_apply_event_logs',
+                                self.model.apply_event_logs))
         threads_and_functions.append(('thread_send_badges_and_users',
                                 self.model.send_unsync_badges_and_users))
         threads_and_functions.append(('thread_send_log', self.model.send_logs))

@@ -1101,6 +1101,13 @@ class View:
                     next_scene)
         self.current_scene = 'modal'
 
+    def do_badge_sync_error(self, texts: list[str]):
+        """
+        Affiche un modal d'information pour les erreurs de correspondance badge.
+        """
+        self.scenes = 'modal', SceneModal(self.screen, self, texts, 'wait')
+        self.current_scene = 'modal'
+
     def cancel(self):
         '''
         when time expire or press quit button

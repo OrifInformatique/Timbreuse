@@ -16,7 +16,10 @@ class ConnectionAutoClose:
 
     def __del__(self):
         try:
-            self.connection.commit()
+            try:
+                self.cursor.close()
+            except Exception:
+                pass
             self.connection.close()
         except Exception:
             pass
@@ -103,19 +106,20 @@ class Model:
         data = self.cursor_to_tuple(cursor)
         return data
     
-    def get_5_last_logs(self, badge_id) -> list:
+    def get_5_last_logs(self, user_id: int) -> list:
         '''
         >>> model = Model()
         >>> type(model.get_5_last_logs(116))
         <class 'list'>
         '''
-        user_id = self.get_user_id_with_badge(badge_id)
+        if user_id in (None, -1):
+            return []
         sql = ('SELECT `date`, `inside`, `date_badge`, `date_modif`, '
-               '`date_delete` FROM `log` WHERE `id_user` = ? OR '
-               '`id_badge` = ? ORDER BY `date` DESC LIMIT 5;')
+               '`date_delete` FROM `log` WHERE `id_user` = ? '
+               'ORDER BY `date` DESC LIMIT 5;')
         connection = self.get_connection_auto_close()
         cursor = connection.cursor
-        cursor.execute(sql, (user_id, badge_id))
+        cursor.execute(sql, (user_id, ))
         data = self.cursor_to_list(cursor)
 
         # in test do not close otherside
@@ -125,14 +129,56 @@ class Model:
 
     def find_user_info(self, pipe: dict) -> None:
         user_id = self.get_user_id_with_badge(pipe['id_badge'])
-        if user_id is None:
+        if user_id in (None, -1):
             return
         pipe['name'], pipe['surname'] = self.get_usernames(user_id)
-        five_logs = self.get_5_last_logs(pipe['id_badge'])
+        five_logs = self.get_5_last_logs(user_id)
         pipe['log'] = self.cursor_to_dict_in_list(('date', 'inside',
                 'date_badge', 'date_modif', 'date_delete'), five_logs)
         # to refactory
         self.read_work_time(pipe)
+
+    def get_local_badge_owner_name(self, badge_id: int) -> str:
+        """
+        Retourne le nom local associe au badge, ou une chaine vide.
+        """
+        user_id = self.get_user_id_with_badge(badge_id)
+        if user_id in (None, -1):
+            return ''
+        try:
+            name, surname = self.get_usernames(user_id)
+            full_name = f'{surname} {name}'.strip()
+            return full_name
+        except Exception:
+            return ''
+
+    def has_local_badge_correspondance(self, badge_id: int) -> bool:
+        user_id = self.get_user_id_with_badge(badge_id)
+        return user_id not in (None, -1)
+
+    def remove_local_badge_correspondance(self, badge_id: int) -> None:
+        """
+        Supprime localement la correspondance badge -> utilisateur.
+        """
+        sql = ('UPDATE `badge_sync` SET `id_user`=NULL, `date_modif`=NOW(), '
+               '`date_delete`=NOW() WHERE `id_badge`=?;')
+        self.execute_and_commit(sql, (badge_id, ))
+        sql = 'DELETE FROM `badge_write` WHERE `id_badge`=?;'
+        self.execute_and_commit(sql, (badge_id, ))
+
+    def check_badge_assignment_with_remote(self, badge_id: int) -> dict:
+        """
+        Controle si un badge est encore rattache a un utilisateur cote
+        fournisseur, puis retourne l'etat local.
+        """
+        remote_exists = self.api_client.remote_user_exists_for_badge(badge_id)
+        local_exists = self.has_local_badge_correspondance(badge_id)
+        local_user_name = self.get_local_badge_owner_name(badge_id)
+        return {
+            'remote_exists': remote_exists,
+            'local_exists': local_exists,
+            'local_user_name': local_user_name,
+        }
     
     @classmethod
     def is_deleted_log(cls, log):
@@ -317,6 +363,25 @@ class Model:
             print('last_datetime = ', last_datetime, file=sys.stderr)
             return last_datetime
 
+    def get_last_updated_event_log_datetime(self):
+        """
+        Derniere date_event traitee/connue localement pour event_log_sync.
+        """
+        print('get_last_updated_event_log_datetime', file=sys.stderr)
+        sql = 'SELECT MAX(`date_event`) FROM `event_log_sync`;'
+        connection = self.get_connection_auto_close()
+        cursor = connection.cursor
+        cursor.execute(sql)
+        data = self.cursor_to_list(cursor)
+        del connection
+        try:
+            last_datetime = data[0][0]
+            if last_datetime is None:
+                last_datetime = datetime.datetime.min
+        except Exception:
+            last_datetime = datetime.datetime.min
+        return last_datetime
+
     def get_last_updated_log_datetime(self):
         '''
         >>> model = Model()
@@ -369,10 +434,106 @@ class Model:
             # insert one per one in local. can be better
             self.call_insert_sync_badge(tuple(badge.values()))
 
-    def execute_and_commit(self, sql, value:tuple=()):
+    def upsert_event_log(self, event: dict) -> None:
+        sql = (
+            'INSERT INTO `event_log_sync` '
+            '(`id_event`, `event_type`, `entity_type`, `entity_id`, `payload`, `date_event`, `processed`, `processed_at`) '
+            'VALUES (?, ?, ?, ?, ?, ?, 0, NULL) '
+            'ON DUPLICATE KEY UPDATE '
+            '`event_type`=VALUES(`event_type`), '
+            '`entity_type`=VALUES(`entity_type`), '
+            '`entity_id`=VALUES(`entity_id`), '
+            '`payload`=VALUES(`payload`), '
+            '`date_event`=VALUES(`date_event`);'
+        )
+        value = (
+            event.get('id_event'),
+            event.get('event_type'),
+            event.get('entity_type'),
+            event.get('entity_id'),
+            event.get('payload'),
+            event.get('date_event'),
+        )
+        self.execute_and_commit(sql, value)
+
+    def invoke_receive_event_logs(self) -> None:
+        """
+        Recupere les events serveur (hard deletes) et les stocke localement.
+        """
+        print('invoke_receive_event_logs', file=sys.stderr)
+        start_date = self.get_last_updated_event_log_datetime()
+        for event in self.api_client.receive_event_logs(start_date):
+            self.upsert_event_log(event)
+
+    def list_unprocessed_event_logs(self) -> list:
+        sql = (
+            'SELECT `id_event`, `event_type`, `entity_type`, `entity_id`, `payload`, `date_event` '
+            'FROM `event_log_sync` WHERE `processed`=0 ORDER BY `date_event` ASC;'
+        )
         connection = self.get_connection_auto_close()
-        connection.cursor.execute(sql, value)
+        cursor = connection.cursor
+        cursor.execute(sql)
+        rows = self.cursor_to_list(cursor)
         del connection
+        names = ('id_event', 'event_type', 'entity_type', 'entity_id', 'payload', 'date_event')
+        return self.cursor_to_dict_in_list(names, rows)
+
+    def mark_event_log_processed(self, id_event: int) -> None:
+        sql = 'UPDATE `event_log_sync` SET `processed`=1, `processed_at`=NOW() WHERE `id_event`=?;'
+        self.execute_and_commit(sql, (id_event, ))
+
+    def apply_hard_delete_user_local(self, user_id: int) -> None:
+        # Marque l'utilisateur supprime localement (equivalent soft delete local)
+        sql = 'UPDATE `user_sync` SET `date_delete`=NOW(), `date_modif`=NOW() WHERE `id_user`=?;'
+        self.execute_and_commit(sql, (user_id, ))
+        # Desaffecte les badges localement (ne supprime pas le badge)
+        sql = 'UPDATE `badge_sync` SET `id_user`=NULL, `date_modif`=NOW() WHERE `id_user`=?;'
+        self.execute_and_commit(sql, (user_id, ))
+        # Masque les logs de cet utilisateur
+        sql = 'UPDATE `log_sync` SET `date_delete`=NOW(), `date_modif`=NOW() WHERE `id_user`=?;'
+        self.execute_and_commit(sql, (user_id, ))
+
+    def apply_hard_delete_badge_local(self, badge_id: int) -> None:
+        # Marque le badge comme supprime localement
+        sql = 'UPDATE `badge_sync` SET `id_user`=NULL, `date_delete`=NOW(), `date_modif`=NOW() WHERE `id_badge`=?;'
+        self.execute_and_commit(sql, (badge_id, ))
+        # Nettoie une eventuelle correspondance locale en write
+        sql = 'DELETE FROM `badge_write` WHERE `id_badge`=?;'
+        self.execute_and_commit(sql, (badge_id, ))
+        # Masque les logs associes au badge
+        sql = 'UPDATE `log_sync` SET `date_delete`=NOW(), `date_modif`=NOW() WHERE `id_badge`=?;'
+        self.execute_and_commit(sql, (badge_id, ))
+
+    def apply_event_logs(self) -> None:
+        """
+        Applique les events (hard delete) stockes localement.
+        """
+        print('apply_event_logs', file=sys.stderr)
+        for event in self.list_unprocessed_event_logs():
+            try:
+                if event.get('event_type') != 'hard_delete':
+                    self.mark_event_log_processed(event['id_event'])
+                    continue
+                entity_type = event.get('entity_type')
+                entity_id = event.get('entity_id')
+                if entity_type == 'user' and entity_id is not None:
+                    self.apply_hard_delete_user_local(int(entity_id))
+                elif entity_type == 'badge' and entity_id is not None:
+                    self.apply_hard_delete_badge_local(int(entity_id))
+            finally:
+                self.mark_event_log_processed(event['id_event'])
+
+    def execute_and_commit(self, sql, value:tuple=()):
+        connection = mariadb.connect(**self.conn_params)
+        cursor = connection.cursor()
+        try:
+            cursor.execute(sql, value)
+            connection.commit()
+        finally:
+            try:
+                cursor.close()
+            finally:
+                connection.close()
 
     @staticmethod
     def cursor_to_dict_in_list(select_name: tuple,
@@ -508,13 +669,15 @@ class Model:
         True
         '''
         id_user = self.get_user_id_with_badge(pipe['id_badge'])
+        if id_user in (None, -1):
+            return tuple(), tuple()
         old_last_monday = self.find_last_monday(datetime.date.today(), 1)
         sql = ('SELECT `date`, `inside`, `date_badge`, `date_modif`, '
-               '`date_delete` FROM `log` WHERE (`id_badge` = ? OR '
-               '`id_user` = ?) AND `date` >= ? ORDER BY `date` DESC;')
+               '`date_delete` FROM `log` WHERE `id_user` = ? '
+               'AND `date` >= ? ORDER BY `date` DESC;')
         connection = self.get_connection_auto_close()
         cursor = connection.cursor
-        cursor.execute(sql, (pipe['id_badge'], id_user, old_last_monday))
+        cursor.execute(sql, (id_user, old_last_monday))
         names = ('date', 'inside', 'date_badge', 'date_modif', 'date_delete')
         two_week_log = self.cursor_to_dict_in_list(names, cursor)
         connection.connection.close()
